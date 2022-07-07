@@ -34,7 +34,8 @@
 			$htmlOptions = '<option value="">[ Seleccione Tipo Proceso ]</option>';
 			$arrData = $this->model->selectCboTipoProceso();
 			if(count($arrData) > 0){
-				for ($i=0; $i < count($arrData) ; $i++) { 
+				for ($i=0; $i < count($arrData) ; $i++) {
+				    //Aqui se cambia los campos
 					$htmlOptions .='<option value="'.$arrData[$i]['ID_TIPO'].'"> '.$arrData[$i]['TIPO_PROCESO'].'</option>';
 				}
 			}

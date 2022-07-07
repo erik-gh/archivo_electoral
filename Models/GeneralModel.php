@@ -3,7 +3,7 @@
 /**
 * 
 */
-class GeneralModel extends Oracle
+class GeneralModel extends Mysql
 {
 	//CONSULTAS A LA BD, PARA RETORNAR AL CONTROLADOR 
 	private $intIdProceso;	

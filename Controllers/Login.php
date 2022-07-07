@@ -21,7 +21,7 @@
 		{
 
 			$data['page_tag']='INICIAR SESIÓN!';
-			$data['page_title']='SISTEMA DE CONTROL DE MATERIALES CRITICOS <br><br> SISCOMAC © '.date('Y');
+			$data['page_title']='ARCHIVO ELECTORAL <br><br> ARCHELECT © '.date('Y');
 			$data['page_name']='login';
 			$data['page_function_js']='function_login.js';
 			$this->views->getView($this, 'login', $data);
@@ -40,9 +40,9 @@
 				}else{
 
 					$strUsuario		= strClean($_POST['username']);
-					$strhash		= $this->model->hash_pwd($strUsuario);
-					$strPassword	= hash_encript_login($strhash['SALT'], $_POST['password']);
-					//$strPassword	= hash("SHA256", $_POST['password']);
+//					$strhash		= $this->model->hash_pwd($strUsuario);
+//					$strPassword	= hash_encript_login($strhash['SALT'], $_POST['password']);
+					$strPassword	= hash("SHA256", $_POST['password']);
 					$requestUser	= $this->model->loginUser($strUsuario, $strPassword);
 
 					if($requestUser == 'user'){
@@ -57,18 +57,18 @@
 										]; 
 					}else{
 						$arrData = $requestUser;
-						if($arrData['ESTADO'] == 1){
-							$_SESSION['idUser'] 		= $arrData['ID_USUARIO'];
-							$_SESSION['nameUser'] 		= $arrData['NOMBRE'];
-							$_SESSION['idPerfil'] 		= $arrData['ID_PERFIL'];
-							$_SESSION['resquest_pwd']	= $arrData['REQUEST_PASSWORD'];
+						if($arrData['estado'] == 1){
+							$_SESSION['idUser'] 		= $arrData['id'];
+							$_SESSION['nameUser'] 		= $arrData['nombre'];
+							$_SESSION['idPerfil'] 		= $arrData['id_perfil'];
+							$_SESSION['resquest_pwd']	= $arrData['request_password'];
 							$_SESSION['login']			= true;
 							
 							$requestModulos = $this->model->loginUserModulo($_SESSION['idPerfil']);
 							$cont = 0;
 							$_SESSION['module'][]= array();
 							foreach ($requestModulos as $rowMod ) {
-								$_SESSION['module'][$cont++] = $rowMod['URL'];
+								$_SESSION['module'][$cont++] = $rowMod['url'];
 							}
 							
 							$arrResponse = 	[

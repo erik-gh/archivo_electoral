@@ -3,7 +3,7 @@
 /**
 * 
 */
-class Control_cedulaModel extends Oracle
+class Control_cedulaModel extends Mysql
 {
 	
 	//CONSULTAS A LA BD, PARA RETORNAR AL CONTROLADOR

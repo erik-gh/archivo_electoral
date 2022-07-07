@@ -3,7 +3,7 @@
 /**
 * 
 */
-class ReporteModel extends Oracle
+class ReporteModel extends Mysql
 {
 	//CONSULTAS A LA BD, PARA RETORNAR AL CONTROLADOR 
 	private $intIdProceso;

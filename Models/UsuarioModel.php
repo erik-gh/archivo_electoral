@@ -3,7 +3,7 @@
 /**
 * 
 */
-class UsuarioModel extends Oracle
+class UsuarioModel extends Mysql
 {
 	//CONSULTAS A LA BD, PARA RETORNAR AL CONTROLADOR 
 	private $intIdUsuario;	

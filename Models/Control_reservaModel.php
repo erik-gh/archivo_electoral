@@ -3,7 +3,7 @@
 /**
 * 
 */
-class Control_reservaModel extends Oracle
+class Control_reservaModel extends Mysql
 {
 	
 	//CONSULTAS A LA BD, PARA RETORNAR AL CONTROLADOR

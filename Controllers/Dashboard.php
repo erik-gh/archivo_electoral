@@ -21,8 +21,8 @@
 		public function dashboard()
 		{
 
-			$data['page_tag']='SISCOMAC - Inicio';
-			$data['page_title']='SISCOMAC - GGE';
+			$data['page_tag']='ARCHELECT - Inicio';
+			$data['page_title']='ARCHELECT - GGE';
 			$data['page_name']='dashboard';
 			$data['page_function_js']='function_dashboard.js';
 			$data['request_password']= $_SESSION['resquest_pwd'];

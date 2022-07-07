@@ -3,7 +3,7 @@
 /**
 * 
 */
-class ControlModel extends Oracle
+class ControlModel extends Mysql
 {
 	
 	//CONSULTAS A LA BD, PARA RETORNAR AL CONTROLADOR 

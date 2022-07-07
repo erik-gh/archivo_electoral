@@ -3,7 +3,7 @@
 /**
 * 
 */
-class ParametroModel extends Oracle
+class ParametroModel extends Mysql
 {
 	//CONSULTAS A LA BD, PARA RETORNAR AL CONTROLADOR 
 	private $intIdAccion;
