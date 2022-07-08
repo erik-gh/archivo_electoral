@@ -5,7 +5,6 @@
 
 	// ZONA HORARIA
 	date_default_timezone_set('America/Lima');
-dsfadsfdsafdsafdsafdsaf
 	// DATOS DE LA BASE DE DATOS
 
 /*	const DB_HOST 		= "localhost/XE";
