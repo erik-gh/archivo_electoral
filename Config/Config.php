@@ -4,7 +4,7 @@
 	const BASE_URL = 'http://localhost/archivo_electoral';
 
 	// ZONA HORARIA
-	date_default_timezone_set('America/Lima');sdasdasdas
+	date_default_timezone_set('America/Lima');
 	// DATOS DE LA BASE DE DATOS
 
 /*	const DB_HOST 		= "localhost/XE";
