@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="67b1dbfa-bfa0-410e-bcb3-243f9f810bd8" name="Changes" comment="">
+    <list default="true" id="207e8c86-0388-4df8-8812-83bbbdbd5beb" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/archivo_electoral.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/archivo_electoral.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Config/Config.php" beforeDir="false" afterPath="$PROJECT_DIR$/Config/Config.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ComposerSettings">
+  <component name="ComposerSettings" synchronizationState="SYNCHRONIZE">
     <pharConfigPath>$PROJECT_DIR$/Assets/composer.json</pharConfigPath>
     <execution />
   </component>
@@ -28,7 +28,7 @@
       <path value="$PROJECT_DIR$/Assets/vendor/setasign/fpdi" />
     </include_path>
   </component>
-  <component name="ProjectId" id="2BfFdN3uH8WBodj4K6ySF2suLfh" />
+  <component name="ProjectId" id="2BfKj8jgqgXnN6JBvREgSMWu4Vh" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -45,12 +45,12 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="67b1dbfa-bfa0-410e-bcb3-243f9f810bd8" name="Changes" comment="" />
-      <created>1657289318710</created>
+      <changelist id="207e8c86-0388-4df8-8812-83bbbdbd5beb" name="Changes" comment="" />
+      <created>1657291831557</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1657289318710</updated>
-      <workItem from="1657289320038" duration="1803000" />
+      <updated>1657291831557</updated>
+      <workItem from="1657291832801" duration="641000" />
     </task>
     <servers />
   </component>
