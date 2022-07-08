@@ -20,18 +20,16 @@ class TemplateModel extends Mysql
 	{
 		
 		$this->intIdPerfil 	= $idPerfil;
-		$query = "	SELECT p.id_perfil,p.perfil, m.modulo, m.url, m.icono, m.id_modulo
-                    FROM perfil p
-                    INNER JOIN perfil_modulo pm ON p.id_perfil = pm.id_perfil
-                    INNER JOIN modulo m ON m.id_modulo = pm.id_modulo
-                    WHERE p.id_perfil = '{$this->intIdPerfil}'";
+		$query = "	SELECT p.id,p.perfil, m.modulo, m.url, m.icono, m.id
+                    FROM perfiles p
+                    INNER JOIN perfil_modulos pm ON p.id = pm.id_perfil
+                    INNER JOIN modulos m ON m.id = pm.id_modulo
+                    WHERE p.id = '{$this->intIdPerfil}'";
 
 		$request = $this->select_all($query);
 
 		return $request;
-		 
 	}
-
 }
 
 

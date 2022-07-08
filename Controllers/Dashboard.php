@@ -69,15 +69,14 @@
 		}
 
 
-
+//Aqui debo detenerme
 		public function getSelectProceso()
 		{
-
 			$htmlOptions = '<option value="">[ SELECCIONE PROCESO ]</option>';
 			$arrData = $this->model->selectCboProceso();
 			if(count($arrData) > 0){
 				for ($i=0; $i < count($arrData) ; $i++) { 
-					$htmlOptions .='<option value="'.$arrData[$i]['ID_PROCESO'].'" data="'.$arrData[$i]['ELECCION'].'"> '.$arrData[$i]['PROCESO']. ' ('.$arrData[$i]['DESCRIPCION']. ')</option>';
+					$htmlOptions .='<option value="'.$arrData[$i]['id'].'" data="'.$arrData[$i]['eleccion'].'"> '.$arrData[$i]['proceso']. ' ('.$arrData[$i]['descripcion']. ')</option>';
 				}
 			}
 			echo $htmlOptions;

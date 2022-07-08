@@ -16,11 +16,11 @@
             
           foreach ($arrData as $rowMod ) {
               echo '  <li>
-                        <a href="'.base_url().'/'.$rowMod['URL'].'">
+                        <a href="'.base_url().'/'.$rowMod['url'].'">
                           <span class="menu-icon">
-                            <i class="zmdi zmdi-'.$rowMod['ICONO'].'"></i>
+                            <i class="zmdi zmdi-'.$rowMod['icono'].'"></i>
                           </span>
-                          <span class="menu-text">'.$rowMod['MODULO'].'</span>
+                          <span class="menu-text">'.$rowMod['modulo'].'</span>
                         </a>
                       </li>';
           }

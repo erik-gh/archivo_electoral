@@ -52,12 +52,12 @@ class GeneralModel extends Mysql
 		$this->strFechaFin	 	= $fechaFin;
 		$this->intUserSession	= $userSession;
 
-		$queryProceso = "SELECT id_proceso FROM proceso WHERE estado != 0 AND (proceso = '{$this->strCodProceso}' OR  descripcion ='{$this->strNomProceso}') ";
+		$queryProceso = "SELECT id FROM procesos WHERE estado != 0 AND (proceso = '{$this->strCodProceso}' OR  descripcion ='{$this->strNomProceso}') ";
 		$requestProceso = $this->select($queryProceso);
 
 		if(empty($requestProceso)){
 			
-			$query = "INSERT INTO proceso(id_tipo, proceso, descripcion, fecha_inicio, fecha_cierre, user_create, date_create, creacion, estado) VALUES(?,?,?, TO_DATE(?,'YYYY-MM-DD'),TO_DATE(?,'YYYY-MM-DD'), ?, LOCALTIMESTAMP, 1, 1)";
+			$query = "INSERT INTO procesos(id_tipo, proceso, descripcion, fecha_inicio, fecha_cierre, user_create, date_create, estado) VALUES(?,?,?, TO_DATE(?,'YYYY-MM-DD'),TO_DATE(?,'YYYY-MM-DD'), ?, LOCALTIMESTAMP, 1)";
 			$arrData = array($this->intTipoProeso, $this->strCodProceso, $this->strNomProceso, $this->strFechaInicio, $this->strFechaFin, $this->intUserSession);
 			$secuence = 'SEQ_PROCESO_ID';
 			$requestInsert = $this->insert($query, $arrData, $secuence);
@@ -73,24 +73,19 @@ class GeneralModel extends Mysql
 
 	public function selectProcesos()
 	{
-
-		$query = " SELECT * FROM proceso WHERE estado != 0 ORDER BY fecha_inicio";
+		$query = " SELECT * FROM procesos WHERE estado != 0 ORDER BY fecha_inicio";
 		$requestData = $this->select_all($query);
-
 		return $requestData;
-
 	}
 
 
 	public function selectProceso(int $idProceso)
 	{
 		$this->intIdProceso = $idProceso;
-		$query = "SELECT ID_PROCESO, PROCESO, DESCRIPCION, TO_CHAR(FECHA_INICIO, 'YYYY-MM-DD') AS FECHA_INICIO, TO_CHAR(FECHA_CIERRE, 'YYYY-MM-DD') AS FECHA_CIERRE, ESTADO, CREACION, ID_TIPO FROM proceso WHERE id_proceso = $this->intIdProceso";
+		$query = "SELECT ID_PROCESO, PROCESO, DESCRIPCION, TO_CHAR(FECHA_INICIO, 'YYYY-MM-DD') AS FECHA_INICIO, TO_CHAR(FECHA_CIERRE, 'YYYY-MM-DD') AS FECHA_CIERRE, ESTADO, ID_TIPO FROM procesos WHERE id_proceso = $this->intIdProceso";
 		$request = $this->select($query);
 		return $request;
 	}
-
-
 
 	public function updateProceso(int $idProceso, int $tipoProeso, string $codProceso, string $nomProceso, string $fechaInicio, string $fechaFin, int $userSession, int $estado)
 	{
@@ -105,12 +100,12 @@ class GeneralModel extends Mysql
 		$this->intEstado 		= $estado;
 
 
-		$queryProceso = "SELECT * FROM proceso WHERE ((proceso = '{$this->strCodProceso}' AND id_proceso != $this->intIdProceso) OR (descripcion = '{$this->strNomProceso}' AND id_proceso != $this->intIdProceso)) AND estado != 0 ";
+		$queryProceso = "SELECT * FROM procesos WHERE ((proceso = '{$this->strCodProceso}' AND id_proceso != $this->intIdProceso) OR (descripcion = '{$this->strNomProceso}' AND id_proceso != $this->intIdProceso)) AND estado != 0 ";
 		$requestProceso = $this->select($queryProceso);
 
 		if(empty($requestProceso)){
 			
-			$query = "UPDATE proceso SET proceso = ?, descripcion = ?, fecha_inicio = TO_DATE(?,'YYYY-MM-DD'), fecha_cierre = TO_DATE(?,'YYYY-MM-DD'), user_update = ?, estado = ?, id_tipo = ?, date_update = LOCALTIMESTAMP WHERE id_proceso = $this->intIdProceso";
+			$query = "UPDATE procesos SET proceso = ?, descripcion = ?, fecha_inicio = TO_DATE(?,'YYYY-MM-DD'), fecha_cierre = TO_DATE(?,'YYYY-MM-DD'), user_update = ?, estado = ?, id_tipo = ?, date_update = LOCALTIMESTAMP WHERE id_proceso = $this->intIdProceso";
 			$arrData = array($this->strCodProceso, $this->strNomProceso, $this->strFechaInicio, $this->strFechaFin, $this->intUserSession, $this->intEstado , $this->intTipoProeso);
 			$request = $this->update($query, $arrData);
 
@@ -123,27 +118,22 @@ class GeneralModel extends Mysql
 		}
 	}
 
-
 	public function deleteProceso(int $idProceso)
 	{
 		$this->intIdProceso 	=  $idProceso;
 		
-		$query 	= "UPDATE proceso SET estado = ? WHERE id_proceso = $this->intIdProceso ";
+		$query 	= "UPDATE procesos SET estado = ? WHERE id_proceso = $this->intIdProceso ";
 		$arrData= array(0);
 		$request = $this->update($query, $arrData);
 			
 		return $request;
 	}
 
-
-	public function selectCboTipoProceso()
-	{
-		$query = "SELECT * FROM tipo_proceso WHERE estado = 1 ORDER BY tipo_proceso";
+	public function selectCboTipoProceso(){
+		$query = "SELECT * FROM tipo_procesos WHERE estado = 1 ORDER BY tipo_proceso";
 		$request = $this->select_all($query);
 		return $request;
 	}
-
-
 
 	/* ===== CONSULTA ===== */
 	public function insertConsulta(string $consukta, string $descripcion, int $userSession)
@@ -153,7 +143,7 @@ class GeneralModel extends Mysql
 		$this->strDescripcion	= $descripcion;
 		$this->intUserSession	= $userSession;
 
-		$queryConsulkta = "SELECT id_consulta FROM consulta WHERE estado != 0 AND consulta = '{$this->strConsulta}' ";
+		$queryConsulkta = "SELECT id_consulta FROM consultas WHERE estado != 0 AND consulta = '{$this->strConsulta}' ";
 		$requestConsulta = $this->select($queryConsulkta);
 
 		if(empty($requestConsulta)){
@@ -175,7 +165,7 @@ class GeneralModel extends Mysql
 	public function selectConsultas()
 	{
 
-		$query = " SELECT * FROM consulta WHERE estado != 0 ORDER BY consulta";
+		$query = "SELECT * FROM consultas WHERE estado != 0 ORDER BY consulta";
 		$requestData = $this->select_all($query);
 
 		return $requestData;
@@ -185,7 +175,7 @@ class GeneralModel extends Mysql
 	public function selectConsulta(int $idConsulta)
 	{
 		$this->intIdConsulta = $idConsulta;
-		$query = "SELECT * FROM consulta WHERE id_consulta = $this->intIdConsulta";
+		$query = "SELECT * FROM consultas WHERE id = $this->intIdConsulta";
 		$request = $this->select($query);
 		return $request;
 	}
@@ -200,13 +190,12 @@ class GeneralModel extends Mysql
 		$this->intUserSession	= $userSession;
 		$this->intEstado 		= $estado;
 
-
-		$queryConsulta = "SELECT * FROM consulta WHERE (consulta = '{$this->strConsulta}' AND id_consulta != $this->intIdConsulta)  AND estado != 0 ";
+		$queryConsulta = "SELECT * FROM consultas WHERE (consulta = '{$this->strConsulta}' AND id != $this->intIdConsulta)  AND estado != 0 ";
 		$requestConsulta = $this->select($queryConsulta);
 
 		if(empty($requestConsulta)){
 			
-			$query = "UPDATE consulta SET consulta = ?, descripcion = ?, user_update = ?, estado = ?, date_update = LOCALTIMESTAMP WHERE id_consulta = $this->intIdConsulta";
+			$query = "UPDATE consultas SET consulta = ?, descripcion = ?, user_update = ?, estado = ?, date_update = LOCALTIMESTAMP WHERE id_consulta = $this->intIdConsulta";
 			$arrData = array($this->strConsulta, $this->strDescripcion, $this->intUserSession, $this->intEstado);
 			$request = $this->update($query, $arrData);
 
@@ -224,13 +213,12 @@ class GeneralModel extends Mysql
 	{
 		$this->intIdConsulta 	=  $idConsulta;
 		
-		$query 	= "UPDATE consulta SET estado = ? WHERE id_consulta = $this->intIdConsulta ";
+		$query 	= "UPDATE consultas SET estado = ? WHERE id_consulta = $this->intIdConsulta ";
 		$arrData= array(0);
 		$request = $this->update($query, $arrData);
 			
 		return $request;
 	}
-
 
 
 	/* ===== CONSULTA ===== */
@@ -262,7 +250,6 @@ class GeneralModel extends Mysql
 		$this->intUserSession	= $userSession;
 		$this->intEstado 		= $estado;
 
-
 		$queryEtapa = "SELECT * FROM etapa WHERE (descripcion = '{$this->strDescripcion}' AND id_etapa != $this->intIdEtapa)  AND estado != 0 ";
 		$requestEtapa = $this->select($queryEtapa);
 
@@ -273,15 +260,10 @@ class GeneralModel extends Mysql
 			$request = $this->update($query, $arrData);
 
 			return $request;
-
 		}else{
-			
 			return  'exist';
-
 		}
 	}
-
-
 
 	/* ===== SOLUCION ===== */
 	public function insertSolucion(string $solucion, string $descripcion, int $userSession)
@@ -291,12 +273,12 @@ class GeneralModel extends Mysql
 		$this->strDescripcion	= $descripcion;
 		$this->intUserSession	= $userSession;
 
-		$querySolucion = "SELECT id_soluciontecnologica FROM soluciontecnologica WHERE estado != 0 AND soluciontecnologica = '{$this->strSolucion}' ";
+		$querySolucion = "SELECT id FROM soluciones WHERE estado != 0 AND soluciontecnologica = '{$this->strSolucion}' ";
 		$requestSolucion = $this->select($querySolucion);
 
 		if(empty($requestSolucion)){
 			
-			$query = "INSERT INTO soluciontecnologica(soluciontecnologica, descripcion, user_create, date_create, estado) VALUES(?,?,?, LOCALTIMESTAMP, 1)";
+			$query = "INSERT INTO soluciones(solucion_tecnologica, descripcion, user_create, created_at, estado) VALUES(?,?,?, LOCALTIMESTAMP(), 1)";
 			$arrData = array($this->strSolucion, $this->strDescripcion, $this->intUserSession);
 			$secuence = 'SEQ_SOLUCIONTECNOLOGICA_ID';
 			$requestInsert = $this->insert($query, $arrData, $secuence);
@@ -311,10 +293,8 @@ class GeneralModel extends Mysql
 
 	public function selecSoluciones()
 	{
-
-		$query = " SELECT * FROM soluciontecnologica WHERE estado != 0 ORDER BY soluciontecnologica";
+		$query = "SELECT * FROM soluciones WHERE estado != 0 ORDER BY solucion_tecnologica";
 		$requestData = $this->select_all($query);
-
 		return $requestData;
 	}
 
@@ -322,7 +302,7 @@ class GeneralModel extends Mysql
 	public function selectSolucion(int $idSolucion)
 	{
 		$this->intIdSolucion = $idSolucion;
-		$query = "SELECT * FROM soluciontecnologica WHERE id_soluciontecnologica = $this->intIdSolucion";
+		$query = "SELECT * FROM soluciones WHERE id = $this->intIdSolucion";
 		$request = $this->select($query);
 		return $request;
 	}
@@ -330,38 +310,31 @@ class GeneralModel extends Mysql
 
 	public function updateSolucion(int $idSolucion, string $solucion, string $descripcion, int $userSession, int $estado)
 	{
-
 		$this->intIdSolucion 	= $idSolucion;
 		$this->strSolucion 		= $solucion;
 		$this->strDescripcion	= $descripcion;
 		$this->intUserSession	= $userSession;
 		$this->intEstado 		= $estado;
 
-
-		$querySolucion = "SELECT * FROM soluciontecnologica WHERE (soluciontecnologica = '{$this->strSolucion}' AND id_soluciontecnologica != $this->intIdSolucion)  AND estado != 0 ";
+		$querySolucion = "SELECT * FROM soluciones WHERE (solucion_tecnologica = '{$this->strSolucion}' AND id != $this->intIdSolucion)  AND estado != 0";
 		$requestSolucion = $this->select($querySolucion);
 
 		if(empty($requestSolucion)){
 			
-			$query = "UPDATE soluciontecnologica SET soluciontecnologica = ?, descripcion = ?, user_update = ?, estado = ?, date_update = LOCALTIMESTAMP WHERE id_soluciontecnologica = $this->intIdSolucion";
+			$query = "UPDATE soluciones SET solucion_tecnologica = ?, descripcion = ?, user_update = ?, estado = ?, updated_at = LOCALTIMESTAMP() WHERE id = $this->intIdSolucion";
 			$arrData = array($this->strSolucion, $this->strDescripcion, $this->intUserSession, $this->intEstado);
 			$request = $this->update($query, $arrData);
-
 			return $request;
-
 		}else{
-			
 			return  'exist';
-
 		}
 	}
-
 
 	public function deleteSolucion(int $idSolucion)
 	{
 		$this->intIdSolucion 	=  $idSolucion;
 		
-		$query 	= "UPDATE soluciontecnologica SET estado = ? WHERE id_soluciontecnologica = $this->intIdSolucion ";
+		$query 	= "UPDATE soluciones SET estado = ? WHERE id = $this->intIdSolucion ";
 		$arrData= array(0);
 		$request = $this->update($query, $arrData);
 			
@@ -374,10 +347,8 @@ class GeneralModel extends Mysql
 	
 	public function selecMateriales()
 	{
-
 		$query = " SELECT * FROM material WHERE estado != 0 ORDER BY id_material";
 		$requestData = $this->select_all($query);
-
 		return $requestData;
 	}
 
@@ -390,10 +361,8 @@ class GeneralModel extends Mysql
 		return $request;
 	}
 
-
 	public function updateMaterial(int $idMaterial, string $descripcion, int $userSession, int $estado)
 	{
-
 		$this->intIdMaterial 	= $idMaterial;
 		$this->strDescripcion	= $descripcion;
 		$this->intUserSession	= $userSession;
@@ -412,13 +381,9 @@ class GeneralModel extends Mysql
 			return $request;
 
 		}else{
-			
 			return  'exist';
-
 		}
 	}
-
-
 
 	/* ===== INCIDENCIAS ===== */
 	public function insertIncidencia(string $incidencia, string $descripcion, int $userSession)
@@ -446,7 +411,6 @@ class GeneralModel extends Mysql
 		}
 	}
 
-
 	public function selectincidencias()
 	{
 
@@ -464,7 +428,6 @@ class GeneralModel extends Mysql
 		$request = $this->select($query);
 		return $request;
 	}
-
 
 	public function updateIncidencia(int $idIncidencia, string $incidencia, string $descripcion, int $userSession, int $estado)
 	{
@@ -494,7 +457,6 @@ class GeneralModel extends Mysql
 		}
 	}
 
-
 	public function deleteIncidencia(int $idIncidencia)
 	{
 		$this->intIdIncidencia 	=  $idIncidencia;
@@ -506,8 +468,6 @@ class GeneralModel extends Mysql
 		return $request;
 	}
 
-
-
 	/* ====== ASIGNAR ===== */
 	public function selectCboEtapa(){
 		$query = "	SELECT ID_ETAPA, ETAPA 
@@ -517,7 +477,6 @@ class GeneralModel extends Mysql
 		return $request;
 	}
 
-
 	public function selectCboIncidencias(){
 		
 		$query = "	SELECT * FROM incidencia WHERE estado = 1 ORDER BY incidencia";
@@ -525,7 +484,6 @@ class GeneralModel extends Mysql
 		
 		return $request;
 	}
-
 
 	public function selectincidenciasAsignar()
 	{
@@ -542,7 +500,6 @@ class GeneralModel extends Mysql
 		return $request;
 	}
 
-
 	public function insertAsignar(int $idEtapa, int $idIncidencia)
 	{
 		$this->intIdEtapa 		= $idEtapa;
@@ -556,7 +513,6 @@ class GeneralModel extends Mysql
 		return $requestInsert;
 	}
 
-
 	public function selectAsignar(int $idEtapa)
 	{
 		$this->intIdEtapa = $idEtapa;
@@ -568,7 +524,6 @@ class GeneralModel extends Mysql
 		return $request;
 	}
 
-
 	public function deleteAsignar(int $idEtapa)
 	{
 		$this->intIdEtapa 	=  $idEtapa;
@@ -577,8 +532,6 @@ class GeneralModel extends Mysql
 		$request = $this->delete($query);
 		return $request;
 	}
-
-
 
 	/* ===== DISPOSITIVOS USB ===== */
 	public function insertDispositivo(string $descripcion, int $userSession)
@@ -605,7 +558,6 @@ class GeneralModel extends Mysql
 		}
 	}
 
-
 	public function selecDispositivos()
 	{
 
@@ -615,20 +567,16 @@ class GeneralModel extends Mysql
 		return $requestData;
 	}
 
-
 	public function selectDispositivo(int $idDispositivo)
 	{
-
 		$this->intIdDispositivo = $idDispositivo;
 		$query = "SELECT * FROM dispositivo_tipo WHERE id_tipo = $this->intIdDispositivo";
 		$request = $this->select($query);
 		return $request;
 	}
 
-
 	public function updateDispositivo(int $idSolucion, string $descripcion, int $userSession, int $estado)
 	{
-
 		$this->intIdDispositivo 	= $idSolucion;
 		$this->strDescripcion	= $descripcion;
 		$this->intUserSession	= $userSession;
@@ -657,7 +605,6 @@ class GeneralModel extends Mysql
 	public function deleteDispositivo(int $idDispositivo)
 	{
 		$this->intIdDispositivo 	=  $idDispositivo;
-		
 		$query 	= "UPDATE dispositivo_tipo SET estado = ? WHERE id_tipo = $this->intIdDispositivo ";
 		$arrData= array(0);
 		$request = $this->update($query, $arrData);
@@ -666,6 +613,4 @@ class GeneralModel extends Mysql
 	}
 
 }
-
-
 ?>

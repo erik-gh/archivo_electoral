@@ -36,13 +36,12 @@
 			if(count($arrData) > 0){
 				for ($i=0; $i < count($arrData) ; $i++) {
 				    //Aqui se cambia los campos
-					$htmlOptions .='<option value="'.$arrData[$i]['ID_TIPO'].'"> '.$arrData[$i]['TIPO_PROCESO'].'</option>';
+					$htmlOptions .='<option value="'.$arrData[$i]['id'].'"> '.$arrData[$i]['tipo_proceso'].'</option>';
 				}
 			}
 			echo $htmlOptions;
 			die();
 		}
-
 
 		public function getProcesos()
 		{
@@ -53,11 +52,11 @@
 			for ($i=0; $i <  count($arrData); $i++) { 
 				# code...
 				$arrData[$i]['orden'] 	= 	$i+1;
-				$arrData[$i]['ESTADO'] 	= 	$arrData[$i]['ESTADO'] == 1 ? '<span class="label label-success label-pill m-w-60">ACTIVO</span>' : '<span class="label label-danger label-pill m-w-60">INACTIVO</span>';
-				$arrData[$i]['opciones'] =	'<a class="btn btn-primary btn-xs" title="Editar" onclick="editarProceso('.$arrData[$i]['ID_PROCESO'].')">
+				$arrData[$i]['ESTADO'] 	= 	$arrData[$i]['estado'] == 1 ? '<span class="label label-success label-pill m-w-60">ACTIVO</span>' : '<span class="label label-danger label-pill m-w-60">INACTIVO</span>';
+				$arrData[$i]['opciones'] =	'<a class="btn btn-primary btn-xs" title="Editar" onclick="editarProceso('.$arrData[$i]['id'].')">
 													<i class="zmdi zmdi-edit zmdi-hc-fw"></i>
 												</a>
-                                				<a class="btn btn-danger btn-xs" title="Eliminar" onclick="eliminarProceso('.$arrData[$i]['ID_PROCESO'].')">
+                                				<a class="btn btn-danger btn-xs" title="Eliminar" onclick="eliminarProceso('.$arrData[$i]['id'].')">
                                 					<i data-toggle="tooltip" title="Eiiminar"class="zmdi zmdi-delete zmdi-hc-fw"></i>
                                 				</a>';
 			}
@@ -205,11 +204,11 @@
 			for ($i=0; $i <  count($arrData); $i++) { 
 				# code...
 				$arrData[$i]['orden'] 	= 	$i+1;
-				$arrData[$i]['ESTADO'] 	= 	$arrData[$i]['ESTADO'] == 1 ? '<span class="label label-success label-pill m-w-60">ACTIVO</span>' : '<span class="label label-danger label-pill m-w-60">INACTIVO</span>';
-				$arrData[$i]['opciones'] =	'<a class="btn btn-primary btn-xs" title="Editar" onclick="editarConsulta('.$arrData[$i]['ID_CONSULTA'].')">
+				$arrData[$i]['ESTADO'] 	= 	$arrData[$i]['estado'] == 1 ? '<span class="label label-success label-pill m-w-60">ACTIVO</span>' : '<span class="label label-danger label-pill m-w-60">INACTIVO</span>';
+				$arrData[$i]['opciones'] =	'<a class="btn btn-primary btn-xs" title="Editar" onclick="editarConsulta('.$arrData[$i]['id'].')">
 													<i class="zmdi zmdi-edit zmdi-hc-fw"></i>
 												</a>
-                                				<a class="btn btn-danger btn-xs" title="Eliminar" onclick="eliminarConsulta('.$arrData[$i]['ID_CONSULTA'].')">
+                                				<a class="btn btn-danger btn-xs" title="Eliminar" onclick="eliminarConsulta('.$arrData[$i]['id'].')">
                                 					<i data-toggle="tooltip" title="Eiiminar"class="zmdi zmdi-delete zmdi-hc-fw"></i>
                                 				</a>';
 			}
@@ -352,7 +351,7 @@
 			for ($i=0; $i <  count($arrData); $i++) { 
 				# code...
 				$arrData[$i]['orden'] 	= 	$i+1;
-				$arrData[$i]['ESTADO'] 	= 	$arrData[$i]['ESTADO'] == 1 ? '<span class="label label-success label-pill m-w-60">ACTIVO</span>' : '<span class="label label-danger label-pill m-w-60">INACTIVO</span>';
+				$arrData[$i]['ESTADO'] 	= 	$arrData[$i]['estado'] == 1 ? '<span class="label label-success label-pill m-w-60">ACTIVO</span>' : '<span class="label label-danger label-pill m-w-60">INACTIVO</span>';
 				$arrData[$i]['opciones'] =	'<a data-toggle="modal" href="#modal_etapa" class="btn btn-primary btn-xs" title="Editar" onclick="editarEtapa('.$arrData[$i]['ID_ETAPA'].')">
 													<i class="zmdi zmdi-edit zmdi-hc-fw"></i>
 												</a>';
@@ -469,11 +468,11 @@
 			for ($i=0; $i <  count($arrData); $i++) { 
 				# code...
 				$arrData[$i]['orden'] 	= 	$i+1;
-				$arrData[$i]['ESTADO'] 	= 	$arrData[$i]['ESTADO'] == 1 ? '<span class="label label-success label-pill m-w-60">ACTIVO</span>' : '<span class="label label-danger label-pill m-w-60">INACTIVO</span>';
-				$arrData[$i]['opciones'] =	'<a class="btn btn-primary btn-xs" title="Editar" onclick="editarSolucion('.$arrData[$i]['ID_SOLUCIONTECNOLOGICA'].')">
+				$arrData[$i]['ESTADO'] 	= 	$arrData[$i]['estado'] == 1 ? '<span class="label label-success label-pill m-w-60">ACTIVO</span>' : '<span class="label label-danger label-pill m-w-60">INACTIVO</span>';
+				$arrData[$i]['opciones'] =	'<a class="btn btn-primary btn-xs" title="Editar" onclick="editarSolucion('.$arrData[$i]['id'].')">
 													<i class="zmdi zmdi-edit zmdi-hc-fw"></i>
 												</a>
-                                				<a class="btn btn-danger btn-xs" title="Eliminar" onclick="eliminarSolucion('.$arrData[$i]['ID_SOLUCIONTECNOLOGICA'].')">
+                                				<a class="btn btn-danger btn-xs" title="Eliminar" onclick="eliminarSolucion('.$arrData[$i]['id'].')">
                                 					<i data-toggle="tooltip" title="Eiiminar"class="zmdi zmdi-delete zmdi-hc-fw"></i>
                                 				</a>';
 			}
@@ -615,7 +614,7 @@
 			for ($i=0; $i <  count($arrData); $i++) { 
 				# code...
 				$arrData[$i]['orden'] 	= 	$i+1;
-				$arrData[$i]['ESTADO'] 	= 	$arrData[$i]['ESTADO'] == 1 ? '<span class="label label-success label-pill m-w-60">ACTIVO</span>' : '<span class="label label-danger label-pill m-w-60">INACTIVO</span>';
+				$arrData[$i]['ESTADO'] 	= 	$arrData[$i]['estado'] == 1 ? '<span class="label label-success label-pill m-w-60">ACTIVO</span>' : '<span class="label label-danger label-pill m-w-60">INACTIVO</span>';
 				$arrData[$i]['opciones'] =	'<a data-toggle="modal" href="#modal_material" class="btn btn-primary btn-xs" title="Editar" onclick="editarMaterial('.$arrData[$i]['ID_MATERIAL'].')">
 													<i class="zmdi zmdi-edit zmdi-hc-fw"></i>
 												</a>';
@@ -733,7 +732,7 @@
 			for ($i=0; $i <  count($arrData); $i++) { 
 				# code...
 				$arrData[$i]['orden'] 	= 	$i+1;
-				$arrData[$i]['ESTADO'] 	= 	$arrData[$i]['ESTADO'] == 1 ? '<span class="label label-success label-pill m-w-60">ACTIVO</span>' : '<span class="label label-danger label-pill m-w-60">INACTIVO</span>';
+				$arrData[$i]['ESTADO'] 	= 	$arrData[$i]['estado'] == 1 ? '<span class="label label-success label-pill m-w-60">ACTIVO</span>' : '<span class="label label-danger label-pill m-w-60">INACTIVO</span>';
 				$arrData[$i]['opciones'] =	'<a class="btn btn-primary btn-xs" title="Editar" onclick="editarIncidencia('.$arrData[$i]['ID_INCIDENCIA'].')">
 													<i class="zmdi zmdi-edit zmdi-hc-fw"></i>
 												</a>
@@ -1046,7 +1045,7 @@
 			for ($i=0; $i <  count($arrData); $i++) { 
 				# code...
 				$arrData[$i]['orden'] 	= 	$i+1;
-				$arrData[$i]['ESTADO'] 	= 	$arrData[$i]['ESTADO'] == 1 ? '<span class="label label-success label-pill m-w-60">ACTIVO</span>' : '<span class="label label-danger label-pill m-w-60">INACTIVO</span>';
+				$arrData[$i]['ESTADO'] 	= 	$arrData[$i]['estado'] == 1 ? '<span class="label label-success label-pill m-w-60">ACTIVO</span>' : '<span class="label label-danger label-pill m-w-60">INACTIVO</span>';
 				$arrData[$i]['opciones'] =	'<a class="btn btn-primary btn-xs" title="Editar" onclick="editarDispositivo('.$arrData[$i]['ID_TIPO'].')">
 													<i class="zmdi zmdi-edit zmdi-hc-fw"></i>
 												</a>
