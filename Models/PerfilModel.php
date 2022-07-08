@@ -3,7 +3,7 @@
 /**
 * 
 */
-class PerfilModel extends Oracle
+class PerfilModel extends Mysql
 {
 	//CONSULTAS A LA BD, PARA RETORNAR AL CONTROLADOR 
 

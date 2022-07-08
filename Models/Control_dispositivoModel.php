@@ -3,7 +3,7 @@
 /**
 * 
 */
-class Control_dispositivoModel extends Oracle
+class Control_dispositivoModel extends Mysql
 {
 	
 	//CONSULTAS A LA BD, PARA RETORNAR AL CONTROLADOR

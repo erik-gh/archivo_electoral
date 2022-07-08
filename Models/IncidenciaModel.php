@@ -3,7 +3,7 @@
 /**
 * 
 */
-class IncidenciaModel extends Oracle
+class IncidenciaModel extends Mysql
 {
 
 	//CONSULTAS A LA BD, PARA RETORNAR AL CONTROLADOR

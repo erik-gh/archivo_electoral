@@ -3,7 +3,7 @@
 /**
 * 
 */
-class Control_actaModel extends Oracle
+class Control_actaModel extends Mysql
 {
 	
 	//CONSULTAS A LA BD, PARA RETORNAR AL CONTROLADOR
