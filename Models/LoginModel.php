@@ -30,8 +30,6 @@ class LoginModel extends Mysql
 		return $request;
 	}
 
-
-
 	public function loginUser(string $usuario, string $password)
 	{
 		
@@ -49,9 +47,7 @@ class LoginModel extends Mysql
 
 			return $request;
 		}
-		 
 	}
-
 
 	public function loginUserModulo(int $idPerfil)
 	{
@@ -64,8 +60,6 @@ class LoginModel extends Mysql
 
 		$request = $this->select_all($query);
 		return $request;
-		
-		 
 	}
 
 }
