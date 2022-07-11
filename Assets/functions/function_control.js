@@ -42,6 +42,7 @@ function CboProceso(){
 
 
 function panelTabs(id){
+	console.log($('#cboProceso').val());
 	var proceso = $('#cboProceso').val(); 
 	if(proceso != '' ){
 		//$('#carga_panel').show()

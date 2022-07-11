@@ -36,7 +36,7 @@ class UsuarioModel extends Mysql
 		$this->strPassword 		= $password;
 		$this->intUserSession	= $userSession;
 
-		$queryUsuario = "SELECT id_usuario FROM usuario WHERE estado != 0 AND (dni_usuario = '{$this->strDNI}' OR  username ='{$this->strUsuario}') ";
+		$queryUsuario = "SELECT id_usuario FROM usuario WHERE estado != 0 AND (dni = '{$this->strDNI}' OR  username ='{$this->strUsuario}') ";
 		$requestUsuario = $this->select($queryUsuario);
 
 		if(empty($requestUsuario)){
@@ -108,8 +108,8 @@ class UsuarioModel extends Mysql
 
 
 		$where = ($_SESSION['idPerfil'] != 1) ? ' AND u.id_perfil != 1 ' : '' ;
-		$query = "SELECT u.id_usuario, u.dni_usuario, u.apellidos, u.nombres, p.perfil, u.username, u.estado FROM perfil p INNER JOIN usuario u ON p.id_perfil = u.id_perfil WHERE p.estado != 0 AND u.estado != 0 ".$where."
-		ORDER BY p.id_perfil, u.apellidos, u.nombres";
+		$query = "SELECT u.id, u.dni, u.apellidos, u.nombres, p.perfil, u.username, u.estado FROM perfiles p INNER JOIN users u ON p.id = u.id_perfil WHERE p.estado != 0 AND u.estado != 0 ".$where."
+		ORDER BY p.id, u.apellidos, u.nombres";
 		$requestData = $this->select_all($query);
 
 		return $requestData;
@@ -120,7 +120,7 @@ class UsuarioModel extends Mysql
 	public function selectusuario(int $idUsuario)
 	{
 		$this->intIdUsuario = $idUsuario;
-		$query = "SELECT * FROM usuario WHERE id_usuario = $this->intIdUsuario";
+		$query = "SELECT * FROM users WHERE id = $this->intIdUsuario";
 		$request = $this->select($query);
 		return $request;
 	}
@@ -139,7 +139,7 @@ class UsuarioModel extends Mysql
 		$this->intUserSession 	= $userSession;
 		$this->intEstado 		= $estado;
 
-		$queryUsuario = "SELECT * FROM usuario WHERE ((dni_usuario = '{$this->strDNI}' AND id_usuario != $this->intIdUsuario) OR (username = '{$this->strUsuario}' AND id_usuario != $this->intIdUsuario)) AND estado != 0 ";
+		$queryUsuario = "SELECT * FROM users WHERE ((dni = '{$this->strDNI}' AND id != $this->intIdUsuario) OR (username = '{$this->strUsuario}' AND id_usuario != $this->intIdUsuario)) AND estado != 0 ";
 		$requestUsuario = $this->select($queryUsuario);
 
 		if(empty($requestUsuario)){

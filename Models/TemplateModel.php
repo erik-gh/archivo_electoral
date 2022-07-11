@@ -24,7 +24,7 @@ class TemplateModel extends Mysql
                     FROM perfiles p
                     INNER JOIN perfil_modulos pm ON p.id = pm.id_perfil
                     INNER JOIN modulos m ON m.id = pm.id_modulo
-                    WHERE p.id = '{$this->intIdPerfil}'";
+                    WHERE p.id = '{$this->intIdPerfil}' AND m.estado = 1;";
 
 		$request = $this->select_all($query);
 

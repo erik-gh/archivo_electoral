@@ -36,7 +36,8 @@
 				                                  	<input class="form-control" type="hidden" id="txtIDUsuarioRecepcion" name="txtIDUsuarioRecepcion">
 				                                  	<input class="form-control" type="hidden" id="txtIdEtapaRecepcion" name="txtIdEtapaRecepcion" value="1">
 				                                  	<input class="form-control" type="hidden" id="txtValidacionRecepcion" name="txtValidacionRecepcion" value="1">
-								                  	<div class="form-group form-group-sm">
+                                                    <!-- Aqui se debe de modificar -->
+								                  	<!--<div class="form-group form-group-sm">
 									                    <label class="col-sm-4 control-label" for="form-control-1">FASE</label>
 									                    <div class="col-sm-8 z-9">
 									                      	<select class="form-control" name="cbofaseRecepcion" id="cbofaseRecepcion" data-dropup-auto="false" data-size="6" data-live-search="true" onChange="cboSoltecCedula('Recepcion');" required>
@@ -44,7 +45,7 @@
 	                                          					<option value="1">SUFRAGIO</option>
                             								</select>
 									                    </div>
-								                 	</div>
+								                 	</div>-->
 
 								                 	<div class="form-group form-group-sm">
 									                    <label class="col-sm-4 control-label" for="form-control-1">SOLUCI&Oacute;N TECNOL&Oacute;G.</label>
@@ -63,14 +64,14 @@
                             								</select>
 									                    </div>
 								                 	</div>
-
+                                                    <!-- Aqui se debe de modificar de agrupacion politica a Consulta-->
 								                 	<div id="divAgrupacionRecepcion">
 								                 		<!-- <input class="form-control" type="text" id="txtdata" name="txtdata" value=""> -->
 									                 	<div class="form-group form-group-sm">
-										                    <label class="col-sm-4 control-label" for="form-control-1">AGRUP.  POLITICA</label>
+										                    <label class="col-sm-4 control-label" for="form-control-1">CONSULTA</label>
 										                    <div class="col-sm-8 z-6">
 										                      	<select class="form-control" name="cboagrupacionRecepcion" id="cboagrupacionRecepcion" data-dropup-auto="false" data-size="6" data-live-search="true" onChange="cboAgrupacionCedula('Recepcion');" required>
-										                      		<option value="">[ SELECCIONE UNA AGRUP. POLITICA ]</option>
+										                      		<option value="">[ SELECCIONE UNA CONSULTA ]</option>
 	                            								</select>
 										                    </div>
 									                 	</div>
@@ -102,27 +103,27 @@
                             								</select>
 									                    </div>
 								                 	</div>
-
+                                                    <!-- Aqui se editar de cedula a Tipo sobre -->
 								                 	<div class="form-group form-group-sm">
-									                    <label class="col-sm-4 control-label" for="form-control-1">TIPO DE C&Eacute;DULA</label>
+									                    <label class="col-sm-4 control-label" for="form-control-1">TIPO DE SOBRE</label>
 									                    <div class="col-sm-8 z-2">
 									                      	<select class="form-control" name="cboconsultaRecepcion" id="cboconsultaRecepcion" data-size="6" data-dropup-auto="false" data-live-search="true" onChange="selTipoCedula('Recepcion');" required>
-									                      		<option value="">[ SELECCIONE TIPO DE C&Eacute;DULA ]</option>
+									                      		<option value="">[ SELECCIONE TIPO DE SOBRE ]</option>
                             								</select>
 									                    </div>
 								                 	</div>
-
-								                 	<div class="form-group form-group-sm">
-									                    <label class="col-sm-4 control-label" for="form-control-14">UBIGEO</label>
+                                                    <!-- Aqui se editar de UBIGEO a DOCUMENTO -->
+                                                    <div class="form-group form-group-sm">
+									                    <label class="col-sm-4 control-label" for="form-control-14">DOCUMENTO</label>
 									                    <div class="col-sm-8">
 									                      <input id="ubigeoRecepcion" name="ubigeoRecepcion" class="form-control" type="text" placeholder="C&oacute;digo de Barras del Ubigeo" style="text-transform: uppercase;" disabled onKeyPress="inpUbigeo('Recepcion');">
 									                    </div>
 								                  	</div>
-
-								                  	<div class="form-group form-group-sm">
-									                    <label class="col-sm-4 control-label" for="form-control-14">R&Oacute;TULO</label>
+                                                    <!-- Aqui se editar de ROUTULO a NUMERO DE MESA -->
+                                                    <div class="form-group form-group-sm">
+									                    <label class="col-sm-4 control-label" for="form-control-14">MESA</label>
 									                    <div class="col-sm-8">
-									                      <input id="rotuloRecepcion" name="rotuloRecepcion" class="form-control" type="text" placeholder="C&oacute;digo de Barras del R&oacute;tulo" style="text-transform: uppercase;" disabled onKeyPress="inpRotulo('Recepcion');">
+									                      <input id="rotuloRecepcion" name="rotuloRecepcion" class="form-control" type="text" placeholder="C&oacute;digo de Barras numero de Mesa" style="text-transform: uppercase;" disabled onKeyPress="inpRotulo('Recepcion');">
 									                    </div>
 								                  	</div>
 													<input type="hidden" id="idConsultaRecepcion">
@@ -132,7 +133,6 @@
 					                                      	<a class="btn bg-danger btn-sm" href="#modal_incidencia"  id="btnIncidRecepcion"  data-toggle="modal" style="display: none;"  onClick="modalIncidencia('Recepcion',1)"><i class="zmdi zmdi-info-outline zmdi-hc-fw m-r-5"></i><span> INCIDENCIA</span></a>
 					                                    </div>
 					                              	</div>
-
 
 					                              	<!-- <div class="col-sm-offset-1 col-sm-10 text-center" id="msjRecepcionCedula"></div> -->
 		                                   			<div  class="col-sm-offset-1 col-sm-11 text-center m-t-20">            

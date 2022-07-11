@@ -98,19 +98,19 @@
 			for ($i=0; $i <  count($arrData[0]); $i++) { 
 				# code...
 				$arrData[0][$i]['orden'] 	= 	$i+1;
-				$arrData[0][$i]['ESTADO'] 	= 	$arrData[0][$i]['ESTADO'] == 1 ? '<span class="label label-success label-pill m-w-60">ACTIVO</span>' : '<span class="label label-danger label-pill m-w-60">INACTIVO</span>';
-				$arrData[0][$i]['opciones'] =	'<a class="btn btn-primary btn-xs" title="Editar" onclick="editarPerfil('.$arrData[0][$i]['ID_PERFIL'].')">
+				$arrData[0][$i]['ESTADO'] 	= 	$arrData[0][$i]['estado'] == 1 ? '<span class="label label-success label-pill m-w-60">ACTIVO</span>' : '<span class="label label-danger label-pill m-w-60">INACTIVO</span>';
+				$arrData[0][$i]['opciones'] =	'<a class="btn btn-primary btn-xs" title="Editar" onclick="editarPerfil('.$arrData[0][$i]['id'].')">
 													<i class="zmdi zmdi-edit zmdi-hc-fw"></i>
 												</a>
-                                				<a class="btn btn-danger btn-xs" title="Eliminar" onclick="eliminarPerfil('.$arrData[0][$i]['ID_PERFIL'].')">
+                                				<a class="btn btn-danger btn-xs" title="Eliminar" onclick="eliminarPerfil('.$arrData[0][$i]['id'].')">
                                 					<i data-toggle="tooltip" title="Eiiminar"class="zmdi zmdi-delete zmdi-hc-fw"></i>
                                 				</a>';
 			}
 
 			$output = array(
 				"draw"				=>	intval($_POST["draw"]),
-				"recordsTotal"		=> 	$arrData[2]['FILA'],
-				"recordsFiltered"	=>	$arrData[1]['FILA'],
+				"recordsTotal"		=> 	$arrData[2]['fila'],
+				"recordsFiltered"	=>	$arrData[1]['fila'],
 				"data"				=>	$arrData[0]
 			);
 			echo json_encode($output,JSON_UNESCAPED_UNICODE);
@@ -184,7 +184,7 @@
 			$arrData = $this->model->selectCboPerfiles();
 			if(count($arrData) > 0){
 				for ($i=0; $i < count($arrData) ; $i++) { 
-					$htmlOptions .='<option value="'.$arrData[$i]['ID_PERFIL'].'"> '.$arrData[$i]['PERFIL'].'</option>';
+					$htmlOptions .='<option value="'.$arrData[$i]['id'].'"> '.$arrData[$i]['perfil'].'</option>';
 				}
 			}
 			echo $htmlOptions;

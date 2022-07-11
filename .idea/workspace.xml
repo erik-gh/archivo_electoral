@@ -2,7 +2,36 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="207e8c86-0388-4df8-8812-83bbbdbd5beb" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/functions/function_control.js" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/functions/function_control.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/functions/function_control_cedula.js" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/functions/function_control_cedula.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/functions/function_general.js" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/functions/function_general.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/functions/function_usuario.js" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/functions/function_usuario.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Config/Config.php" beforeDir="false" afterPath="$PROJECT_DIR$/Config/Config.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controllers/Control.php" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/Control.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controllers/General.php" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/General.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controllers/Login.php" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/Login.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controllers/Modulo.php" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/Modulo.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controllers/Perfil.php" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/Perfil.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controllers/Usuario.php" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/Usuario.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Models/ContratoModel.php" beforeDir="false" afterPath="$PROJECT_DIR$/Models/ContratoModel.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Models/ControlModel.php" beforeDir="false" afterPath="$PROJECT_DIR$/Models/ControlModel.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Models/Control_cedulaModel.php" beforeDir="false" afterPath="$PROJECT_DIR$/Models/Control_cedulaModel.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Models/GeneralModel.php" beforeDir="false" afterPath="$PROJECT_DIR$/Models/GeneralModel.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Models/ModuloModel.php" beforeDir="false" afterPath="$PROJECT_DIR$/Models/ModuloModel.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Models/PerfilModel.php" beforeDir="false" afterPath="$PROJECT_DIR$/Models/PerfilModel.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Models/TemplateModel.php" beforeDir="false" afterPath="$PROJECT_DIR$/Models/TemplateModel.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Models/UsuarioModel.php" beforeDir="false" afterPath="$PROJECT_DIR$/Models/UsuarioModel.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Views/Control/control.php" beforeDir="false" afterPath="$PROJECT_DIR$/Views/Control/control.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Views/Control/control_cedula.php" beforeDir="false" afterPath="$PROJECT_DIR$/Views/Control/control_cedula.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Views/Dashboard/dashboard.php" beforeDir="false" afterPath="$PROJECT_DIR$/Views/Dashboard/dashboard.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Views/General/general.php" beforeDir="false" afterPath="$PROJECT_DIR$/Views/General/general.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Views/Parametro/parametro.php" beforeDir="false" afterPath="$PROJECT_DIR$/Views/Parametro/parametro.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Views/Personal/personal.php" beforeDir="false" afterPath="$PROJECT_DIR$/Views/Personal/personal.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Views/Reporte/_reporte.php" beforeDir="false" afterPath="$PROJECT_DIR$/Views/Reporte/_reporte.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Views/Reporte/reporte.php" beforeDir="false" afterPath="$PROJECT_DIR$/Views/Reporte/reporte.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Views/Template/siderbar_admin.php" beforeDir="false" afterPath="$PROJECT_DIR$/Views/Template/siderbar_admin.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Views/Usuario/usuario.php" beforeDir="false" afterPath="$PROJECT_DIR$/Views/Usuario/usuario.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,7 +79,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="RunOnceActivity.laravel-idea.search-composer-json" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../SISCOMACV2_EI2022" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="reference.webide.settings.project.settings.php" />
     <property name="vue.rearranger.settings.migration" value="true" />
@@ -70,11 +99,56 @@
       <updated>1657291831557</updated>
       <workItem from="1657291832801" duration="10062000" />
       <workItem from="1657307429872" duration="277000" />
-      <workItem from="1657308083456" duration="6780000" />
+      <workItem from="1657308083456" duration="6928000" />
+      <workItem from="1657547162116" duration="6988000" />
+      <workItem from="1657555442396" duration="6058000" />
+      <workItem from="1657565856167" duration="6353000" />
+      <workItem from="1657574737445" duration="2088000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/Models/ModuloModel.php</url>
+          <line>157</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/Controllers/Modulo.php</url>
+          <line>217</line>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/Models/ContratoModel.php</url>
+          <line>626</line>
+          <option name="timeStamp" value="8" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/Models/DashboardModel.php</url>
+          <line>36</line>
+          <option name="timeStamp" value="9" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/Models/IncidenciaModel.php</url>
+          <line>30</line>
+          <option name="timeStamp" value="10" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/Models/ReporteModel.php</url>
+          <line>34</line>
+          <option name="timeStamp" value="11" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/Models/Control_cedulaModel.php</url>
+          <line>64</line>
+          <option name="timeStamp" value="13" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

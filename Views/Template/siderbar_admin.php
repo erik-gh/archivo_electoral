@@ -12,8 +12,7 @@
           <ul class="sidebar-menu">
             <li class="menu-title">Menú Principal</li>
 
-        <?php 
-            
+        <?php
           foreach ($arrData as $rowMod ) {
               echo '  <li>
                         <a href="'.base_url().'/'.$rowMod['url'].'">

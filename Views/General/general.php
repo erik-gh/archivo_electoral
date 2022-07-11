@@ -39,21 +39,24 @@
                     <a href="#tab-solucion" role="tab" data-toggle="tab" aria-expanded="false">
                       <i class="zmdi zmdi-assignment-check"></i> SOLUCI&Oacute;N TECNOL&Oacute;GICA</a>
                   </li>
+                    <!-- Esto se quitara por  mientras para poder mostrar lo basico y principal-->
+
                   <li class="">
                     <a href="#tab-material" role="tab" data-toggle="tab" aria-expanded="false">
-                      <i class="zmdi zmdi-tablet"></i> MATERIALES</a>
+                      <i class="zmdi zmdi-tablet"></i> Otros 1 </a>
                   </li>
                   <li class="">
                     <a href="#tab-incidencia" role="tab" data-toggle="tab" aria-expanded="false">
-                      <i class="zmdi zmdi-view-module"></i> INCIDENCIAS</a>
+                      <i class="zmdi zmdi-view-module"></i> Otros 2</a>
                   </li>
+
                   <li class="">
                     <a href="#tab-asignar" role="tab" data-toggle="tab" aria-expanded="false" onclick="cboEtapaAsignar(); multicIncidencias();">
-                      <i class="zmdi zmdi-assignment-check"></i> ASIGNAR INCIDENCIA</a>
+                      <i class="zmdi zmdi-assignment-check"></i> Otros 3</a>
                   </li>
                   <li class="">
                     <a href="#tab-dispositivo" role="tab" data-toggle="tab" aria-expanded="false">
-                      <i class="zmdi zmdi-assignment-check"></i> DISPOSITIVOS USB</a>
+                      <i class="zmdi zmdi-assignment-check"></i> Otros 4</a>
                   </li>
                 </ul>
 
@@ -942,7 +945,7 @@
 
       </div>
       <div class="site-footer">
-        2021 © Sistema
+        2022 © Sistema
       </div>
     </div>
     

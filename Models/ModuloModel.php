@@ -69,7 +69,7 @@ class ModuloModel extends Mysql
 
 		return $requestData;*/
 
-		$query = "SELECT id_modulo, modulo, descripcion, url, icono, estado FROM modulo WHERE estado != 0 ORDER BY modulo";
+		$query = "SELECT id, modulo, descripcion, url, icono, estado FROM modulos WHERE estado != 0 ORDER BY modulo";
 		$requestData = $this->select_all($query);
 
 		return $requestData;
@@ -79,7 +79,7 @@ class ModuloModel extends Mysql
 	public function selectModulo(int $idMdodulo)
 	{
 		$this->intIdMdodulo = $idMdodulo;
-		$query = "SELECT * FROM modulo WHERE id_modulo = $this->intIdMdodulo";
+		$query = "SELECT * FROM modulos WHERE id = $this->intIdMdodulo";
 		$request = $this->select($query);
 		return $request;
 	}
@@ -116,13 +116,11 @@ class ModuloModel extends Mysql
 	/* ASIGNAR */
 	public function selectCboModulos(){
 		if($_SESSION['idPerfil'] == 1){
-			$query = "	SELECT * FROM modulo m
-						WHERE estado = 1 ORDER BY modulo";
+			$query = "SELECT * FROM modulos m WHERE estado = 1 ORDER BY modulo";
 			$request = $this->select_all($query);
 		}else{
-			$query = "	SELECT * FROM modulo m
-						INNER JOIN perfil_modulo pm ON m.id_modulo = pm.id_modulo
-						WHERE pm.id_perfil = ".$_SESSION['idPerfil']." AND estado = 1 ORDER BY modulo";
+			$query = "SELECT * FROM modulos m INNER JOIN perfil_modulos pm ON m.id = pm.id_modulo 
+	                    WHERE pm.id_perfil = ".$_SESSION['idPerfil']." AND estado = 1 ORDER BY modulo";
 			$request = $this->select_all($query);
 		}
 		return $request;
@@ -147,25 +145,17 @@ class ModuloModel extends Mysql
 	{
 		$this->intIdPerfil 	=  $idPerfil;
 		
-		$query 	= "DELETE FROM perfil_modulo WHERE id_perfil = $this->intIdPerfil ";
+		$query 	= "DELETE FROM perfil_modulos WHERE id_perfil = $this->intIdPerfil ";
 		$request = $this->delete($query);
 		return $request;
 	}
 
 
-	public function selectModulosAsignar()
-	{
-		$where = ($_SESSION['idPerfil'] != 1) ? ' WHERE p.id_perfil != 1 ' : '' ;
-		$query = "	SELECT  p.ID_PERFIL, LISTAGG(m.ID_MODULO, ',') WITHIN GROUP (ORDER BY m.ID_MODULO) ID_MODULO, p.PERFIL, p.DESCRIPCION,
-										LISTAGG(m.MODULO, ';') WITHIN GROUP (ORDER BY m.ID_MODULO) MODULOS
-										from PERFIL p 
-                                    	INNER JOIN PERFIL_MODULO pm ON p.ID_PERFIL = pm.ID_PERFIL
-										INNER JOIN MODULO m ON m.ID_MODULO = pm.ID_MODULO ".$where."
-					GROUP BY p.ID_PERFIL, p.PERFIL, p.DESCRIPCION 
-					ORDER BY p.id_perfil";
-	
+	public function selectModulosAsignar(){
+//		$where = ($_SESSION['idPerfil'] != 1) ? ' WHERE p.id != 1 ' : '' ;
+		$query = "SELECT p.id, group_concat(m.id ORDER BY m.id separator ', ') as id_modulo, p.perfil, p.descripcion, group_concat(m.modulo ORDER BY m.id separator ',') as modulos
+                  FROM perfiles p INNER JOIN perfil_modulos pm ON p.id = pm.id_perfil INNER JOIN modulos m ON m.id = pm.id_modulo GROUP BY p.id, m.id ORDER BY p.id, m.id;";
 		$request = $this->select_all($query);
-
 		return $request;
 	}
 

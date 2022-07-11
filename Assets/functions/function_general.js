@@ -2,7 +2,7 @@
 $(document).ready(function(){
 
 	cboTipoProceso();
-	
+console.log('Revisando');
 });
 
 function SoloNum() {
@@ -41,7 +41,6 @@ $("#cbotipoproceso").on("change", function() {
    $('#cbotipoproceso-error').hide();
 })
 
-
 /* TABLE PROCESOS */
 var tablePerfiles = $('#tableProcesos').DataTable({
 	//"processing": true,
@@ -57,10 +56,10 @@ var tablePerfiles = $('#tableProcesos').DataTable({
 	},
 	"columns": [
 	{"data":"orden"}, 
-	{"data":"PROCESO"},
-	{"data":"DESCRIPCION"}, 
-	{"data":"FECHA_INICIO"},
-	{"data":"FECHA_CIERRE"},
+	{"data":"proceso"},
+	{"data":"descripcion"},
+	{"data":"fecha_inicio"},
+	{"data":"fecha_cierre"},
 	{"data":"ESTADO"},
 	{"data":"opciones"}, 
 	],
@@ -73,8 +72,6 @@ var tablePerfiles = $('#tableProcesos').DataTable({
 		"orderable": false,
 	}, ],*/
 });
-
-
 
 function validarCamposProceso(){
   var $inputs = $('#form_registerProceso .vld'); 
@@ -192,7 +189,6 @@ function editarProceso(id){
   return false;
 }
 
-
 /* DELETE PROCESO */
 function eliminarProceso(id){
 	//alert('ID a eliminar es: '+id)
@@ -233,7 +229,6 @@ function eliminarProceso(id){
       	});
 }
 
-
 /* CANCEL PROCESO */
 function cancelProceso(){
       $("#agregarProceso").removeAttr('style');
@@ -246,10 +241,6 @@ function cancelProceso(){
       $('#form_registerProceso .form-group').removeClass('has-success');
       $('#cbotipoproceso').selectpicker('refresh');
 }
-
-
-
-
 
 /*================================================  FUNCTIONS CONSULTA  ================================================*/
 
@@ -267,8 +258,8 @@ var tableConsultas = $('#tableConsultas').DataTable({
 		},
 		"columns": [
 		{"data":"orden"}, 
-		{"data":"CONSULTA"},
-		{"data":"DESCRIPCION"}, 
+		{"data":"consulta"},
+		{"data":"descripcion"},
 		{"data":"ESTADO"},
 		{"data":"opciones"}, 
 		],
@@ -340,7 +331,6 @@ $("#form_registerConsulta").submit(function() {
 					}
 				});
 				return false;
-	   
 	}
 });
 
@@ -455,8 +445,8 @@ var tableEtapas = $('#tableEtapas').DataTable({
 		},
 		"columns": [
 		{"data":"orden"}, 
-		{"data":"ETAPA"},
-		{"data":"DESCRIPCION"}, 
+		{"data":"etapa"},
+		{"data":"descripcion"},
 		{"data":"ESTADO"},
 		{"data":"opciones"}, 
 		],
@@ -602,8 +592,8 @@ var tableSoluciones = $('#tableSoluciones').DataTable({
 		},
 		"columns": [
 		{"data":"orden"}, 
-		{"data":"SOLUCIONTECNOLOGICA"},
-		{"data":"DESCRIPCION"}, 
+		{"data":"solucion_tecnologica"},
+		{"data":"descripcion"},
 		{"data":"ESTADO"},
 		{"data":"opciones"}, 
 		],
@@ -774,10 +764,10 @@ function cancelSolucion(){
 
 
 /*================================================  FUNCTIONS MATERIAL  ================================================*/
-
+/*
 var tableMateriales = $('#tableMateriales').DataTable({
-		/*"processing": true,
-		"serverSide": true,*/
+		// "processing": true,
+		// "serverSide": true,
 		"order": [],
 		"language": {
 			"url": base_url+'/Assets/js/es-pe.json'
@@ -798,12 +788,9 @@ var tableMateriales = $('#tableMateriales').DataTable({
 		"dDestroy": true,
 		"iDisplayLength": 10,
 		// "order": [[0,"asc"]],
-		/*"columnDefs": [{
-			"targets": [0 , 7],
-			"orderable": false,
-		}, ],*/
+		// "columnDefs": [{"targets": [0 , 7],"orderable": false,},],
 });
-
+*/
 
 /* REGISTER ETAPA */
 $("#form_registerMaterial").submit(function() {
@@ -916,13 +903,12 @@ function cancelMaterial(){
 }
 
 
-
-
 /*================================================  FUNCTIONS INCIDENCIA  ================================================*/
 
+/*
 var tableIncidencias = $('#tableIncidencias').DataTable({
-		/*"processing": true,
-		"serverSide": true,*/
+		/!*"processing": true,
+		"serverSide": true,*!/
 		"order": [],
 		"language": {
 			"url": base_url+'/Assets/js/es-pe.json'
@@ -943,12 +929,12 @@ var tableIncidencias = $('#tableIncidencias').DataTable({
 		"dDestroy": true,
 		"iDisplayLength": 10,
 		// "order": [[0,"asc"]],
-		/*"columnDefs": [{
+		/!*"columnDefs": [{
 			"targets": [0 , 7],
 			"orderable": false,
-		}, ],*/
+		}, ],*!/
 });
-
+*/
 
 /* REGISTER INCIDENCIA */
 $("#form_registerIncidencia").submit(function() {
@@ -1011,7 +997,6 @@ $("#form_registerIncidencia").submit(function() {
 	}
 
 });
-
 
 /* SHOW INCIDENCIA */
 function editarIncidencia(id){
@@ -1104,9 +1089,6 @@ function cancelIncidencia(){
 	$('#form_registerIncidencia .form-group').removeClass('has-success');
 }
 
-
-
-
 /*================================================  FUNCTIONS ASIGNAR  ================================================*/
 function cboEtapaAsignar(){
 	$.ajax({
@@ -1150,9 +1132,10 @@ function multicIncidencias(){
 
 
 /* TABLE ASIGNAR MODULOS */
+/*
 var tableAsignar = $('#tableAsignar').DataTable({
-		/*"processing": true,
-		"serverSide": true,*/
+		// "processing": true,
+		// "serverSide": true,
 		"order": [],
 		"language": {
 			"url": base_url+'/Assets/js/es-pe.json'
@@ -1185,8 +1168,7 @@ var tableAsignar = $('#tableAsignar').DataTable({
 		      "className": "text-center",
 		}],
 		// "order": [[0,"asc"]],
-});
-
+});*/
 
 /* SHOW ASIGNAR MODULO */
 function editarAsignar(id){
@@ -1349,10 +1331,10 @@ function cancelAsignar(){
 
 
 /*================================================  FUNCTIONS DISPOSITIVOS USB  ================================================*/
-
+/*
 var tableDispositivos = $('#tableDispositivos').DataTable({
-	/*"processing": true,
-	"serverSide": true,*/
+	// "processing": true,
+	// "serverSide": true,
 	"order": [],
 	"language": {
 		"url": base_url+'/Assets/js/es-pe.json'
@@ -1372,12 +1354,9 @@ var tableDispositivos = $('#tableDispositivos').DataTable({
 	"dDestroy": true,
 	"iDisplayLength": 10,
 	// "order": [[0,"asc"]],
-	/*"columnDefs": [{
-		"targets": [0 , 7],
-		"orderable": false,
-	}, ],*/
+	// "columnDefs": [{"targets": [0 , 7], "orderable": false,},],
 });
-
+*/
 
 /* REGISTER DISPOSITIVO */
 $("#form_registerDispositivo").submit(function() {

@@ -623,7 +623,7 @@ class ContratoModel extends Mysql
 	
 	public function selectCboProceso()
 	{
-		$query = "SELECT * FROM proceso WHERE estado_proceso != 0 ORDER BY nombre_proceso ASC";
+		$query = "SELECT * FROM procesos WHERE estado_proceso != 0 ORDER BY nombre_proceso ASC";
 		$request = $this->select_all($query);
 		return $request;
 	}

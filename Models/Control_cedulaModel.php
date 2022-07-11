@@ -74,7 +74,6 @@ class Control_cedulaModel extends Mysql
 
 		$request = $this->select_all($query);
 		return $request;
-
 	}
 
 

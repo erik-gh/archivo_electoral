@@ -111,11 +111,11 @@
 			for ($i=0; $i <  count($arrData); $i++) { 
 				# code...
 				$arrData[$i]['orden'] 	= 	$i+1;
-				$arrData[$i]['ESTADO'] 	= 	$arrData[$i]['ESTADO'] == 1 ? '<span class="label label-success label-pill m-w-60">ACTIVO</span>' : '<span class="label label-danger label-pill m-w-60">INACTIVO</span>';
-				$arrData[$i]['opciones'] =	'<a class="btn btn-primary btn-xs" title="Editar" onclick="editarUsuario('.$arrData[$i]['ID_USUARIO'].')">
+				$arrData[$i]['ESTADO'] 	= 	$arrData[$i]['estado'] == 1 ? '<span class="label label-success label-pill m-w-60">ACTIVO</span>' : '<span class="label label-danger label-pill m-w-60">INACTIVO</span>';
+				$arrData[$i]['opciones'] =	'<a class="btn btn-primary btn-xs" title="Editar" onclick="editarUsuario('.$arrData[$i]['id'].')">
 													<i class="zmdi zmdi-edit zmdi-hc-fw"></i>
 												</a>
-                                				<a class="btn btn-danger btn-xs" title="Eliminar" onclick="eliminarUsuario('.$arrData[$i]['ID_USUARIO'].')">
+                                				<a class="btn btn-danger btn-xs" title="Eliminar" onclick="eliminarUsuario('.$arrData[$i]['id'].')">
                                 					<i data-toggle="tooltip" title="Eiiminar"class="zmdi zmdi-delete zmdi-hc-fw"></i>
                                 				</a>';
 			}

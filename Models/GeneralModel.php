@@ -73,7 +73,7 @@ class GeneralModel extends Mysql
 
 	public function selectProcesos()
 	{
-		$query = " SELECT * FROM procesos WHERE estado != 0 ORDER BY fecha_inicio";
+		$query = "SELECT * FROM procesos WHERE estado != 0 ORDER BY fecha_inicio";
 		$requestData = $this->select_all($query);
 		return $requestData;
 	}
@@ -226,7 +226,7 @@ class GeneralModel extends Mysql
 	public function selectEtapas()
 	{
 
-		$query = " SELECT * FROM etapa WHERE estado != 0 ORDER BY orden";
+		$query = "SELECT * FROM etapas WHERE estado != 0 ORDER BY orden";
 		$requestData = $this->select_all($query);
 
 		return $requestData;
@@ -236,7 +236,7 @@ class GeneralModel extends Mysql
 	public function selectEtapa(int $idEtapa)
 	{
 		$this->intIdEtapa = $idEtapa;
-		$query = "SELECT * FROM etapa WHERE id_etapa = $this->intIdEtapa";
+		$query = "SELECT * FROM etapas WHERE id_etapa = $this->intIdEtapa";
 		$request = $this->select($query);
 		return $request;
 	}
@@ -250,12 +250,12 @@ class GeneralModel extends Mysql
 		$this->intUserSession	= $userSession;
 		$this->intEstado 		= $estado;
 
-		$queryEtapa = "SELECT * FROM etapa WHERE (descripcion = '{$this->strDescripcion}' AND id_etapa != $this->intIdEtapa)  AND estado != 0 ";
+		$queryEtapa = "SELECT * FROM etapas WHERE (descripcion = '{$this->strDescripcion}' AND id_etapa != $this->intIdEtapa)  AND estado != 0 ";
 		$requestEtapa = $this->select($queryEtapa);
 
 		if(empty($requestEtapa)){
 			
-			$query = "UPDATE etapa SET descripcion = ?, user_update = ?, estado = ?, date_update = LOCALTIMESTAMP WHERE id_etapa = $this->intIdEtapa";
+			$query = "UPDATE etapas SET descripcion = ?, user_update = ?, estado = ?, date_update = LOCALTIMESTAMP WHERE id_etapa = $this->intIdEtapa";
 			$arrData = array($this->strDescripcion, $this->intUserSession, $this->intEstado);
 			$request = $this->update($query, $arrData);
 
@@ -340,8 +340,6 @@ class GeneralModel extends Mysql
 			
 		return $request;
 	}
-
-
 
 	/* ===== Material ===== */
 	
@@ -471,7 +469,7 @@ class GeneralModel extends Mysql
 	/* ====== ASIGNAR ===== */
 	public function selectCboEtapa(){
 		$query = "	SELECT ID_ETAPA, ETAPA 
-					FROM  ETAPA 
+					FROM  etapas 
 					WHERE ID_ETAPA NOT IN (SELECT DISTINCT ID_ETAPA FROM INCIDENCIA_ETAPA) AND ESTADO = 1 ORDER BY ORDEN";
 		$request = $this->select_all($query);
 		return $request;
@@ -490,7 +488,7 @@ class GeneralModel extends Mysql
 		
 		$query = "	SELECT  e.ID_ETAPA, LISTAGG(i.ID_INCIDENCIA, ',') WITHIN GROUP (ORDER BY I.ID_INCIDENCIA) ID_INCIDENCIA, e.ETAPA,
 										LISTAGG(i.INCIDENCIA, ';') WITHIN GROUP (ORDER BY I.INCIDENCIA) INCIDENCIAS
-										from ETAPA e 
+										from etapas e 
                                     	INNER JOIN INCIDENCIA_ETAPA ie ON e.ID_ETAPA = ie.ID_ETAPA
 										INNER JOIN INCIDENCIA i ON i.ID_INCIDENCIA = ie.ID_INCIDENCIA
 										GROUP BY e.ID_ETAPA, e.ETAPA";
@@ -517,7 +515,7 @@ class GeneralModel extends Mysql
 	{
 		$this->intIdEtapa = $idEtapa;
 		$query = "SELECT e.ID_ETAPA, e.ETAPA, LISTAGG(ie.ID_INCIDENCIA , ',') WITHIN GROUP (ORDER BY ie.ID_INCIDENCIA) INCIDENCIA
-										FROM ETAPA e inner join INCIDENCIA_ETAPA ie on e.ID_ETAPA = ie.ID_ETAPA 
+										FROM etapas e inner join INCIDENCIA_ETAPA ie on e.ID_ETAPA = ie.ID_ETAPA 
 										WHERE ie.ID_ETAPA=$this->intIdEtapa
 										GROUP BY e.ID_ETAPA, e.ETAPA";
 		$request = $this->select($query);

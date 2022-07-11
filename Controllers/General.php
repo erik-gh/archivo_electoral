@@ -342,9 +342,7 @@
 
 
 		/* ===== ETAPA ===== */
-		public function getEtapas()
-		{
-			
+		public function getEtapas(){
 			$output = array();
 			$arrData = $this->model->selectEtapas(); //dep($arrData); exit;
 			//$filtro = ($_POST["search"]["value"]!= '') ? $arrData[1] : $arrData[2];
@@ -352,7 +350,7 @@
 				# code...
 				$arrData[$i]['orden'] 	= 	$i+1;
 				$arrData[$i]['ESTADO'] 	= 	$arrData[$i]['estado'] == 1 ? '<span class="label label-success label-pill m-w-60">ACTIVO</span>' : '<span class="label label-danger label-pill m-w-60">INACTIVO</span>';
-				$arrData[$i]['opciones'] =	'<a data-toggle="modal" href="#modal_etapa" class="btn btn-primary btn-xs" title="Editar" onclick="editarEtapa('.$arrData[$i]['ID_ETAPA'].')">
+				$arrData[$i]['opciones'] =	'<a data-toggle="modal" href="#modal_etapa" class="btn btn-primary btn-xs" title="Editar" onclick="editarEtapa('.$arrData[$i]['id'].')">
 													<i class="zmdi zmdi-edit zmdi-hc-fw"></i>
 												</a>';
 			}
@@ -515,7 +513,6 @@
 						$requestSolucion	= $this->model->updateSolucion($intIdSolucion, $strSolucion, $strDescripcion, $intUserSession, $intEstado);
 					}
 
-
 					if($requestSolucion > 0){
 
 						if($intControl == 0){
@@ -578,7 +575,6 @@
 			die();
 		}
 
-
 		public function delSolucion($idSolucion)
 		{
 
@@ -602,7 +598,6 @@
 			
 				die();
 		}
-
 
 		/* ===== MATERIAL ===== */
 		public function getMateriales()
@@ -720,12 +715,8 @@
 			die();
 		}
 
-
-
 		/* ===== INCIDENCIA ===== */
-		public function getIncidencias()
-		{
-			
+		public function getIncidencias(){
 			$output = array();
 			$arrData = $this->model->selectincidencias(); //dep($arrData); exit;
 			//$filtro = ($_POST["search"]["value"]!= '') ? $arrData[1] : $arrData[2];
@@ -751,10 +742,8 @@
 			die();
 			// dep($arrData[0][0]['estado']);
 		}
-		
 
-		public function setincidencia()
-		{
+		public function setincidencia(){
 		 	// dep($_POST); exit;
 		 	if($_POST){
 				if( empty($_POST['incidencia']) || empty($_POST['descripcion']) ){
@@ -764,7 +753,6 @@
 								    	"msg" 	=> "Verificar Datos.",
 									]; 
 				}else{
-
 					$intIdIncidencia	= intval(strClean($_POST['IdIncidencia']));
 					$intControl			= intval(strClean($_POST['controlIncidencia']));
 					$strIncidencia		= strClean($_POST['incidencia']);
@@ -772,13 +760,11 @@
 					$intUserSession		= intval(strClean($_SESSION['idUser']));
 					$intEstado			= intval(strClean($_POST['estado']));
 
-
 					if($intControl == 0){
 						$requestIncidencia	= $this->model->insertIncidencia($strIncidencia, $strDescripcion, $intUserSession);
 					}else{
 						$requestIncidencia	= $this->model->updateIncidencia($intIdIncidencia, $strIncidencia, $strDescripcion, $intUserSession, $intEstado);
 					}
-
 
 					if($requestIncidencia > 0){
 
@@ -815,7 +801,6 @@
 			die();
 		}
 
-
 		public function getIncidencia($idIncidencia)
 		{
 
@@ -842,7 +827,6 @@
 			die();
 		}
 
-
 		public function delIncidencia($idIncidencia)
 		{
 
@@ -867,23 +851,19 @@
 				die();
 		}
 
-
-
 		/* ====== ASIGNAR ===== */
 		public function getSelectEtapa()
 		{
-
 			$htmlOptions = '<option value="">[ Seleccione Etapa ]</option>';
 			$arrData = $this->model->selectCboEtapa();
 			if(count($arrData) > 0){
 				for ($i=0; $i < count($arrData) ; $i++) { 
-					$htmlOptions .='<option value="'.$arrData[$i]['ID_ETAPA'].'"> '.$arrData[$i]['ETAPA'].'</option>';
+					$htmlOptions .='<option value="'.$arrData[$i]['id'].'"> '.$arrData[$i]['etapa'].'</option>';
 				}
 			}
 			echo $htmlOptions;
 			die();
 		}
-
 
 		public function setAsignar()
 		{
@@ -1033,8 +1013,6 @@
 				die();
 		}
 
-
-
 		/* ===== DISPOSITIVOS USB ===== */
 		public function getDispositivos()
 		{
@@ -1064,7 +1042,6 @@
 			die();
 			// dep($arrData[0][0]['estado']);
 		}
-
 
 		public function setDispositivo()
 		{
@@ -1127,7 +1104,6 @@
 			die();
 		}
 
-
 		public function getDispositivo($idDispositivo)
 		{
 
@@ -1154,7 +1130,6 @@
 			die();
 		}
 
-
 		public function delDispositivo($idDispositivo)
 		{
 
@@ -1180,5 +1155,4 @@
 		}
 		
 	}
-
 ?>

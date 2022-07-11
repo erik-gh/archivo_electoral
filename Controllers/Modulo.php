@@ -37,9 +37,9 @@
 			for ($i=0; $i <  count($arrData); $i++) { 
 				# code...
 				$arrData[$i]['orden'] 	= 	$i+1;
-				$arrData[$i]['ICONO']	= 	'<span class="menu-icon"><i class="zmdi zmdi-'.$arrData[$i]['ICONO'].'" style="font-size:24px;"></i></span>';
-				$arrData[$i]['ESTADO'] 	= 	$arrData[$i]['ESTADO'] == 1 ? '<span class="label label-success label-pill m-w-60">ACTIVO</span>' : '<span class="label label-danger label-pill m-w-60">INACTIVO</span>';
-				$arrData[$i]['opciones'] =	'<a data-toggle="modal" href="#modal_modulo" class="btn btn-primary btn-xs" title="Editar" onclick="editarModulo('.$arrData[$i]['ID_MODULO'].')">
+				$arrData[$i]['ICONO']	= 	'<span class="menu-icon"><i class="zmdi zmdi-'.$arrData[$i]['icono'].'" style="font-size:24px;"></i></span>';
+				$arrData[$i]['ESTADO'] 	= 	$arrData[$i]['estado'] == 1 ? '<span class="label label-success label-pill m-w-60">ACTIVO</span>' : '<span class="label label-danger label-pill m-w-60">INACTIVO</span>';
+				$arrData[$i]['opciones'] =	'<a data-toggle="modal" href="#modal_modulo" class="btn btn-primary btn-xs" title="Editar" onclick="editarModulo('.$arrData[$i]['id'].')">
 													<i class="zmdi zmdi-edit zmdi-hc-fw"></i>
 												</a>';
 			}
@@ -137,7 +137,7 @@
 			$arrData = $this->model->selectCboModulos();
 			if(count($arrData) > 0){
 				for ($i=0; $i < count($arrData) ; $i++) { 
-					$htmlOptions .='<option data-icon="zmdi zmdi-'.$arrData[$i]['ICONO'].'" value="'.$arrData[$i]['ID_MODULO'].'"> '.$arrData[$i]['MODULO'].'</option>';
+					$htmlOptions .='<option data-icon="zmdi zmdi-'.$arrData[$i]['icono'].'" value="'.$arrData[$i]['id'].'"> '.$arrData[$i]['modulo'].'</option>';
 				}
 			}
 			echo $htmlOptions;
@@ -205,11 +205,11 @@
 			for ($i=0; $i <  count($arrData); $i++) { 
 				# code...
 				$arrData[$i]['orden'] 	 = 	$i+1;
-				$arrData[$i]['MODULOS'] = 	'<span style="text-decoration:underline;">'.$arrData[$i]['MODULOS'].'</span>,';
-				$arrData[$i]['opciones'] =	'<a class="btn btn-primary btn-xs" title="Editar" onclick="editarAsignar('.$arrData[$i]['ID_PERFIL'].')">
+				$arrData[$i]['MODULOS'] = 	'<span style="text-decoration:underline;">'.$arrData[$i]['modulos'].'</span>,';
+				$arrData[$i]['opciones'] =	'<a class="btn btn-primary btn-xs" title="Editar" onclick="editarAsignar('.$arrData[$i]['id'].')">
 													<i class="zmdi zmdi-edit zmdi-hc-fw"></i>
 												</a>
-												<a class="btn btn-danger btn-xs" title="Eliminar" onclick="eliminarAsignar('.$arrData[$i]['ID_PERFIL'].')">
+												<a class="btn btn-danger btn-xs" title="Eliminar" onclick="eliminarAsignar('.$arrData[$i]['id'].')">
                                 					<i data-toggle="tooltip" title="Eiiminar"class="zmdi zmdi-delete zmdi-hc-fw"></i>
                                 				</a>';
 			}

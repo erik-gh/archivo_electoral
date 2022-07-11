@@ -60,7 +60,7 @@
 						if($arrData['estado'] == 1){
 							$_SESSION['idUser'] 		= $arrData['id'];
 							$_SESSION['nameUser'] 		= $arrData['nombre'];
-							$_SESSION['idPerfil'] 		= $arrData['id_perfil'];
+							$_SESSION['idPerfil'] 		= $arrData['id'];
 							$_SESSION['resquest_pwd']	= $arrData['request_password'];
 							$_SESSION['login']			= true;
 							
