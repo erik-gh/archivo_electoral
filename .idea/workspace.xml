@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="207e8c86-0388-4df8-8812-83bbbdbd5beb" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitattributes" beforeDir="false" afterPath="$PROJECT_DIR$/.gitattributes" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Models/Control_cedulaModel.php" beforeDir="false" afterPath="$PROJECT_DIR$/Models/Control_cedulaModel.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -77,7 +78,7 @@
       <workItem from="1657565856167" duration="6353000" />
       <workItem from="1657574737445" duration="2616000" />
       <workItem from="1657633019707" duration="15543000" />
-      <workItem from="1657660290670" duration="2991000" />
+      <workItem from="1657660290670" duration="3380000" />
     </task>
     <servers />
   </component>
