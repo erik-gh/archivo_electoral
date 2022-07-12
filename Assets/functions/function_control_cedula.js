@@ -1,7 +1,8 @@
 // JavaScript Document
 $(document).ready(function () {
     // alert('ok');
-    // $('#cbofaseRecepcion').selectpicker();
+    console.log('funcion_control');
+    $('#cbofaseRecepcion').selectpicker();
     $('#cbosoltecRecepcion').selectpicker();
     $('#cboodpeRecepcion').selectpicker();
     $('#cboagrupacionRecepcion').selectpicker();
@@ -15,6 +16,7 @@ $(document).ready(function () {
 var eleccion = $('#cboProceso option:selected').attr('data');
 //$('#txtdata').val(eleccion);
 // var eleccion = 1;
+// console.log("La eleccion es : "+ eleccion);
 if (eleccion == 2) {
     $('#divAgrupacionRecepcion').show();
     $('#divAgrupacionControl').show();
@@ -166,6 +168,7 @@ function cargaAvanceFase(etapa) {
 
 
 function cboSoltecCedula(etapa) {
+    console.log('cbosoltecRecepcion');
     resetInpbarra(etapa);
     // cargaAvanceFase(etapa);
     cargaAvanceOdpe(etapa);
