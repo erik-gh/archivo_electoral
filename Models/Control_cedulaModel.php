@@ -1,7 +1,6 @@
 <?php
 
 /**
- *
  */
 class Control_cedulaModel extends Mysql
 {
@@ -32,8 +31,7 @@ class Control_cedulaModel extends Mysql
     private $intCantidad;
     private $intIdSufragio;
 
-    public function __construct()
-    {
+    public function __construct(){
         # code...
         parent::__construct();
 
@@ -42,9 +40,7 @@ class Control_cedulaModel extends Mysql
         $this->conOracle = new conexionOracle(DB_USER, DB_PASSWORD, DB_HOST);
     }
 
-
-    public function selectIdMesa(int $idprocesos, string $nroMesa)
-    {
+    public function selectIdMesa(int $idprocesos, string $nroMesa){
 
         $this->intIdProceso = $idprocesos;
         $this->strNroMesa = $nroMesa;
@@ -58,9 +54,7 @@ class Control_cedulaModel extends Mysql
         return $request;
     }
 
-
-    public function selectCboSolucion(int $idprocesos)
-    {
+    public function selectCboSolucion(int $idprocesos){
         $this->intIdProceso = $idprocesos;
         $query = "SELECT s.id, s.solucion_tecnologica FROM procesos p
 					INNER JOIN proceso_odpes po on p.id = po.id_proceso
@@ -185,7 +179,6 @@ class Control_cedulaModel extends Mysql
 
     }
 
-
     public function selectinpBarra(int $idMaterial, int $idprocesos, int $idSolucion, int $idOdpe, int $idAgrupacion, string $Departamento, string $Provincia, string $Distrito, string $consulta, int $idEleccion)
     {
 
@@ -216,42 +209,7 @@ class Control_cedulaModel extends Mysql
 
     }
 
-    /*public function validarMesaCbo(int $idprocesos, int $idSolucion, int $idOdpe, string $Departamento, string $Provincia, string $Distrito,  string $nroMesa, string $nroElectores, string $nroUbigeo, int $idValor)
-    {
 
-        $this->intIdProceso		= $idprocesos;
-        $this->intIdSolucion	= $idSolucion;
-        $this->intIdOdpe		= $idOdpe;
-        $this->strNroElectores	= $nroElectores;
-        $this->strDepartamento	= $Departamento;
-        $this->strProvincia		= $Provincia;
-        $this->strDistrito		= $Distrito;
-        $this->strNroMesa		= $nroMesa;
-        $this->strNroUbigeo		= $nroUbigeo;
-        $this->intIdValor		= $idValor;
-
-        $stid = oci_parse($this->conOracle->conexion(), 'BEGIN PA_VALIDAR_CBOMESA( :P_ID_PROCESO, :P_NROMESA, :P_ID_SOLUCION, :P_ID_ODPE, :P_ELECTORES, :P_DEPART, :P_PROV, :P_DIST, :P_UBIGEO, :P_VALOR, :P_ID_SUFRAGIO); END;');
-
-        oci_bind_by_name($stid, ':P_ID_PROCESO', $this->intIdProceso);
-        oci_bind_by_name($stid, ':P_NROMESA', $this->strNroMesa);
-        oci_bind_by_name($stid, ':P_ID_SOLUCION', $this->intIdSolucion);
-        oci_bind_by_name($stid, ':P_ID_ODPE', $this->intIdOdpe);
-        oci_bind_by_name($stid, ':P_ELECTORES', $this->strNroElectores);
-        oci_bind_by_name($stid, ':P_DEPART', $this->strDepartamento);
-        oci_bind_by_name($stid, ':P_PROV', $this->strProvincia);
-        oci_bind_by_name($stid, ':P_DIST', $this->strDistrito);
-        oci_bind_by_name($stid, ':P_UBIGEO', $this->strNroUbigeo);
-        oci_bind_by_name($stid, ':P_VALOR', $this->intIdValor);
-        oci_bind_by_name($stid, ':P_ID_SUFRAGIO', $P_ID_SUFRAGIO, 40);
-        oci_execute($stid);
-
-        if($P_ID_SUFRAGIO == 0){
-            return 0;
-        }else{
-            return $P_ID_SUFRAGIO;
-        }
-
-    }*/
 
     public function validarUbigeoExiste(int $idprocesos, string $nroUbigeo, int $idValor)
     {
@@ -1151,6 +1109,41 @@ class Control_cedulaModel extends Mysql
         return $P_ID_SUFRAGIO_CI;
     }
 }
+/*public function validarMesaCbo(int $idprocesos, int $idSolucion, int $idOdpe, string $Departamento, string $Provincia, string $Distrito,  string $nroMesa, string $nroElectores, string $nroUbigeo, int $idValor)
+    {
 
+        $this->intIdProceso		= $idprocesos;
+        $this->intIdSolucion	= $idSolucion;
+        $this->intIdOdpe		= $idOdpe;
+        $this->strNroElectores	= $nroElectores;
+        $this->strDepartamento	= $Departamento;
+        $this->strProvincia		= $Provincia;
+        $this->strDistrito		= $Distrito;
+        $this->strNroMesa		= $nroMesa;
+        $this->strNroUbigeo		= $nroUbigeo;
+        $this->intIdValor		= $idValor;
+
+        $stid = oci_parse($this->conOracle->conexion(), 'BEGIN PA_VALIDAR_CBOMESA( :P_ID_PROCESO, :P_NROMESA, :P_ID_SOLUCION, :P_ID_ODPE, :P_ELECTORES, :P_DEPART, :P_PROV, :P_DIST, :P_UBIGEO, :P_VALOR, :P_ID_SUFRAGIO); END;');
+
+        oci_bind_by_name($stid, ':P_ID_PROCESO', $this->intIdProceso);
+        oci_bind_by_name($stid, ':P_NROMESA', $this->strNroMesa);
+        oci_bind_by_name($stid, ':P_ID_SOLUCION', $this->intIdSolucion);
+        oci_bind_by_name($stid, ':P_ID_ODPE', $this->intIdOdpe);
+        oci_bind_by_name($stid, ':P_ELECTORES', $this->strNroElectores);
+        oci_bind_by_name($stid, ':P_DEPART', $this->strDepartamento);
+        oci_bind_by_name($stid, ':P_PROV', $this->strProvincia);
+        oci_bind_by_name($stid, ':P_DIST', $this->strDistrito);
+        oci_bind_by_name($stid, ':P_UBIGEO', $this->strNroUbigeo);
+        oci_bind_by_name($stid, ':P_VALOR', $this->intIdValor);
+        oci_bind_by_name($stid, ':P_ID_SUFRAGIO', $P_ID_SUFRAGIO, 40);
+        oci_execute($stid);
+
+        if($P_ID_SUFRAGIO == 0){
+            return 0;
+        }else{
+            return $P_ID_SUFRAGIO;
+        }
+
+    }*/
 
 ?>

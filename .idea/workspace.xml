@@ -3,11 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="207e8c86-0388-4df8-8812-83bbbdbd5beb" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/functions/function_control_cedula.js" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/functions/function_control_cedula.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controllers/Control.php" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/Control.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controllers/Control_cedula.php" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/Control_cedula.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Models/Control_cedulaModel.php" beforeDir="false" afterPath="$PROJECT_DIR$/Models/Control_cedulaModel.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Views/Control/control_cedula.php" beforeDir="false" afterPath="$PROJECT_DIR$/Views/Control/control_cedula.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -81,7 +77,7 @@
       <workItem from="1657565856167" duration="6353000" />
       <workItem from="1657574737445" duration="2616000" />
       <workItem from="1657633019707" duration="15543000" />
-      <workItem from="1657660290670" duration="2682000" />
+      <workItem from="1657660290670" duration="2991000" />
     </task>
     <servers />
   </component>
@@ -123,7 +119,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/Models/Control_cedulaModel.php</url>
-          <line>155</line>
+          <line>149</line>
           <option name="timeStamp" value="23" />
         </line-breakpoint>
       </breakpoints>
