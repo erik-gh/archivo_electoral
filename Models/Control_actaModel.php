@@ -48,7 +48,6 @@ class Control_actaModel extends Mysql
 
 		$this->intIdProceso = $idprocesos;
 		$this->strNroMesa 	= $nroMesa;
-
 		$query = " 	SELECT MS.ID_SUFRAGIO
 				    FROM MESA_SUFRAGIO MS
 				    WHERE MS.ID_PROCESO=$this->intIdProceso
@@ -57,8 +56,6 @@ class Control_actaModel extends Mysql
 		$request = $this->select($query);
 		return $request;
 	}
-
-
 
 	public function selectCboMaterial(int $idprocesos)
 	{
