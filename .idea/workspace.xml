@@ -2,36 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="207e8c86-0388-4df8-8812-83bbbdbd5beb" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/functions/function_control.js" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/functions/function_control.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/functions/function_control_cedula.js" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/functions/function_control_cedula.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/functions/function_general.js" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/functions/function_general.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/functions/function_usuario.js" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/functions/function_usuario.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Config/Config.php" beforeDir="false" afterPath="$PROJECT_DIR$/Config/Config.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controllers/Control.php" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/Control.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controllers/General.php" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/General.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controllers/Login.php" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/Login.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controllers/Modulo.php" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/Modulo.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controllers/Perfil.php" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/Perfil.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controllers/Usuario.php" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/Usuario.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Models/ContratoModel.php" beforeDir="false" afterPath="$PROJECT_DIR$/Models/ContratoModel.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Models/ControlModel.php" beforeDir="false" afterPath="$PROJECT_DIR$/Models/ControlModel.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Models/Control_cedulaModel.php" beforeDir="false" afterPath="$PROJECT_DIR$/Models/Control_cedulaModel.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Models/GeneralModel.php" beforeDir="false" afterPath="$PROJECT_DIR$/Models/GeneralModel.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Models/ModuloModel.php" beforeDir="false" afterPath="$PROJECT_DIR$/Models/ModuloModel.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Models/PerfilModel.php" beforeDir="false" afterPath="$PROJECT_DIR$/Models/PerfilModel.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Models/TemplateModel.php" beforeDir="false" afterPath="$PROJECT_DIR$/Models/TemplateModel.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Models/UsuarioModel.php" beforeDir="false" afterPath="$PROJECT_DIR$/Models/UsuarioModel.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Views/Control/control.php" beforeDir="false" afterPath="$PROJECT_DIR$/Views/Control/control.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Views/Control/control_cedula.php" beforeDir="false" afterPath="$PROJECT_DIR$/Views/Control/control_cedula.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Views/Dashboard/dashboard.php" beforeDir="false" afterPath="$PROJECT_DIR$/Views/Dashboard/dashboard.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Views/General/general.php" beforeDir="false" afterPath="$PROJECT_DIR$/Views/General/general.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Views/Parametro/parametro.php" beforeDir="false" afterPath="$PROJECT_DIR$/Views/Parametro/parametro.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Views/Personal/personal.php" beforeDir="false" afterPath="$PROJECT_DIR$/Views/Personal/personal.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Views/Reporte/_reporte.php" beforeDir="false" afterPath="$PROJECT_DIR$/Views/Reporte/_reporte.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Views/Reporte/reporte.php" beforeDir="false" afterPath="$PROJECT_DIR$/Views/Reporte/reporte.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Views/Template/siderbar_admin.php" beforeDir="false" afterPath="$PROJECT_DIR$/Views/Template/siderbar_admin.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Views/Usuario/usuario.php" beforeDir="false" afterPath="$PROJECT_DIR$/Views/Usuario/usuario.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -79,9 +51,9 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="RunOnceActivity.laravel-idea.search-composer-json" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../SISCOMACV2_EI2022" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="reference.webide.settings.project.settings.php" />
+    <property name="settings.editor.selected.configurable" value="vcs.Git" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RunManager">
@@ -90,6 +62,9 @@
     </configuration>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="SvnConfiguration">
+    <configuration>C:\Users\erick.tecse\AppData\Roaming\Subversion</configuration>
+  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="207e8c86-0388-4df8-8812-83bbbdbd5beb" name="Changes" comment="" />
@@ -104,6 +79,12 @@
       <workItem from="1657555442396" duration="6058000" />
       <workItem from="1657565856167" duration="6353000" />
       <workItem from="1657574737445" duration="2088000" />
+      <workItem from="1657594648281" duration="395000" />
+      <workItem from="1657601336934" duration="504000" />
+      <workItem from="1657601860999" duration="1185000" />
+      <workItem from="1657603083057" duration="101000" />
+      <workItem from="1657603267864" duration="4651000" />
+      <workItem from="1657673250292" duration="274000" />
     </task>
     <servers />
   </component>
@@ -150,5 +131,9 @@
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>
