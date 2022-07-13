@@ -34,11 +34,12 @@
 			if($_POST){
 				$intIdProceso	= intval(strClean($_POST['idProceso']));
 
+				//Aqui revisar el cambio
 				$htmlOptions = '<option value="">[ SELECCIONE UNA SOL. TECN. ]</option>';
 				$arrData = $this->model->selectCboSolucion($intIdProceso);
 				if(count($arrData) > 0){
 					for ($i=0; $i < count($arrData) ; $i++) { 
-						$htmlOptions .='<option value="'.$arrData[$i]['ID_SOLUCIONTECNOLOGICA'].'"> '.$arrData[$i]['SOLUCIONTECNOLOGICA'].'</option>';
+						$htmlOptions .='<option value="'.$arrData[$i]['id'].'"> '.$arrData[$i]['solucion_tecnologica'].'</option>';
 					}
 				}
 				echo $htmlOptions;
@@ -58,14 +59,13 @@
 				$arrData = $this->model->selectCboOdpe($intIdProceso, $intIdSolucion);
 				if(count($arrData) > 0){
 					for ($i=0; $i < count($arrData) ; $i++) { 
-						$htmlOptions .='<option value="'.$arrData[$i]['ID_ODPE'].'"> '.$arrData[$i]['NOMBRE_ODPE'].'</option>';
+						$htmlOptions .='<option value="'.$arrData[$i]['id'].'"> '.$arrData[$i]['nombre_odpe'].'</option>';
 					}
 				}
 				echo $htmlOptions;
 				die();
 			}
 		}
-
 
 		public function getSelectDepartamento()
 		{
@@ -78,10 +78,10 @@
 
 				
 				$arrData = $this->model->selectCboDepartamento($intIdProceso, $intIdSolucion, $intIdodpe, $intIdEleccion);
-				$htmlOptions = '<option value="">[ SELECCIONE '.$arrData[0]['SELECTOR'].' ]</option>';
+				$htmlOptions = '<option value="">[ SELECCIONE '.$arrData[0]['selector'].' ]</option>';
 				if(count($arrData) > 0){
 					for ($i=0; $i < count($arrData) ; $i++) { 
-						$htmlOptions .='<option value="'.$arrData[$i]['CODIGO'].'"> '.$arrData[$i]['DESCRIPCION'].'</option>';
+						$htmlOptions .='<option value="'.$arrData[$i]['id'].'"> '.$arrData[$i]['descripcion'].'</option>';
 					}
 				}
 				echo $htmlOptions;
@@ -128,7 +128,7 @@
 				$arrData = $this->model->selectCboProvincia($intIdProceso, $intIdSolucion, $intIdodpe, $intIdAgrupacion, $strDepartamento, $intIdEleccion);
 				if(count($arrData) > 0){
 					for ($i=0; $i < count($arrData) ; $i++) { 
-						$htmlOptions .='<option value="'.$arrData[$i]['CODIGO'].'"> '.$arrData[$i]['PROVINCIA_UBI'].'</option>';
+						$htmlOptions .='<option value="'.$arrData[$i]['id'].'"> '.$arrData[$i]['descripcion'].'</option>';
 					}
 				}
 				echo $htmlOptions;
@@ -136,9 +136,7 @@
 			}
 		}
 
-
-		public function getSelectDistrito()
-		{
+		public function getSelectDistrito(){
 			//dep($_POST); exit;
 			if($_POST){
 				$intIdProceso		= intval(strClean($_POST['idProceso']));
@@ -153,7 +151,7 @@
 				$arrData = $this->model->selectCboDistrito($intIdProceso, $intIdSolucion, $intIdodpe, $intIdAgrupacion, $strDepartamento, $strProvincia, $intIdEleccion);
 				if(count($arrData) > 0){
 					for ($i=0; $i < count($arrData) ; $i++) { 
-						$htmlOptions .='<option value="'.$arrData[$i]['CODIGO'].'"> '.$arrData[$i]['DISTRITO_UBI'].'</option>';
+						$htmlOptions .='<option value="'.$arrData[$i]['id'].'"> '.$arrData[$i]['descripcion'].'</option>';
 					}
 				}
 				echo $htmlOptions;
