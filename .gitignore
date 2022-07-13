@@ -1,2 +1,4 @@
-/.idea/*
-/.vscode
+# IntellijIdea files
+*.iml
+.idea
+out
