@@ -1,7 +1,5 @@
 // JavaScript Document
 $(document).ready(function () {
-    // alert('ok');
-    console.log('funcion_control');
     $('#cbofaseRecepcion').selectpicker();
     $('#cbosoltecRecepcion').selectpicker();
     $('#cboodpeRecepcion').selectpicker();
@@ -10,13 +8,11 @@ $(document).ready(function () {
     $('#cboprovRecepcion').selectpicker();
     $('#cbodistRecepcion').selectpicker();
     $('#cboconsultaRecepcion').selectpicker();
-
 });
 
 var eleccion = $('#cboProceso option:selected').attr('data');
 //$('#txtdata').val(eleccion);
 // var eleccion = 1;
-// console.log("La eleccion es : "+ eleccion);
 if (eleccion == 2) {
     $('#divAgrupacionRecepcion').show();
     $('#divAgrupacionControl').show();
@@ -57,20 +53,10 @@ function Validador(correo) {
 
 /*RESET DE COMBO E IMPUT*/
 function cargaCbo(etapa) {
-    /*$('#cbofase'+etapa).selectpicker();
-    $('#cbosoltec'+etapa).selectpicker();
-    $('#cboodpe'+etapa).selectpicker();
-    $('#cboagrupacion'+etapa).selectpicker();
-    $('#cbodepart'+etapa).selectpicker();
-    $('#cboprov'+etapa).selectpicker();
-    $('#cbodist'+etapa).selectpicker();
-    $('#cboconsulta'+etapa).selectpicker();*/
     resetCbo(etapa);
     resetInpbarra(etapa);
-    //enabledAvance(etapa);
     cargaAvanceFase(etapa);
     cargaAvanceOdpe(etapa);
-    //cargaAvanceAgrupacion(etapa);
 }
 
 function resetCbo(etapa) {
@@ -135,7 +121,6 @@ function resetInput(etapa) {
     $('#btnResetInput' + etapa).css("display", "none");
     $('#add' + etapa + 'Cedula').css("display", "none");
 }
-
 /* FIN RESET*/
 
 /*CARGA AVANCE FASE*/
@@ -154,59 +139,14 @@ function cargaAvanceFase(etapa) {
         dataType: 'json',
         data: requestAvanceFase,
         cache: false,
-
         success: function (data, textStatus, jqXHR) {
-            // console.log(data);
             if (jqXHR.status == 200) {
-
                 $('#tbl_cedula' + etapa + 'AvanceFase tbody').html(data.data);
                 $('#nomFase' + etapa).html('<strong>' + data.nomFase + '</strong>');
             }
         },
     });
 }
-
-
-function cboSoltecCedula(etapa) {
-    console.log('cbosoltecRecepcion');
-    resetInpbarra(etapa);
-    // cargaAvanceFase(etapa);
-    cargaAvanceOdpe(etapa);
-    setTimeout(function () {
-        // cargaAvanceOdpe(etapa);
-    }, 120);
-
-    if ($('#cbofase' + etapa).val() != '') {
-        var requestSolucion = new Object();
-        requestSolucion["idProceso"] = $("#cboProceso").val();
-
-        $.ajax({
-            url: base_url + '/Control_cedula/getSelectSolucion',
-            type: "POST",
-            // dataType: 'json',
-            data: requestSolucion,
-            cache: false,
-
-            success: function (data, textStatus, jqXHR) {
-                // console.log(data);
-                if (jqXHR.status == 200) {
-
-                    $('#cbosoltec' + etapa).selectpicker('destroy');
-                    $('#cbosoltec' + etapa).html(data).selectpicker('refresh');
-
-                }
-            },
-        });
-        return false;
-
-    } else {
-
-        resetCbo(etapa);
-
-    }
-}
-
-
 /*CARGA AVANCE ODPE*/
 function cargaAvanceOdpe(etapa) {
 
@@ -225,11 +165,9 @@ function cargaAvanceOdpe(etapa) {
         dataType: 'json',
         data: requestAvanceOdpe,
         cache: false,
-
         success: function (data, textStatus, jqXHR) {
             // console.log(data);
             if (jqXHR.status == 200) {
-
                 $('#tbl_cedula' + etapa + 'AvanceOdpe tbody').html(data.data);
                 $('#nomOdpe' + etapa).html('<strong>' + data.nomOdpe + '</strong>');
             }
@@ -237,10 +175,8 @@ function cargaAvanceOdpe(etapa) {
     });
 }
 
-
-/*CARGA AVANCE AGRUPACION*/
+/* ** CARGA AVANCE AGRUPACION ** */
 function cargaAvanceAgrupacion(etapa) {
-
     var requestAvanceAgrupacion = new Object();
     requestAvanceAgrupacion["idProceso"] = $("#cboProceso").val();
     requestAvanceAgrupacion["idMaterial"] = $("#idMaterial").val();
@@ -258,18 +194,14 @@ function cargaAvanceAgrupacion(etapa) {
     } else {
         var nomEtapa = 'EMPAQUETADO';
     }
-
     $.ajax({
         url: base_url + '/Control_cedula/getAvanceAgrupacion',
         type: "POST",
         dataType: 'json',
         data: requestAvanceAgrupacion,
         cache: false,
-
         success: function (data, textStatus, jqXHR) {
-            // console.log(data);
             if (jqXHR.status == 200) {
-
                 $('#tbl_cedulaAvanceAgrupacion tbody').html(data.data);
                 $('#nomOdpeAgrupacion').html('<strong>' + data.nomOdpe + '</strong>');
                 $('#nomEtapaAgrupacion').html('<strong>' + nomEtapa + '</strong>');
@@ -277,7 +209,6 @@ function cargaAvanceAgrupacion(etapa) {
         },
     });
 }
-
 function closeAgrupacion() {
     $('#tbl_cedulaAvanceAgrupacion tbody').html('');
 }
@@ -304,7 +235,6 @@ function verTotalAgrup(idAgrupacion, agrupacion, etapa, valor) {
     } else {
         var nomEtapa = 'EMPAQUETADO';
     }
-
     $.ajax({
         url: base_url + '/Control_cedula/getTotalAgrupacion',
         type: "POST",
@@ -326,8 +256,41 @@ function verTotalAgrup(idAgrupacion, agrupacion, etapa, valor) {
     });
 }
 
-function cboOdpeCedula(etapa) {
+/* ** FUNCIONES DE LOS COMBOS ** */
 
+function cboSolucionTecnologica(etapa) {
+    console.log('cbosoltecRecepcion');
+    resetInpbarra(etapa);
+    // cargaAvanceFase(etapa);
+    cargaAvanceOdpe(etapa);
+    setTimeout(function () {
+        // cargaAvanceOdpe(etapa);
+    }, 120);
+    if ($('#cbofase' + etapa).val() != '') {
+        var requestSolucion = new Object();
+        requestSolucion["idProceso"] = $("#cboProceso").val();
+
+        $.ajax({
+            url: base_url + '/Control_cedula/getSelectSolucion',
+            type: "POST",
+            // dataType: 'json',
+            data: requestSolucion,
+            cache: false,
+            success: function (data, textStatus, jqXHR) {
+                // console.log(data);
+                if (jqXHR.status == 200) {
+                    $('#cbosoltec' + etapa).selectpicker('destroy');
+                    $('#cbosoltec' + etapa).html(data).selectpicker('refresh');
+                }
+            },
+        });
+        return false;
+    } else {
+        resetCbo(etapa);
+    }
+}
+
+function cboOdpe(etapa) {
     resetInpbarra(etapa);
     $('#cboagrupacion' + etapa).selectpicker('destroy');
     $('#cboagrupacion' + etapa).html('<option value="">[ SELECCIONE UNA AGRUP. POLITICA  ]</option>').selectpicker();
@@ -350,17 +313,14 @@ function cboOdpeCedula(etapa) {
         // dataType: 'json',
         data: requestOdpe,
         cache: false,
-
         success: function (data, textStatus, jqXHR) {
             // console.log(data);
             if (jqXHR.status == 200) {
-
                 $('#cboodpe' + etapa).selectpicker('destroy');
                 $('#cboodpe' + etapa).html(data).selectpicker('refresh');
             }
         },
     });
-
     setTimeout(function () {
         // cargaAvanceOdpe(etapa);
         //cargaAvanceAgrupacion(etapa);
@@ -368,13 +328,10 @@ function cboOdpeCedula(etapa) {
     }, 120);
 }
 
-
-function cboDepartamentoCedula(etapa) {
-
+function cboDepartamento(etapa) {
     resetInpbarra(etapa);
     // cargaAvanceOdpe(etapa);
     enabledAvance(etapa);
-
     $('#cboprov' + etapa).selectpicker('destroy');
     $('#cboprov' + etapa).html('<option value="">[ SELECCIONE UNA PROVINCIA ]</option>').selectpicker('refresh');
     $('#cbodist' + etapa).selectpicker('destroy');
@@ -384,7 +341,6 @@ function cboDepartamentoCedula(etapa) {
 
     var eleccionN = (eleccion == 1 || (eleccion == 2 && etapa == 'Empaque')) ? 1 : eleccion;
     // var eleccionN = eleccion;
-
     var requestDepartamento = new Object();
     requestDepartamento["idProceso"] = $("#cboProceso").val();
     requestDepartamento["idSolucion"] = $("#cbosoltec" + etapa).val();
@@ -394,10 +350,8 @@ function cboDepartamentoCedula(etapa) {
     $.ajax({
         url: base_url + '/Control_cedula/getSelectDepartamento',
         type: "POST",
-        // dataType: 'json',
         data: requestDepartamento,
         cache: false,
-
         success: function (data, textStatus, jqXHR) {
             // console.log(data);
             if (jqXHR.status == 200) {
@@ -411,16 +365,13 @@ function cboDepartamentoCedula(etapa) {
                     $('#cboagrupacion' + etapa).html(data).selectpicker('refresh');
                     $('#cbodepart' + etapa).selectpicker('destroy');
                     $('#cbodepart' + etapa).html('<option value="">[ SELECCIONE UN DEPARTAMENTO ]</option>').selectpicker('refresh');
-
                 }
             }
         },
     });
 }
 
-
-function cboAgrupacionCedula(etapa) {
-
+function cboAgrupacion(etapa) {
     resetInpbarra(etapa);
     $('#cboprov' + etapa).selectpicker('destroy');
     $('#cboprov' + etapa).html('<option value="">[ SELECCIONE UNA PROVINCIA ]</option>').selectpicker('refresh');
@@ -442,21 +393,16 @@ function cboAgrupacionCedula(etapa) {
         // dataType: 'json',
         data: requestAgrupacion,
         cache: false,
-
         success: function (data, textStatus, jqXHR) {
-            // console.log(data);
             if (jqXHR.status == 200) {
                 $('#cbodepart' + etapa).selectpicker('destroy');
                 $('#cbodepart' + etapa).html(data).selectpicker('refresh');
-
             }
         },
     });
 }
 
-
-function cboProvinciaCedula(etapa) {
-
+function cboProvincia(etapa) {
     resetInpbarra(etapa);
     $('#cbodist' + etapa).selectpicker('destroy');
     $('#cbodist' + etapa).html('<option value="">[ SELECCIONE UN DISTRITO ]</option>').selectpicker('refresh');
@@ -465,7 +411,6 @@ function cboProvinciaCedula(etapa) {
 
     var eleccionN = (eleccion == 1 || (eleccion == 2 && etapa == 'Empaque')) ? 1 : eleccion;
     // var eleccionN = eleccion;
-
     var requestProvincia = new Object();
     requestProvincia["idProceso"] = $("#cboProceso").val();
     requestProvincia["idSolucion"] = $("#cbosoltec" + etapa).val();
@@ -480,29 +425,22 @@ function cboProvinciaCedula(etapa) {
         // dataType: 'json',
         data: requestProvincia,
         cache: false,
-
         success: function (data, textStatus, jqXHR) {
-            // console.log(data);
             if (jqXHR.status == 200) {
-
                 $('#cboprov' + etapa).selectpicker('destroy');
                 $('#cboprov' + etapa).html(data).selectpicker('refresh');
-
             }
         },
     });
 }
 
-
-function cboDistritoCedula(etapa) {
-
+function cboDistrito(etapa) {
     resetInpbarra(etapa);
     $('#cboconsulta' + etapa).selectpicker('destroy');
     $('#cboconsulta' + etapa).html('<option value="">[ SELECCIONE TIPO DE C&Eacute;DULA ]</option>').selectpicker('refresh');
 
     var eleccionN = (eleccion == 1 || (eleccion == 2 && etapa == 'Empaque')) ? 1 : eleccion;
     // var eleccionN = eleccion;
-
     var requestDsitrito = new Object();
     requestDsitrito["idProceso"] = $("#cboProceso").val();
     requestDsitrito["idSolucion"] = $("#cbosoltec" + etapa).val();
@@ -518,11 +456,9 @@ function cboDistritoCedula(etapa) {
         // dataType: 'json',
         data: requestDsitrito,
         cache: false,
-
         success: function (data, textStatus, jqXHR) {
             // console.log(data);
             if (jqXHR.status == 200) {
-
                 $('#cbodist' + etapa).selectpicker('destroy');
                 $('#cbodist' + etapa).html(data).selectpicker('refresh');
             }
@@ -530,55 +466,56 @@ function cboDistritoCedula(etapa) {
     });
 }
 
-
-function cboConsultaCedula(etapa) {
+function cboSobre(etapa) {
     $("#idConsultaEmpaque").val("");
     resetInpbarra(etapa);
-    var etapaControl = $('#txtIdEtapa' + etapa).val();
-    var eleccionN = (eleccion == 1 || (eleccion == 2 && etapa == 'Empaque')) ? 1 : eleccion;
-    // var eleccionN = eleccion;
-
     var requestConsulta = new Object();
-    requestConsulta["idMaterial"] = $("#idMaterial").val();
-    requestConsulta["idProceso"] = $("#cboProceso").val();
     requestConsulta["idSolucion"] = $("#cbosoltec" + etapa).val();
-    requestConsulta["idOdpe"] = $("#cboodpe" + etapa).val();
-    requestConsulta["idAgrupacion"] = $("#cboagrupacion" + etapa).val();
-    requestConsulta["idDepartamento"] = $("#cbodepart" + etapa).val();
-    requestConsulta["idProvincia"] = $("#cboprov" + etapa).val();
-    requestConsulta["idDistrito"] = $("#cbodist" + etapa).val();
-    requestConsulta["idEleccion"] = eleccionN;
-
-
     if (eleccion == 2 && etapa == 'Empaque') {
         if (etapaControl == 3) {
             habilInpbarra(etapa);
             ordenEmpaquetado(etapa);
         }
     } else {
-
         $.ajax({
-            url: base_url + '/Control_cedula/getSelectConsulta',
+            url: base_url + '/Control_cedula/getSelectSobre',
             type: "POST",
             // dataType: 'json',
             data: requestConsulta,
             cache: false,
-
             success: function (data, textStatus, jqXHR) {
                 // console.log(data);
                 if (jqXHR.status == 200) {
-
                     $('#cboconsulta' + etapa).selectpicker('destroy');
                     $('#cboconsulta' + etapa).html(data).selectpicker('refresh');
-
                 }
             },
         });
     }
 }
 
+function cboDocumento(etapa) {
+    resetInpbarra(etapa);
+    var requestConsulta = new Object();
 
-/*CARGA COD BARRAS*/
+    requestConsulta["idSolucion"] = $("#cbosoltec" + etapa).val();
+    $.ajax({
+        url: base_url + '/Control_cedula/getSelectDocumento',
+        type: "POST",
+        // dataType: 'json',
+        data: requestConsulta,
+        cache: false,
+        success: function (data, textStatus, jqXHR) {
+            // console.log(data);
+            if (jqXHR.status == 200) {
+                $('#cboconsulta' + etapa).selectpicker('destroy');
+                $('#cboconsulta' + etapa).html(data).selectpicker('refresh');
+            }
+        },
+    });
+}
+
+/* *** CARGA COD BARRAS ****** */
 function selTipoCedula(etapa) {
     if ($('#cboconsulta' + etapa).val() != "") {
         habilInpbarra(etapa);
@@ -602,25 +539,19 @@ function selTipoCedula(etapa) {
         requestConsulta["consulta"] = $("#cboconsulta" + etapa).val();
         requestConsulta["idEleccion"] = eleccionN;
 
-
         $.ajax({
             url: base_url + '/Control_cedula/getBarra',
             type: "POST",
             dataType: 'json',
             data: requestConsulta,
             cache: false,
-
             success: function (data, textStatus, jqXHR) {
                 // console.log(data);
                 if (jqXHR.status == 200) {
-
                     document.getElementById('ubigeo' + etapa).maxLength = data.data.DIG_UBIGEO;
                     document.getElementById('rotulo' + etapa).maxLength = data.data.DIG_ROTULO;
-
                     if (etapaControl == 3) {
-
                         ordenEmpaquetado(etapa);
-
                     }
                 }
             },
@@ -629,7 +560,6 @@ function selTipoCedula(etapa) {
         resetInpbarra(etapa);
     }
 }
-
 
 function ordenEmpaquetado(etapa) {
 
@@ -666,9 +596,7 @@ function ordenEmpaquetado(etapa) {
         success: function (data, textStatus, jqXHR) {
             console.log(data);
             if (jqXHR.status == 200) {
-
                 if (data.status) {
-
                     var html = '<div>' +
                         '<strong style= "font-size:16px;">ATENCI&Oacute;N!</strong> ' +
                         'La Mesa a Empaquetar es la N° <br><b style= "font-size:26px;">' + data.data.NRO_MESA + '</b><br>' +
@@ -679,16 +607,13 @@ function ordenEmpaquetado(etapa) {
                     html += (eleccion == 2) ?
                         'Consulta: <b style= "font-size:14px;">' + data.data.TIPO_CEDULA + '</b><br>' +
                         'Partido Político: <b style= "font-size:18px;">' + data.data.AGRUPACION + '</b><br></div>' : '</div>';
-
                     $('#msj_mesa_next').addClass('alert alert-outline-info').html(html).show();
-
                     if (eleccion == 2) {
                         document.getElementById('ubigeo' + etapa).maxLength = data.data.DIG_UBIGEO;
                         document.getElementById('rotulo' + etapa).maxLength = data.data.DIG_ROTULO;
                         $("#idConsultaEmpaque").val(data.data.SUF_ROTULO);
                     }
                     return false;
-
                 } else {
                     $('#msj_mesa_next').addClass('alert alert-outline-info').html(html).hide();
                     swal({
@@ -707,9 +632,7 @@ function ordenEmpaquetado(etapa) {
     });
 }
 
-
 function inpUbigeo(etapa) {
-
     if (event.keyCode == 13) {
         document.getElementById("rotulo" + etapa).focus();
     }
@@ -759,99 +682,6 @@ function inpRotulo(etapa) {
         requestCedula["nomprovincia"] = nomprovincia;
         requestCedula["nomdistrito"] = nomdistrito;
         requestCedula["etapa"] = etapa;
-
-        /* $.ajax({
-               url: base_url+'/Control_cedula/getBarra',
-               type: "POST",
-               dataType: 'json',
-               data:requestCedula,
-               cache: false,
-
-               success: function(data, textStatus, jqXHR){
-                 // console.log(data);
-                 if(jqXHR.status == 200){
-
-                     console.log(data.data);
-                     // validando ubigeo Formato
-                     var preUbigeo  = ubigeo.substr(0, data.data.PREF_UBIGEO.length);
-                     var cUbigeo    = ubigeo.substr(data.data.PREF_UBIGEO.length, 6);
-                     var sufUbigeo  = ubigeo.substr(data.data.PREF_UBIGEO.length+6, data.data.SUF_UBIGEO.length);
-                     // validando rotulo Formato
-                     var preRotulo  = rotulo.substr(0, data.data.PREF_ROTULO.length);
-                     var cRotulo    = rotulo.substr(data.data.PREF_ROTULO.length, 9);
-                     var sufRotulo  = rotulo.substr(data.data.PREF_ROTULO.length+9, data.data.SUF_ROTULO.length);
-                     var mesa       = cRotulo.substr(0, 6);
-                     var electores  = cRotulo.substr(6,3);*/
-
-        /*console.log('pref-ubi: '+preUbigeo+'cod-ubi: '+cUbigeo+'suf-ubi: '
-          +sufUbigeo+'pref-rot: '+preRotulo+'cod-rot: '+cRotulo+'suf-rot: '
-          +sufRotulo+'mesa: '+mesa+'electores: '+electores);*/
-        /*$('#txtMesaIncidencia').val(mesa).prop('disabled',true);
-
-        if (ubigeo.length != data.data.DIG_UBIGEO ) {
-            swal({  title:  'CONTROL DE CEDULAS',
-                    text:   'Verificar la cantidad de Digitos del Ubigeo',
-                    type:   "error",
-                    timer: 4000
-                });
-            $('.confirm').removeClass('btn btn-success').removeClass('btn btn-warning').addClass('btn btn-danger');
-            inhabilitaEscbarra(etapa);
-
-        }else if(preUbigeo.length != data.data.PREF_UBIGEO.length || preUbigeo != data.data.PREF_UBIGEO){
-            swal({  title:  'CONTROL DE CEDULAS',
-                    text:   'El Tipo de Material del Ubigeo no coincide',
-                    type:   "error",
-                    timer: 4000
-                });
-            $('.confirm').removeClass('btn btn-success').removeClass('btn btn-warning').addClass('btn btn-danger');
-            inhabilitaEscbarra(etapa);
-
-        }else if(sufUbigeo.length != data.data.SUF_UBIGEO.length || sufUbigeo != data.data.SUF_UBIGEO){
-            swal({  title:  'CONTROL DE CEDULAS',
-                    text:   'El Tipo de Consulta del Ubigeo no coincide',
-                    type:   "error",
-                    timer: 4000
-                });
-            $('.confirm').removeClass('btn btn-success').removeClass('btn btn-warning').addClass('btn btn-danger');
-            inhabilitaEscbarra(etapa);
-
-
-        //Formato Rotulo
-        }else if (rotulo.length != data.data.DIG_ROTULO ) {
-            swal({  title:  'CONTROL DE CEDULAS',
-                    text:   'Verificar la cantidad de Digitos del Rotulo',
-                    type:   "error",
-                    timer: 4000
-                });
-            $('.confirm').removeClass('btn btn-success').removeClass('btn btn-warning').addClass('btn btn-danger');
-            inhabilitaEscbarra(etapa);
-
-        }else if(preRotulo.length != data.data.PREF_ROTULO.length || preRotulo != data.data.PREF_ROTULO){
-            swal({  title:  'CONTROL DE CEDULAS',
-                    text:   'El Tipo de Material del Rotulo no coincide',
-                    type:   "error",
-                    timer: 4000
-                });
-            $('.confirm').removeClass('btn btn-success').removeClass('btn btn-warning').addClass('btn btn-danger');
-            inhabilitaEscbarra(etapa);
-
-        }else if(sufRotulo != data.data.SUF_ROTULO){
-            swal({  title:  'CONTROL DE CEDULAS',
-                    text:   'El Tipo de Consulta del Rotulo no coincide',
-                    type:   "error",
-                    timer: 4000
-                });
-            $('.confirm').removeClass('btn btn-success').removeClass('btn btn-warning').addClass('btn btn-danger');
-            inhabilitaEscbarra(etapa);*/
-
-        /* }else{
-             //alert(1)
-             $('#msj_'+etapa).removeClass('alert alert-outline-danger').html('');
-
-               requestCedula["cUbigeo"]    = cUbigeo;
-               requestCedula["cRotulo"]    = cRotulo;
-               requestCedula["mesa"]       = mesa;
-               requestCedula["electores"]  = electores;*/
 
         var mesa = rotulo.substr(1, 6);
         $('#txtMesaIncidencia').val(mesa).prop('disabled', true);
@@ -1286,7 +1116,6 @@ function addIncidencia(etapa) { //alert(etapa)
             dataType: 'json',
             data: requestIncidencia,
             cache: false,
-
             success: function (data, textStatus, jqXHR) {
                 console.log(data);
                 if (jqXHR.status == 200) {
@@ -1331,7 +1160,6 @@ function addIncidencia(etapa) { //alert(etapa)
     } else {
         $('#errorincidencia').html('Este campo es obligatorio.').show();
     }
-
     return false;
 };
 

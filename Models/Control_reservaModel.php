@@ -204,9 +204,8 @@ class Control_reservaModel extends Mysql
 	}
 
 
-	public function selectCboCedula(int $idMaterial, int $idprocesos, int $idSolucion, int $idOdpe, int $idAgrupacion, string $Departamento, string $Provincia, string $Distrito, int $idEleccion)
+	public function selectCboTipoSobre(int $idMaterial, int $idprocesos, int $idSolucion, int $idOdpe, int $idAgrupacion, string $Departamento, string $Provincia, string $Distrito, int $idEleccion)
 	{
-		
 		$this->intIdMaterial		= $idMaterial;
 		$this->intIdProceso			= $idprocesos;
 		$this->intIdSolucion		= $idSolucion;
@@ -227,10 +226,8 @@ class Control_reservaModel extends Mysql
 					                            WHEN 2=$this->intIdEleccion AND SUBSTR(u.ubigeo,5,2) = $this->strDistrito AND m.id_agrupacion = $this->intIdAgrupacion THEN 1
 					                            ELSE 0 END) = 1
 										order by cp.tipo_cedula ASC";
-
 		$request = $this->select_all($query);
 		return $request;
-		
 	}
 
 
