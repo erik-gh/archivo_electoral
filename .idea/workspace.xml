@@ -6,8 +6,6 @@
       <change beforePath="$PROJECT_DIR$/Assets/functions/function_control_cedula.js" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/functions/function_control_cedula.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Controllers/Control_cedula.php" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/Control_cedula.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Models/Control_cedulaModel.php" beforeDir="false" afterPath="$PROJECT_DIR$/Models/Control_cedulaModel.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Models/Control_reservaModel.php" beforeDir="false" afterPath="$PROJECT_DIR$/Models/Control_reservaModel.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Views/Control/control.php" beforeDir="false" afterPath="$PROJECT_DIR$/Views/Control/control.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Views/Control/control_cedula.php" beforeDir="false" afterPath="$PROJECT_DIR$/Views/Control/control_cedula.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -66,7 +64,8 @@
       <option name="presentableId" value="Default" />
       <updated>1657720847126</updated>
       <workItem from="1657720848486" duration="16721000" />
-      <workItem from="1657806125407" duration="998000" />
+      <workItem from="1657806125407" duration="2009000" />
+      <workItem from="1657824925620" duration="8660000" />
     </task>
     <servers />
   </component>

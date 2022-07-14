@@ -39,7 +39,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="form-group form-group-sm">
-                                                    <label class="col-sm-4 control-label" for="form-control-1">SOLUCI&Oacute;N TECNOL&Oacute;G.</label>
+                                                    <label class="col-sm-4 control-label" for="form-control-1">SOLUCI&Oacute;N TECNOL&Oacute;G. :</label>
                                                     <div class="col-sm-8 z-8">
                                                         <select class="form-control" name="cbosoltecRecepcion" id="cbosoltecRecepcion" data-dropup-auto="false"
                                                                 data-size="6" data-live-search="true" onChange="cboOdpe('Recepcion');" required>
@@ -49,76 +49,81 @@
                                                 </div>
 
                                                 <div class="form-group form-group-sm">
-                                                    <label class="col-sm-4 control-label" for="form-control-1">ODPE</label>
+                                                    <label class="col-sm-4 control-label" for="form-control-1">ODPE :</label>
                                                     <div class="col-sm-8 z-7">
                                                         <select class="form-control" name="cboodpeRecepcion" id="cboodpeRecepcion" data-dropup-auto="false" data-size="6"
-                                                                data-live-search="true" onChange="cboDepartamento('Recepcion');" required>
+                                                                data-live-search="true" onChange="cboConsulta('Recepcion');" required>
                                                             <option value="">[ SELECCIONE UNA ODPE ]</option>
                                                         </select>
                                                     </div>
                                                 </div>
-                                                <!-- Aqui se debe de modificar de agrupacion politica a Consulta-->
                                                 <div class="form-group form-group-sm">
-                                                    <label class="col-sm-4 control-label" for="form-control-1">CONSULTA</label>
+                                                    <label class="col-sm-4 control-label" for="form-control-1">CONSULTA :</label>
                                                     <div class="col-sm-8 z-6">
-                                                        <select class="form-control" name="cboagrupacionRecepcion" id="cboagrupacionRecepcion" data-dropup-auto="false"
-                                                                data-size="6" data-live-search="true" onChange="cboAgrupacionCedula('Recepcion');" required>
+                                                        <select class="form-control" name="cboconsultaRecepcion" id="cboconsultaRecepcion" data-dropup-auto="false"
+                                                                data-size="6" data-live-search="true" onChange="cboDepartamento('Recepcion');" required>
                                                             <option value="">[ SELECCIONE UNA CONSULTA ]</option>
                                                         </select>
                                                     </div>
                                                 </div>
                                                 <div class="form-group form-group-sm">
-                                                    <label class="col-sm-4 control-label" for="form-control-1">DEPARTAMENTO</label>
+                                                    <label class="col-sm-4 control-label" for="form-control-1">DEPARTAMENTO :</label>
                                                     <div class="col-sm-8 z-5">
                                                         <select class="form-control" name="cbodepartRecepcion" id="cbodepartRecepcion" data-dropup-auto="false"
-                                                                data-size="6" data-live-search="true" onChange="cboProvinciaCedula('Recepcion');" required>
+                                                                data-size="6" data-live-search="true" onChange="cboProvincia('Recepcion');" required>
                                                             <option value="">[ SELECCIONE UN DEPARTAMENTO ]</option>
                                                         </select>
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group form-group-sm">
-                                                    <label class="col-sm-4 control-label" for="form-control-1">PROVINCIA</label>
+                                                    <label class="col-sm-4 control-label" for="form-control-1">PROVINCIA :</label>
                                                     <div class="col-sm-8 z-4">
                                                         <select class="form-control" name="cboprovRecepcion" id="cboprovRecepcion" data-dropup-auto="false"
-                                                                data-size="6" data-live-search="true" onChange="cboDistritoCedula('Recepcion')" required>
+                                                                data-size="6" data-live-search="true" onChange="cboDistrito('Recepcion')" required>
                                                             <option value="">[ SELECCIONE UNA PROVINCIA ]</option>
                                                         </select>
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group form-group-sm">
-                                                    <label class="col-sm-4 control-label" for="form-control-1">DISTRITO</label>
+                                                    <label class="col-sm-4 control-label" for="form-control-1">DISTRITO :</label>
                                                     <div class="col-sm-8 z-3">
                                                         <select class="form-control" name="cbodistRecepcion" id="cbodistRecepcion" data-dropup-auto="false"
-                                                                data-size="6" data-live-search="true" onChange="cboConsultaCedula('Recepcion')" required>
+                                                                data-size="6" data-live-search="true" onChange="cboSobre('Recepcion')" required>
                                                             <option value="">[ SELECCIONE UN DISTRITO ]</option>
                                                         </select>
                                                     </div>
                                                 </div>
-                                                <!-- Aqui se edita de cedula a Tipo sobre -->
                                                 <div class="form-group form-group-sm">
-                                                    <label class="col-sm-4 control-label" for="form-control-1">TIPO SOBRE</label>
+                                                    <label class="col-sm-4 control-label" for="form-control-1">SOBRE :</label>
                                                     <div class="col-sm-8 z-2">
-                                                        <select class="form-control" name="cboconsultaRecepcion" id="cboconsultaRecepcion" data-size="6"
-                                                                data-dropup-auto="false" data-live-search="true" onChange="selTipoDocumento('Recepcion');" required>
-                                                            <option value="">[ SELECCIONE TIPO DE SOBRE ]</option>
+                                                        <select class="form-control" name="cbosobreRecepcion" id="cbosobreRecepcion" data-size="6"
+                                                                data-dropup-auto="false" data-live-search="true" onChange="cboSufragio('Recepcion');" required>
+                                                            <option value="">[ SELECCIONE UN SOBRE ]</option>
                                                         </select>
                                                     </div>
                                                 </div>
-                                                <!-- Aqui se editar de UBIGEO a DOCUMENTO -->
                                                 <div class="form-group form-group-sm">
-                                                    <label class="col-sm-4 control-label" for="form-control-14">TIPO DOCUMENTO</label>
+                                                    <label class="col-sm-4 control-label" for="form-control-1">SUFRAGIO :</label>
                                                     <div class="col-sm-8 z-2">
-                                                        <select class="form-control" name="cboconsultaDocumento" id="cboconsultaDocumento" data-size="6"
-                                                                data-dropup-auto="false" data-live-search="true" onChange="selTipoCedula('Recepcion');" required>
-                                                            <option value="">[ SELECCIONE TIPO DE DOCUMENTO ]</option>
+                                                        <select class="form-control" name="cbosufragioRecepcion" id="cbosufragioRecepcion" data-size="6"
+                                                                data-dropup-auto="false" data-live-search="true" onChange="cboDocumento('Recepcion');" required>
+                                                            <option value="">[ SELECCIONE UN SUFRAGIO ]</option>
                                                         </select>
                                                     </div>
                                                 </div>
-                                                <!-- Aqui se editar de ROUTULO a NUMERO DE MESA -->
                                                 <div class="form-group form-group-sm">
-                                                    <label class="col-sm-4 control-label" for="form-control-14">N. MESA</label>
+                                                    <label class="col-sm-4 control-label" for="form-control-14">DOCUMENTO :</label>
+                                                    <div class="col-sm-8 z-2">
+                                                        <select class="form-control" name="cbodocumentoDocumento" id="cbodocumentoDocumento" data-size="6"
+                                                                data-dropup-auto="false" data-live-search="true" onChange="" required>
+                                                            <option value="">[ SELECCIONE UN DOCUMENTO ]</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group form-group-sm">
+                                                    <label class="col-sm-4 control-label" for="form-control-14">N. MESA :</label>
                                                     <div class="col-sm-8">
                                                         <input id="rotuloRecepcion" name="rotuloRecepcion" class="form-control" type="text"
                                                                placeholder="C&oacute;digo de Barras numero de Mesa" style="text-transform: uppercase;" disabled
@@ -157,9 +162,10 @@
                                     <div class="table-responsive">
                                         <div class="clearfix">
                                             <div class="pull-right">
-                                                <a class="btn btn-blue btn-sm" data-dismiss="modal" id="updateRecepcion"
+                                                Esto se habilitara o se quitara
+                                                <!--<a class="btn btn-blue btn-sm" data-dismiss="modal" id="updateRecepcion"
                                                    onclick="cargaAvanceFase('Recepcion'); cargaAvanceOdpe('Recepcion')" disabled>
-                                                    <i class="zmdi zmdi-refresh zmdi-hc-fw"></i><span></span></a>
+                                                    <i class="zmdi zmdi-refresh zmdi-hc-fw"></i><span></span></a>-->
                                             </div>
                                         </div>
                                         <div id="tbl_cedulaAvanceFaseRecepcion" class="dataTables_wrapper form-inline" role="grid">

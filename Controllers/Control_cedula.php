@@ -86,21 +86,16 @@ class Control_cedula extends Controllers
         }
     }
 
-    public function getSelectAgrupacion()
+    public function getSelectConsulta()
     {
-        //dep($_POST); exit;
         if ($_POST) {
             $intIdProceso = intval(strClean($_POST['idProceso']));
-            $intIdSolucion = intval(strClean($_POST['idSolucion']));
-            $intIdodpe = intval(strClean($_POST['idOdpe']));
-            $intIdAgrupacion = intval(strClean($_POST['idAgrupacion']));
-            $intIdEleccion = intval(strClean($_POST['idEleccion']));
 
-            $htmlOptions = '<option value="">[ SELECCIONE UN DEPARTAMENTO ]</option>';
-            $arrData = $this->model->selectCboAgrupacion($intIdProceso, $intIdSolucion, $intIdodpe, $intIdAgrupacion, $intIdEleccion);
+            $htmlOptions = '<option value="">[ SELECCIONE UNA CONSULTA ]</option>';
+            $arrData = $this->model->selectCboConsulta($intIdProceso);
             if (count($arrData) > 0) {
                 for ($i = 0; $i < count($arrData); $i++) {
-                    $htmlOptions .= '<option value="' . $arrData[$i]['CODIGO'] . '"> ' . $arrData[$i]['DEPARTAMENTO_UBI'] . '</option>';
+                    $htmlOptions .= '<option value="' . $arrData[$i]['id'] . '"> ' . $arrData[$i]['descripcion'] . '</option>';
                 }
             }
             echo $htmlOptions;
@@ -115,12 +110,11 @@ class Control_cedula extends Controllers
             $intIdProceso = intval(strClean($_POST['idProceso']));
             $intIdSolucion = intval(strClean($_POST['idSolucion']));
             $intIdodpe = intval(strClean($_POST['idOdpe']));
-            $intIdAgrupacion = intval(strClean($_POST['idAgrupacion']));
             $strDepartamento = strClean($_POST['idDepartamento']);
             $intIdEleccion = intval(strClean($_POST['idEleccion']));
 
             $htmlOptions = '<option value="">[ SELECCIONE UNA PROVINCIA ]</option>';
-            $arrData = $this->model->selectCboProvincia($intIdProceso, $intIdSolucion, $intIdodpe, $intIdAgrupacion, $strDepartamento, $intIdEleccion);
+            $arrData = $this->model->selectCboProvincia($intIdProceso, $intIdSolucion, $intIdodpe, $strDepartamento, $intIdEleccion);
             if (count($arrData) > 0) {
                 for ($i = 0; $i < count($arrData); $i++) {
                     $htmlOptions .= '<option value="' . $arrData[$i]['id'] . '"> ' . $arrData[$i]['descripcion'] . '</option>';
@@ -137,13 +131,12 @@ class Control_cedula extends Controllers
             $intIdProceso = intval(strClean($_POST['idProceso']));
             $intIdSolucion = intval(strClean($_POST['idSolucion']));
             $intIdodpe = intval(strClean($_POST['idOdpe']));
-            $intIdAgrupacion = intval(strClean($_POST['idAgrupacion']));
             $strDepartamento = strClean($_POST['idDepartamento']);
             $strProvincia = strClean($_POST['idProvincia']);
             $intIdEleccion = intval(strClean($_POST['idEleccion']));
 
             $htmlOptions = '<option value="">[ SELECCIONE UN DISTRITO ]</option>';
-            $arrData = $this->model->selectCboDistrito($intIdProceso, $intIdSolucion, $intIdodpe, $intIdAgrupacion, $strDepartamento, $strProvincia, $intIdEleccion);
+            $arrData = $this->model->selectCboDistrito($intIdProceso, $intIdSolucion, $intIdodpe, $strDepartamento, $strProvincia, $intIdEleccion);
             if (count($arrData) > 0) {
                 for ($i = 0; $i < count($arrData); $i++) {
                     $htmlOptions .= '<option value="' . $arrData[$i]['id'] . '"> ' . $arrData[$i]['descripcion'] . '</option>';
@@ -154,17 +147,32 @@ class Control_cedula extends Controllers
         }
     }
 
-    public function getSelectSobre()
-    {
+    public function getSelectSobre(){
         //dep($_POST); exit;
         if ($_POST) {
             $intIdSolucion = intval(strClean($_POST['idSolucion']));
 
             $htmlOptions = '<option value="">[ SELECCIONE TIPO DE SOBRE ]</option>';
-            $arrData = $this->model->selectCboTipoSobre($intIdSolucion);
+            $arrData = $this->model->selectCboSobre($intIdSolucion);
             if (count($arrData) > 0) {
                 for ($i = 0; $i < count($arrData); $i++) {
                     $htmlOptions .= '<option value="' . $arrData[$i]['id'] . '"> ' . $arrData[$i]['sobre'] . '</option>';
+                }
+            }
+            echo $htmlOptions;
+            die();
+        }
+    }
+public function getSelectSufragio(){
+        //dep($_POST); exit;
+        if ($_POST) {
+            $intIdSolucion = intval(strClean($_POST['idSolucion']));
+
+            $htmlOptions = '<option value="">[ SELECCIONE TIPO DE SUFRAGIO ]</option>';
+            $arrData = $this->model->selectCboSufragio($intIdSolucion);
+            if (count($arrData) > 0) {
+                for ($i = 0; $i < count($arrData); $i++) {
+                    $htmlOptions .= '<option value="' . $arrData[$i]['id'] . '"> ' . $arrData[$i]['descripcion'] . '</option>';
                 }
             }
             echo $htmlOptions;
@@ -192,7 +200,6 @@ class Control_cedula extends Controllers
     }
     /* FIN DE COMBOS SELECT */
 
-
     public function getBarra()
     {
         // dep($_POST); exit;
@@ -201,14 +208,14 @@ class Control_cedula extends Controllers
             $intIdProceso = intval(strClean($_POST['idProceso']));
             $intIdSolucion = intval(strClean($_POST['idSolucion']));
             $intIdodpe = intval(strClean($_POST['idOdpe']));
-            $intIdAgrupacion = intval(strClean($_POST['idAgrupacion']));
+//            $intIdAgrupacion = intval(strClean($_POST['idAgrupacion']));
             $strDepartamento = strClean($_POST['idDepartamento']);
             $strProvincia = strClean($_POST['idProvincia']);
             $strDistrito = strClean($_POST['idDistrito']);
             $strConsulta = strClean($_POST['consulta']);
             $intIdEleccion = intval(strClean($_POST['idEleccion']));
 
-            $arrData = $this->model->selectinpBarra($intIdMaterial, $intIdProceso, $intIdSolucion, $intIdodpe, $intIdAgrupacion, $strDepartamento, $strProvincia, $strDistrito, $strConsulta, $intIdEleccion);
+            $arrData = $this->model->selectinpBarra($intIdMaterial, $intIdProceso, $intIdSolucion, $intIdodpe, $strDepartamento, $strProvincia, $strDistrito, $strConsulta, $intIdEleccion);
 
             $arrResponse = [
                 "status" => true,

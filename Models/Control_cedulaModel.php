@@ -19,6 +19,7 @@ class Control_cedulaModel extends Mysql
     private $strConsulta;
     private $intIdUsusario;
     private $intIdSobre;
+    private $idConsulta;
 
     private $conOracle;
 
@@ -62,6 +63,13 @@ class Control_cedulaModel extends Mysql
         $request = $this->select_all($query);
         return $request;
     }
+    public function selectCboConsulta(int $idprocesos){
+        $this->intIdProceso = $idprocesos;
+
+        $query = "SELECT * FROM consultas c INNER JOIN proceso_consultas pc on c.id = pc.id_consulta WHERE pc.id_proceso = $this->intIdProceso ORDER BY c.id;";
+        $request = $this->select_all($query);
+        return $request;
+    }
 
     public function selectCboDepartamento(int $idprocesos, int $idSolucion, int $idOdpe, int $idEleccion){
         $this->intIdProceso = $idprocesos;
@@ -78,11 +86,10 @@ class Control_cedulaModel extends Mysql
         return $request;
     }
 
-    public function selectCboProvincia(int $idprocesos, int $idSolucion, int $idOdpe, int $idAgrupacion, string $Departamento, int $idEleccion){
+    public function selectCboProvincia(int $idprocesos, int $idSolucion, int $idOdpe, string $Departamento, int $idEleccion){
         $this->intIdProceso = $idprocesos;
         $this->intIdSolucion = $idSolucion;
         $this->intIdOdpe = $idOdpe;
-        $this->intIdAgrupacion = $idAgrupacion;
         $this->strDepartamento = $Departamento;
         $this->intIdEleccion = $idEleccion;
         $query = "SELECT DISTINCT p.id, p.descripcion
@@ -94,11 +101,10 @@ class Control_cedulaModel extends Mysql
         return $request;
     }
 
-    public function selectCboDistrito(int $idprocesos, int $idSolucion, int $idOdpe, int $idAgrupacion, string $Departamento, string $Provincia, int $idEleccion){
+    public function selectCboDistrito(int $idprocesos, int $idSolucion, int $idOdpe, string $Departamento, string $Provincia, int $idEleccion){
         $this->intIdProceso = $idprocesos;
         $this->intIdSolucion = $idSolucion;
         $this->intIdOdpe = $idOdpe;
-        $this->intIdAgrupacion = $idAgrupacion;
         $this->strDepartamento = $Departamento;
         $this->strProvincia = $Provincia;
         $this->intIdEleccion = $idEleccion;
@@ -112,9 +118,16 @@ class Control_cedulaModel extends Mysql
         return $request;
     }
 
-    public function selectCboTipoSobre(int $idSolucion){
+    public function selectCboSobre(int $idSolucion){
         $this->intIdSolucion = $idSolucion;
-        $query = "SELECT s.id, s.sobre FROM sobres s INNER JOIN solucion_documentos sd ON  s.id = sd.id_sobre WHERE sd.id_solucion = $this->intIdSolucion GROUP BY s.id ORDER BY s.id;";
+        $query = "SELECT id, sobre FROM sobres;";
+        $request = $this->select_all($query);
+        return $request;
+    }
+
+    public function selectCboSufragio(int $idConsulta){
+        $this->intIdConsulta = $idConsulta;
+        $query = "SELECT * FROM sufragios s INNER JOIN consulta_sufragios cs on s.id = cs.id_sufragio WHERE cs.id_consulta = $this->intIdConsulta ORDER BY s.id;";
         $request = $this->select_all($query);
         return $request;
     }
@@ -255,7 +268,6 @@ class Control_cedulaModel extends Mysql
         }
     }
 
-
     public function validarMesaOdpe(int $idprocesos, int $idOdpe, string $nroMesa)
     {
 
@@ -278,7 +290,6 @@ class Control_cedulaModel extends Mysql
         }
 
     }
-
 
     public function validarMesaAgrupacion(int $idprocesos, int $idAgrupacion, string $nroMesa)
     {
