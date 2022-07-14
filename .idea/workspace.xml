@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="14a1fcc3-c5b4-4d59-aa60-f8982724f4cc" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/functions/function_control_cedula.js" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/functions/function_control_cedula.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Views/Control/control_cedula.php" beforeDir="false" afterPath="$PROJECT_DIR$/Views/Control/control_cedula.php" afterDir="false" />
-    </list>
+    <list default="true" id="14a1fcc3-c5b4-4d59-aa60-f8982724f4cc" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -63,7 +59,7 @@
       <updated>1657720847126</updated>
       <workItem from="1657720848486" duration="16721000" />
       <workItem from="1657806125407" duration="2009000" />
-      <workItem from="1657824925620" duration="10399000" />
+      <workItem from="1657824925620" duration="10565000" />
     </task>
     <servers />
   </component>
