@@ -4,11 +4,12 @@ $(document).ready(function () {
     $('#cbosoltecRecepcion').selectpicker();
     $('#cboodpeRecepcion').selectpicker();
     $('#cboconsultaRecepcion').selectpicker();
-    // $('#cbosolucionRecepcion').selectpicker();
     $('#cbodepartRecepcion').selectpicker();
     $('#cboprovRecepcion').selectpicker();
     $('#cbodistRecepcion').selectpicker();
-
+    $('#cbosobreRecepcion').selectpicker();
+    $('#cbosufragioRecepcion').selectpicker();
+    $('#cbodocumentoRecepcion').selectpicker();
 });
 
 var eleccion = $('#cboProceso option:selected').attr('data');
@@ -53,7 +54,6 @@ function cboSolucionTecnologica(etapa) {
 }
 
 function cboOdpe(etapa) {
-    console.log('revisar');
     resetInpbarra(etapa);
     $('#cboconsulta' + etapa).selectpicker('destroy');
     $('#cboconsulta' + etapa).html('<option value="">[ SELECCIONE UNA CONSULTA  ]</option>').selectpicker('refresh');
@@ -63,10 +63,12 @@ function cboOdpe(etapa) {
     $('#cboprov' + etapa).html('<option value="">[ SELECCIONE UNA PROVINCIA ]</option>').selectpicker('refresh');
     $('#cbodist' + etapa).selectpicker('destroy');
     $('#cbodist' + etapa).html('<option value="">[ SELECCIONE UN DISTRITO ]</option>').selectpicker('refresh');
-    $('#cboSobre' + etapa).selectpicker('destroy');
-    $('#cboSobre' + etapa).html('<option value="">[ SELECCIONE TIPO DE SOBRE ]</option>').selectpicker('refresh');
-    $('#cboSufragio' + etapa).selectpicker('destroy');
-    $('#cboSufragio' + etapa).html('<option value="">[ SELECCIONE TIPO DE SUFRAGIO ]</option>').selectpicker('refresh');
+    $('#cbosobre' + etapa).selectpicker('destroy');
+    $('#cbosobre' + etapa).html('<option value="">[ SELECCIONE TIPO DE SOBRE ]</option>').selectpicker('refresh');
+    $('#cbosufragio' + etapa).selectpicker('destroy');
+    $('#cbosufragio' + etapa).html('<option value="">[ SELECCIONE TIPO DE SUFRAGIO ]</option>').selectpicker('refresh');
+    $('#cbodocumento' + etapa).selectpicker('destroy');
+    $('#cbodocumento' + etapa).html('<option value="">[ SELECCIONE UN SUFRAGIO ]</option>').selectpicker('refresh');
 
     var requestOdpe = new Object();
     requestOdpe["idProceso"] = $("#cboProceso").val();
@@ -101,10 +103,12 @@ function cboConsulta(etapa) {
     $('#cboprov' + etapa).html('<option value="">[ SELECCIONE UNA PROVINCIA ]</option>').selectpicker('refresh');
     $('#cbodist' + etapa).selectpicker('destroy');
     $('#cbodist' + etapa).html('<option value="">[ SELECCIONE UN DISTRITO ]</option>').selectpicker('refresh');
-    $('#cboSobre' + etapa).selectpicker('destroy');
-    $('#cboSobre' + etapa).html('<option value="">[ SELECCIONE TIPO DE SOBRE ]</option>').selectpicker('refresh');
-    $('#cboSufragio' + etapa).selectpicker('destroy');
-    $('#cboSufragio' + etapa).html('<option value="">[ SELECCIONE TIPO DE SUFRAGIO ]</option>').selectpicker('refresh');
+    $('#cbosobre' + etapa).selectpicker('destroy');
+    $('#cbosobre' + etapa).html('<option value="">[ SELECCIONE TIPO DE SOBRE ]</option>').selectpicker('refresh');
+    $('#cbosufragio' + etapa).selectpicker('destroy');
+    $('#cbosufragio' + etapa).html('<option value="">[ SELECCIONE TIPO DE SUFRAGIO ]</option>').selectpicker('refresh');
+    $('#cbodocumento' + etapa).selectpicker('destroy');
+    $('#cbodocumento' + etapa).html('<option value="">[ SELECCIONE UN SUFRAGIO ]</option>').selectpicker('refresh');
 
     var requestOdpe = new Object();
     requestOdpe["idProceso"] = $("#cboProceso").val();
@@ -137,10 +141,12 @@ function cboDepartamento(etapa) {
     $('#cboprov' + etapa).html('<option value="">[ SELECCIONE UNA PROVINCIA ]</option>').selectpicker('refresh');
     $('#cbodist' + etapa).selectpicker('destroy');
     $('#cbodist' + etapa).html('<option value="">[ SELECCIONE UN DISTRITO ]</option>').selectpicker('refresh');
-    $('#cboSobre' + etapa).selectpicker('destroy');
-    $('#cboSobre' + etapa).html('<option value="">[ SELECCIONE TIPO DE SOBRE ]</option>').selectpicker('refresh');
-    $('#cboSufragio' + etapa).selectpicker('destroy');
-    $('#cboSufragio' + etapa).html('<option value="">[ SELECCIONE TIPO DE SUFRAGIO ]</option>').selectpicker('refresh');
+    $('#cbosobre' + etapa).selectpicker('destroy');
+    $('#cbosobre' + etapa).html('<option value="">[ SELECCIONE TIPO DE SOBRE ]</option>').selectpicker('refresh');
+    $('#cbosufragio' + etapa).selectpicker('destroy');
+    $('#cbosufragio' + etapa).html('<option value="">[ SELECCIONE TIPO DE SUFRAGIO ]</option>').selectpicker('refresh');
+    $('#cbodocumento' + etapa).selectpicker('destroy');
+    $('#cbodocumento' + etapa).html('<option value="">[ SELECCIONE UN SUFRAGIO ]</option>').selectpicker('refresh');
 
     var eleccionN = (eleccion == 1 || (eleccion == 2 && etapa == 'Empaque')) ? 1 : eleccion;
     // var eleccionN = eleccion;
@@ -164,8 +170,6 @@ function cboDepartamento(etapa) {
                     $('#cbodepart' + etapa).html(data).selectpicker('refresh');
 
                 } else {
-                    $('#cboagrupacion' + etapa).selectpicker('destroy');
-                    $('#cboagrupacion' + etapa).html(data).selectpicker('refresh');
                     $('#cbodepart' + etapa).selectpicker('destroy');
                     $('#cbodepart' + etapa).html('<option value="">[ SELECCIONE UN DEPARTAMENTO ]</option>').selectpicker('refresh');
                 }
@@ -178,10 +182,12 @@ function cboProvincia(etapa) {
     resetInpbarra(etapa);
     $('#cbodist' + etapa).selectpicker('destroy');
     $('#cbodist' + etapa).html('<option value="">[ SELECCIONE UN DISTRITO ]</option>').selectpicker('refresh');
-    $('#cboSobre' + etapa).selectpicker('destroy');
-    $('#cboSobre' + etapa).html('<option value="">[ SELECCIONE TIPO DE SOBRE ]</option>').selectpicker('refresh');
+    $('#cbosobre' + etapa).selectpicker('destroy');
+    $('#cbosobre' + etapa).html('<option value="">[ SELECCIONE TIPO DE SOBRE ]</option>').selectpicker('refresh');
     $('#cbosufragio' + etapa).selectpicker('destroy');
     $('#cbosufragio' + etapa).html('<option value="">[ SELECCIONE TIPO DE SUFRAGIO ]</option>').selectpicker('refresh');
+    $('#cbodocumento' + etapa).selectpicker('destroy');
+    $('#cbodocumento' + etapa).html('<option value="">[ SELECCIONE UN SUFRAGIO ]</option>').selectpicker('refresh');
 
     var eleccionN = (eleccion == 1 || (eleccion == 2 && etapa == 'Empaque')) ? 1 : eleccion;
     // var eleccionN = eleccion;
@@ -210,10 +216,12 @@ function cboProvincia(etapa) {
 
 function cboDistrito(etapa) {
     resetInpbarra(etapa);
-    $('#cboSobre' + etapa).selectpicker('destroy');
-    $('#cboSobre' + etapa).html('<option value="">[ SELECCIONE TIPO DE SOBRE ]</option>').selectpicker('refresh');
+    $('#cbosobre' + etapa).selectpicker('destroy');
+    $('#cbosobre' + etapa).html('<option value="">[ SELECCIONE UN SOBRE ]</option>').selectpicker('refresh');
     $('#cbosufragio' + etapa).selectpicker('destroy');
     $('#cbosufragio' + etapa).html('<option value="">[ SELECCIONE TIPO DE SUFRAGIO ]</option>').selectpicker('refresh');
+    $('#cbodocumento' + etapa).selectpicker('destroy');
+    $('#cbodocumento' + etapa).html('<option value="">[ SELECCIONE UN SUFRAGIO ]</option>').selectpicker('refresh');
 
     var eleccionN = (eleccion == 1 || (eleccion == 2 && etapa == 'Empaque')) ? 1 : eleccion;
     // var eleccionN = eleccion;
@@ -246,8 +254,7 @@ function cboSobre(etapa) {
     $('#cbosufragio' + etapa).selectpicker('destroy');
     $('#cbosufragio' + etapa).html('<option value="">[ SELECCIONE TIPO DE SUFRAGIO ]</option>').selectpicker('refresh');
     $('#cbodocumento' + etapa).selectpicker('destroy');
-    $('#cbodocumento' + etapa).html('<option value="">[ SELECCIONE TIPO DE SUFRAGIO ]</option>').selectpicker('refresh');
-    $("#idConsultaEmpaque").val("");
+    $('#cbodocumento' + etapa).html('<option value="">[ SELECCIONE UN DOCUMENTO ]</option>').selectpicker('refresh');
     resetInpbarra(etapa);
     var requestConsulta = new Object();
     requestConsulta["idSolucion"] = $("#cbosoltec" + etapa).val();
@@ -275,8 +282,9 @@ function cboSobre(etapa) {
 }
 
 function cboSufragio(etapa) {
-    $('#cbosufragio' + etapa).selectpicker('destroy');
-    $('#cbosufragio' + etapa).html('<option value="">[ SELECCIONE TIPO DE DOCUMENTO ]</option>').selectpicker('refresh');
+    $('#cbodocumento' + etapa).selectpicker('destroy');
+    $('#cbodocumento' + etapa).html('<option value="">[ SELECCIONE UN DOCUMENTO ]</option>').selectpicker('refresh');
+
     resetInpbarra(etapa);
     var requestConsulta = new Object();
     requestConsulta["idSolucion"] = $("#cbosoltec" + etapa).val();
@@ -295,8 +303,8 @@ function cboSufragio(etapa) {
             success: function (data, textStatus, jqXHR) {
                 // console.log(data);
                 if (jqXHR.status == 200) {
-                    $('#cboSufragio' + etapa).selectpicker('destroy');
-                    $('#cboSufragio' + etapa).html(data).selectpicker('refresh');
+                    $('#cbosufragio' + etapa).selectpicker('destroy');
+                    $('#cbosufragio' + etapa).html(data).selectpicker('refresh');
                 }
             },
         });

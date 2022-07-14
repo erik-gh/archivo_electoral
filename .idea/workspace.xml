@@ -4,8 +4,6 @@
     <list default="true" id="14a1fcc3-c5b4-4d59-aa60-f8982724f4cc" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/functions/function_control_cedula.js" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/functions/function_control_cedula.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controllers/Control_cedula.php" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/Control_cedula.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Models/Control_cedulaModel.php" beforeDir="false" afterPath="$PROJECT_DIR$/Models/Control_cedulaModel.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Views/Control/control_cedula.php" beforeDir="false" afterPath="$PROJECT_DIR$/Views/Control/control_cedula.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -65,7 +63,7 @@
       <updated>1657720847126</updated>
       <workItem from="1657720848486" duration="16721000" />
       <workItem from="1657806125407" duration="2009000" />
-      <workItem from="1657824925620" duration="8660000" />
+      <workItem from="1657824925620" duration="10399000" />
     </task>
     <servers />
   </component>
