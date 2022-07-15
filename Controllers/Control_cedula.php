@@ -24,10 +24,8 @@ class Control_cedula extends Controllers
         $this->views->getView($this,'perfil',$data);*/
     }
 
-
     /* INICIO COMBOS DE SELECT */
-    public function getSelectSolucion()
-    {
+    public function getSelectSolucion(){
         //dep($_POST); exit;
         if ($_POST) {
             $intIdProceso = intval(strClean($_POST['idProceso']));
@@ -45,8 +43,7 @@ class Control_cedula extends Controllers
         }
     }
 
-    public function getSelectOdpe()
-    {
+    public function getSelectOdpe(){
         //dep($_POST); exit;
         if ($_POST) {
             $intIdProceso = intval(strClean($_POST['idProceso']));
@@ -180,15 +177,14 @@ public function getSelectSufragio(){
         }
     }
 
-    public function getSelectDocumento()
-    {
+    public function getSelectDocumento(){
         //dep($_POST); exit;
         if ($_POST) {
             $intIdSolucion = intval(strClean($_POST['idSolucion']));
             $intIdSobre = intval(strClean($_POST['idSobre']));
 
             $htmlOptions = '<option value="">[ SELECCIONE TIPO DE DOCUMENTO ]</option>';
-            $arrData = $this->model->selectCboTipoDocumento($intIdSolucion);
+            $arrData = $this->model->selectCboDocumento($intIdSolucion, $intIdSobre);
             if (count($arrData) > 0) {
                 for ($i = 0; $i < count($arrData); $i++) {
                     $htmlOptions .= '<option value="' . $arrData[$i]['id'] . '"> ' . $arrData[$i]['documento'] . '</option>';

@@ -25,7 +25,7 @@
                         <div class="form-group">
                             <div class="input-group-prepend">
                                 <select class="form-control" name="cboProceso" id="cboProceso" data-dropup-auto="false"
-                                        data-live-search="true" data-size="6" onchange="cbomateriales()">
+                                        data-live-search="true" data-size="6" onchange="">
                                     <option value="">[ SELECCIONE PROCESO ]</option>
                                 </select>
                             </div>
@@ -38,7 +38,7 @@
                         <div class="widget widget-tile-2 bg-info m-b-30" style="cursor: pointer;" id="acta"
                              onclick="panelTabs('cedula')">
                             <div class="wt-content p-a-20 p-b-50">
-                                <div class="wt-title">RECEPCION<br> ARCHIVOS ELECTORALES</div>
+                                <div class="wt-title">REGISTRO <br> DOCUMENTOS ELECTORALES</div>
                                 <div class="wt-number"></div>
                                 <div class="wt-text"></div>
                             </div>

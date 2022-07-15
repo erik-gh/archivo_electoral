@@ -28,7 +28,7 @@
                                                 <input class="form-control" type="hidden" id="txtIdEtapaRecepcion" name="txtIdEtapaRecepcion" value="1">
                                                 <input class="form-control" type="hidden" id="txtValidacionRecepcion" name="txtValidacionRecepcion" value="1">
                                                 <!-- Aqui se debe de modificar -->
-                                                <div class="form-group form-group-sm">
+                                                <!-- <div class="form-group form-group-sm">
                                                     <label class="col-sm-4 control-label" for="form-control-1">FASE</label>
                                                     <div class="col-sm-8 z-9">
                                                         <select class="form-control" name="cbofaseRecepcion" id="cbofaseRecepcion" data-dropup-auto="false" data-size="6"
@@ -37,20 +37,22 @@
                                                             <option value="1">SUFRAGIO</option>
                                                         </select>
                                                     </div>
-                                                </div>
+                                                </div> -->
                                                 <div class="form-group form-group-sm">
                                                     <label class="col-sm-4 control-label" for="form-control-1">SOLUCI&Oacute;N TECNOL&Oacute;G. :</label>
-                                                    <div class="col-sm-8 z-8">
+                                                    <div class="col-sm-8 z-9">
                                                         <select class="form-control" name="cbosoltecRecepcion" id="cbosoltecRecepcion" data-dropup-auto="false"
                                                                 data-size="6" data-live-search="true" onChange="cboOdpe('Recepcion');" required>
                                                             <option value="">[ SELECCIONE UNA SOL. TECN. ]</option>
+                                                            <option value="1">CON</option>
+                                                            <option value="2">STAE</option>
                                                         </select>
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group form-group-sm">
                                                     <label class="col-sm-4 control-label" for="form-control-1">ODPE :</label>
-                                                    <div class="col-sm-8 z-7">
+                                                    <div class="col-sm-8 z-8">
                                                         <select class="form-control" name="cboodpeRecepcion" id="cboodpeRecepcion" data-dropup-auto="false" data-size="6"
                                                                 data-live-search="true" onChange="cboConsulta('Recepcion');" required>
                                                             <option value="">[ SELECCIONE UNA ODPE ]</option>
@@ -59,7 +61,7 @@
                                                 </div>
                                                 <div class="form-group form-group-sm">
                                                     <label class="col-sm-4 control-label" for="form-control-1">CONSULTA :</label>
-                                                    <div class="col-sm-8 z-6">
+                                                    <div class="col-sm-8 z-7">
                                                         <select class="form-control" name="cboconsultaRecepcion" id="cboconsultaRecepcion" data-dropup-auto="false"
                                                                 data-size="6" data-live-search="true" onChange="cboDepartamento('Recepcion');" required>
                                                             <option value="">[ SELECCIONE UNA CONSULTA ]</option>
@@ -68,7 +70,7 @@
                                                 </div>
                                                 <div class="form-group form-group-sm">
                                                     <label class="col-sm-4 control-label" for="form-control-1">DEPARTAMENTO :</label>
-                                                    <div class="col-sm-8 z-5">
+                                                    <div class="col-sm-8 z-6">
                                                         <select class="form-control" name="cbodepartRecepcion" id="cbodepartRecepcion" data-dropup-auto="false"
                                                                 data-size="6" data-live-search="true" onChange="cboProvincia('Recepcion');" required>
                                                             <option value="">[ SELECCIONE UN DEPARTAMENTO ]</option>
@@ -97,7 +99,7 @@
                                                 </div>
                                                 <div class="form-group form-group-sm">
                                                     <label class="col-sm-4 control-label" for="form-control-1">SOBRE :</label>
-                                                    <div class="col-sm-8 z-4">
+                                                    <div class="col-sm-8 z-3">
                                                         <select class="form-control" name="cbosobreRecepcion" id="cbosobreRecepcion" data-size="6"
                                                                 data-dropup-auto="false" data-live-search="true" onChange="cboSufragio('Recepcion');" required>
                                                             <option value="">[ SELECCIONE UN SOBRE ]</option>
@@ -106,7 +108,7 @@
                                                 </div>
                                                 <div class="form-group form-group-sm">
                                                     <label class="col-sm-4 control-label" for="form-control-1">SUFRAGIO :</label>
-                                                    <div class="col-sm-8 z-4">
+                                                    <div class="col-sm-8 z-2">
                                                         <select class="form-control" name="cbosufragioRecepcion" id="cbosufragioRecepcion" data-size="6"
                                                                 data-dropup-auto="false" data-live-search="true" onChange="cboDocumento('Recepcion');" required>
                                                             <option value="">[ SELECCIONE UN SUFRAGIO ]</option>
@@ -115,7 +117,7 @@
                                                 </div>
                                                 <div class="form-group form-group-sm">
                                                     <label class="col-sm-4 control-label" for="form-control-1">DOCUMENTO :</label>
-                                                    <div class="col-sm-8 z-3">
+                                                    <div class="col-sm-8 z-1">
                                                         <select class="form-control" name="cbodocumentoRecepcion" id="cbodocumentoRecepcion" data-size="6"
                                                                 data-dropup-auto="false" data-live-search="true" onChange="" required>
                                                             <option value="">[ SELECCIONE UN DOCUMENTO ]</option>

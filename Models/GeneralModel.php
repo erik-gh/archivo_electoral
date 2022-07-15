@@ -341,11 +341,11 @@ class GeneralModel extends Mysql
 		return $request;
 	}
 
-	/* ===== Material ===== */
+	/* ===== Sobre ===== */
 	
 	public function selecMateriales()
 	{
-		$query = " SELECT * FROM material WHERE estado != 0 ORDER BY id_material";
+		$query = "SELECT * FROM sobres WHERE estado != 0 ORDER BY id;";
 		$requestData = $this->select_all($query);
 		return $requestData;
 	}

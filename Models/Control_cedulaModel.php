@@ -127,15 +127,17 @@ class Control_cedulaModel extends Mysql
 
     public function selectCboSufragio(int $idConsulta){
         $this->intIdConsulta = $idConsulta;
-        $query = "SELECT * FROM sufragios s INNER JOIN consulta_sufragios cs on s.id = cs.id_sufragio WHERE cs.id_consulta = $this->intIdConsulta ORDER BY s.id;";
+        $query = "SELECT * FROM sufragios s INNER JOIN consulta_sufragios cs on s.id = cs.id_sufragio 
+                    WHERE cs.id_consulta = $this->intIdConsulta ORDER BY s.id;";
         $request = $this->select_all($query);
         return $request;
     }
 
-    public function selectCboTipoDocumento(int $idSolucion, int $idSobre){
+    public function selectCboDocumento(int $idSolucion, int $idSobre){
         $this->intIdSolucion = $idSolucion;
         $this->intIdSobre = $idSobre;
-        $query = "SELECT d.id,d.documento FROM documentos d INNER JOIN solucion_documentos sd ON d.id = sd.id_documento WHERE sd.id_solucion = $this->intIdSolucion AND sd.id_sobre = $this->intIdSobre ORDER BY d.id;";
+        $query = "SELECT d.id,d.documento FROM documentos d INNER JOIN solucion_documentos sd ON d.id = sd.id_documento 
+                    WHERE sd.id_solucion = $this->intIdSolucion AND sd.id_sobre = $this->intIdSobre ORDER BY d.id;";
         $request = $this->select_all($query);
         return $request;
     }

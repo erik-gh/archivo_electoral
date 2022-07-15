@@ -22,10 +22,12 @@ if (eleccion == 2) {
 }
 
 /* ** FUNCIONES DE LOS COMBOS ** */
-function cboSolucionTecnologica(etapa) {
-    resetInpbarra(etapa);
+/*
+function cboSolucionTecnologica() {
+    console.log('Veamos si entra');
+    // resetInpbarra(etapa);
     // cargaAvanceFase(etapa);
-    cargaAvanceOdpe(etapa);
+    // cargaAvanceOdpe(etapa);
     setTimeout(function () {
         // cargaAvanceOdpe(etapa);
     }, 120);
@@ -52,7 +54,7 @@ function cboSolucionTecnologica(etapa) {
         resetCbo(etapa);
     }
 }
-
+*/
 function cboOdpe(etapa) {
     resetInpbarra(etapa);
     $('#cboconsulta' + etapa).selectpicker('destroy');
@@ -68,7 +70,7 @@ function cboOdpe(etapa) {
     $('#cbosufragio' + etapa).selectpicker('destroy');
     $('#cbosufragio' + etapa).html('<option value="">[ SELECCIONE TIPO DE SUFRAGIO ]</option>').selectpicker('refresh');
     $('#cbodocumento' + etapa).selectpicker('destroy');
-    $('#cbodocumento' + etapa).html('<option value="">[ SELECCIONE UN SUFRAGIO ]</option>').selectpicker('refresh');
+    $('#cbodocumento' + etapa).html('<option value="">[ SELECCIONE UN DOCUMENTO ]</option>').selectpicker('refresh');
 
     var requestOdpe = new Object();
     requestOdpe["idProceso"] = $("#cboProceso").val();
@@ -316,6 +318,7 @@ function cboDocumento(etapa) {
     var requestConsulta = new Object();
 
     requestConsulta["idSolucion"] = $("#cbosoltec" + etapa).val();
+    requestConsulta["idSobre"] = $("#cbosobre" + etapa).val();
     $.ajax({
         url: base_url + '/Control_cedula/getSelectDocumento',
         type: "POST",
@@ -325,8 +328,8 @@ function cboDocumento(etapa) {
         success: function (data, textStatus, jqXHR) {
             // console.log(data);
             if (jqXHR.status == 200) {
-                $('#cboconsulta' + etapa).selectpicker('destroy');
-                $('#cboconsulta' + etapa).html(data).selectpicker('refresh');
+                $('#cbodocumento' + etapa).selectpicker('destroy');
+                $('#cbodocumento' + etapa).html(data).selectpicker('refresh');
             }
         },
     });

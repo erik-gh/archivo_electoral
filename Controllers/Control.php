@@ -19,8 +19,8 @@ class Control extends Controllers
 
     public function control()
     {
-        $data['page_tag'] = 'Control de Calidad';
-        $data['page_title'] = 'CONTROL DE CALIDAD';
+        $data['page_tag'] = 'Recepcion de Documentos';
+        $data['page_title'] = 'RECEPCION DE DOCUMENTOS';
         $data['page_name'] = 'control';
         $data['page_function_js'] = 'function_control.js';
         $this->views->getView($this, 'control', $data);
