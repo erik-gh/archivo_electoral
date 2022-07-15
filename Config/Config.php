@@ -1,8 +1,8 @@
 ﻿<?php 
 
 	// const BASE_URL = 'http://10.50.20.132/SISCOMACV2_EI2022';
-	const BASE_URL = 'http://localhost/archivo_electoral';
-    //	const BASE_URL = 'http://10.50.34.74/archivo_electoral';
+//	const BASE_URL = 'http://localhost/archivo_electoral';
+    	const BASE_URL = 'http://10.50.34.74/archivo_electoral';
 
 	// ZONA HORARIA
 	date_default_timezone_set('America/Lima');

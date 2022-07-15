@@ -20,7 +20,6 @@
             </div>
             <div class="panel-body">
                 <div class="row">
-
                     <div class="col-md-12">
                         <ul class="nav nav-tabs nav-tabs-custom m-b-15">
                             <li class="active">
@@ -39,25 +38,31 @@
                                 <a href="#tab-solucion" role="tab" data-toggle="tab" aria-expanded="false">
                                     <i class="zmdi zmdi-assignment-check"></i> SOLUCI&Oacute;N TECNOL&Oacute;GICA</a>
                             </li>
-                            <!-- Esto se quitara por  mientras para poder mostrar lo basico y principal-->
-
-                            <li class="">
-                                <a href="#tab-material" role="tab" data-toggle="tab" aria-expanded="false">
-                                    <i class="zmdi zmdi-tablet"></i> Otros 1 </a>
-                            </li>
-                            <li class="">
-                                <a href="#tab-incidencia" role="tab" data-toggle="tab" aria-expanded="false">
-                                    <i class="zmdi zmdi-view-module"></i> Otros 2</a>
-                            </li>
-
-                            <li class="">
-                                <a href="#tab-asignar" role="tab" data-toggle="tab" aria-expanded="false"
-                                   onclick="cboEtapaAsignar(); multicIncidencias();">
-                                    <i class="zmdi zmdi-assignment-check"></i> Otros 3</a>
-                            </li>
                             <li class="">
                                 <a href="#tab-dispositivo" role="tab" data-toggle="tab" aria-expanded="false">
                                     <i class="zmdi zmdi-assignment-check"></i> SOBRES </a>
+                            </li>
+                            <li class="">
+                                <a href="#tab-documento" role="tab" data-toggle="tab" aria-expanded="false">
+                                    <i class="zmdi zmdi-view-module"></i>DOCUMENTOS</a>
+                            </li>
+                            <li class="">
+                                <a href="#tab-sufragio" role="tab" data-toggle="tab" aria-expanded="false">
+                                    <i class="zmdi zmdi-view-module"></i>SUFRAGIOS</a>
+                            </li>
+                            <li class="">
+                                <a href="#tab-asignarDocumentos" role="tab" data-toggle="tab" aria-expanded="false"
+                                   onclick="cboEtapaAsignar(); multicIncidencias();">
+                                    <i class="zmdi zmdi-assignment-check"></i>ASIGNAR DOCUMENTOS</a>
+                            </li>
+                            <li class="">
+                                <a href="#tab-asignarSufragios" role="tab" data-toggle="tab" aria-expanded="false"
+                                   onclick="cboEtapaAsignar(); multicIncidencias();">
+                                    <i class="zmdi zmdi-assignment-check"></i>ASIGNAR SUFRAGIOS</a>
+                            </li>
+                            <li class="">
+                                <a href="#tab-material" role="tab" data-toggle="tab" aria-expanded="false">
+                                    <i class="zmdi zmdi-tablet"></i>LISTADO</a>
                             </li>
                         </ul>
 
@@ -67,35 +72,22 @@
                                     <div class="col-md-4 col-sm-4">
                                         <div class="panel panel-default panel-table m-b-0">
                                             <div class="panel-heading">
-                                                <h4 class="text-center text-primary font-12" id="titleProceso"><strong>REGISTRAR
-                                                        PROCESO</strong></h4>
+                                                <h4 class="text-center text-primary font-12" id="titleProceso"><strong>REGISTRAR PROCESO</strong></h4>
                                             </div>
                                             <div class="panel-body">
                                                 <div class="row">
-                                                    <!-- <div class="col-lg-1"></div> -->
                                                     <div class="col-lg-12">
-                                                        <form class="form" id="form_registerProceso" method="POST"
-                                                              autocomplete="off" action="javascript:void(0);">
-                                                            <input class="form-control" type="hidden" id="txtIDProceso"
-                                                                   name="txtIDProceso">
-                                                            <input class="form-control" type="hidden"
-                                                                   id="txtcontrolProceso" name="txtcontrolProceso"
-                                                                   value="0">
+                                                        <form class="form" id="form_registerProceso" method="POST" autocomplete="off" action="javascript:void(0);">
+                                                            <input class="form-control" type="hidden" id="txtIDProceso" name="txtIDProceso">
+                                                            <input class="form-control" type="hidden" id="txtcontrolProceso" name="txtcontrolProceso" value="0">
                                                             <div class="panel panel-default">
                                                                 <div class="panel-body">
-                                                                    <!-- <h5 class="text-blue-grey m-b-15"><strong>DATOS PERSONALES</strong></h5> -->
                                                                     <div class="row">
                                                                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                                                                             <div class="form-group">
                                                                                 <label>Tipo Proceso</label>
-                                                                                <select class="form-control"
-                                                                                        name="cbotipoproceso"
-                                                                                        id="cbotipoproceso"
-                                                                                        data-dropup-auto="false"
-                                                                                        data-size="10"
-                                                                                        data-live-search="true"
-                                                                                        required>
-                                                                                </select>
+                                                                                <select class="form-control" name="cbotipoproceso" id="cbotipoproceso" data-dropup-auto="false"
+                                                                                        data-size="10" data-live-search="true" required></select>
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -104,11 +96,7 @@
                                                                             <div class="form-group">
                                                                                 <label>Código Proceso</label>
                                                                                 <div class="input-group-prepend">
-                                                                                    <input class="form-control vld"
-                                                                                           type="text"
-                                                                                           id="txtcodproceso"
-                                                                                           name="txtcodproceso"
-                                                                                           required>
+                                                                                    <input class="form-control vld" type="text" id="txtcodproceso" name="txtcodproceso" required>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
@@ -118,11 +106,7 @@
                                                                             <div class="form-group">
                                                                                 <label>Nombre Proceso</label>
                                                                                 <div class="input-group-prepend">
-                                                                                    <input class="form-control vld"
-                                                                                           type="text"
-                                                                                           id="txtnomproceso"
-                                                                                           name="txtnomproceso"
-                                                                                           required>
+                                                                                    <input class="form-control vld" type="text" id="txtnomproceso" name="txtnomproceso" required>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
@@ -132,11 +116,7 @@
                                                                             <div class="form-group">
                                                                                 <label>Fecha Inicio</label>
                                                                                 <div class="input-group-prepend">
-                                                                                    <input class="form-control vld"
-                                                                                           type="date"
-                                                                                           id="txtfechainicio"
-                                                                                           name="txtfechainicio"
-                                                                                           required>
+                                                                                    <input class="form-control vld" type="date" id="txtfechainicio" name="txtfechainicio" required>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
@@ -146,51 +126,36 @@
                                                                             <div class="form-group">
                                                                                 <label>Fecha Cierre</label>
                                                                                 <div class="input-group-prepend">
-                                                                                    <input class="form-control vld"
-                                                                                           type="date"
-                                                                                           id="txtfechacierre"
-                                                                                           name="txtfechacierre"
-                                                                                           required>
+                                                                                    <input class="form-control vld" type="date" id="txtfechacierre" name="txtfechacierre" required>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
                                                                     </div>
-                                                                    <!-- <h5 class="text-blue-grey m-b-15"><strong>DATOS DEL USUARIO</strong></h5> -->
                                                                     <div class="row" id="estado_proceso"
                                                                          style="display: none;">
                                                                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                                                                             <div class="switches-stacked">
                                                                                 <label>Activo</label>
                                                                                 <label class="switch switch-primary">
-                                                                                    <input type="checkbox"
-                                                                                           id="chkestadoProceso"
-                                                                                           name="chkestadoProceso"
-                                                                                           class="s-input">
+                                                                                    <input type="checkbox" id="chkestadoProceso" name="chkestadoProceso" class="s-input">
                                                                                     <span class="s-content">
-                                                <span class="s-track"></span>
-                                                <span class="s-handle"></span>
-                                              </span>
+                                                                                    <span class="s-track"></span>
+                                                                                    <span class="s-handle"></span>
+                                                                                    </span>
                                                                                 </label>
                                                                             </div>
                                                                         </div>
                                                                     </div>
                                                                     <div class="clearfix m-t-30">
                                                                         <div class="pull-right">
-                                                                            <button type="submit"
-                                                                                    class="btn btn-outline-primary"
-                                                                                    id="agregarProceso"><i
-                                                                                        class="zmdi zmdi-check zmdi-hc-fw m-r-5"></i><span> Guardar</span>
+                                                                            <button type="submit" class="btn btn-outline-primary" id="agregarProceso">
+                                                                                <i class="zmdi zmdi-check zmdi-hc-fw m-r-5"></i><span> Guardar</span>
                                                                             </button>
-                                                                            <button type="submit"
-                                                                                    class="btn btn-outline-primary"
-                                                                                    id="updateProceso"
-                                                                                    style="display: none;"><i
-                                                                                        class="zmdi zmdi-refresh zmdi-hc-fw m-r-5"></i><span> Actualizar</span>
+                                                                            <button type="submit" class="btn btn-outline-primary" id="updateProceso" style="display: none;">
+                                                                                <i class="zmdi zmdi-refresh zmdi-hc-fw m-r-5"></i><span> Actualizar</span>
                                                                             </button>
-                                                                            <a class="btn btn-outline-danger"
-                                                                               id="cancelProceso"
-                                                                               onclick="cancelProceso();"><i
-                                                                                        class="zmdi zmdi-close zmdi-hc-fw m-r-5"></i><span>Cancelar</span></a>
+                                                                            <a class="btn btn-outline-danger" id="cancelProceso" onclick="cancelProceso();">
+                                                                                <i class="zmdi zmdi-close zmdi-hc-fw m-r-5"></i><span>Cancelar</span></a>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -206,16 +171,13 @@
                                     <div class="col-md-8 col-sm-8">
                                         <div class="panel panel-default panel-table m-b-0">
                                             <div class="panel-heading">
-                                                <h4 class="text-center text-primary font-12"><strong>LISTA DE
-                                                        PROCESOS</strong></h4>
+                                                <h4 class="text-center text-primary font-12"><strong>LISTA DE PROCESOS</strong></h4>
                                             </div>
                                             <div class="panel-body">
                                                 <div class="table-responsive">
                                                     <div id="tbl_proceso" class="dataTables_wrapper form-inline"
                                                          role="grid">
-                                                        <table id="tableProcesos"
-                                                               class="display table table-bordered table-hover"
-                                                               cellspacing="0" width="100%">
+                                                        <table id="tableProcesos" class="display table table-bordered table-hover" cellspacing="0" width="100%">
                                                             <thead class="text-center font-table">
                                                             <tr class="bg-primary">
                                                                 <th class="text-center" width="5%">Nº</th>
@@ -243,31 +205,22 @@
                                     <div class="col-md-4 col-sm-4">
                                         <div class="panel panel-default panel-table m-b-0">
                                             <div class="panel-heading">
-                                                <h4 class="text-center text-primary font-12" id="titleConsulta"><strong>REGISTRAR
-                                                        CONSULTA</strong></h4>
+                                                <h4 class="text-center text-primary font-12" id="titleConsulta"><strong>REGISTRAR CONSULTA</strong></h4>
                                             </div>
                                             <div class="panel-body">
                                                 <div class="row">
-                                                    <!-- <div class="col-lg-1"></div> -->
                                                     <div class="col-lg-12">
-                                                        <form class="form" id="form_registerConsulta" method="POST"
-                                                              autocomplete="off" action="javascript:void(0);">
-                                                            <input class="form-control" type="hidden" id="txtIDConsulta"
-                                                                   name="txtIDConsulta">
-                                                            <input class="form-control" type="hidden"
-                                                                   id="txtcontrolConsulta" name="txtcontrolConsulta"
-                                                                   value="0">
+                                                        <form class="form" id="form_registerConsulta" method="POST" autocomplete="off" action="javascript:void(0);">
+                                                            <input class="form-control" type="hidden" id="txtIDConsulta" name="txtIDConsulta">
+                                                            <input class="form-control" type="hidden" id="txtcontrolConsulta" name="txtcontrolConsulta" value="0">
                                                             <div class="panel panel-default">
                                                                 <div class="panel-body">
-                                                                    <!-- <h5 class="text-blue-grey m-b-15"><strong>DATOS PERSONALES</strong></h5> -->
                                                                     <div class="row">
                                                                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                                                                             <div class="form-group">
                                                                                 <label>Consulta Electoral</label>
                                                                                 <div class="input-group-prepend">
-                                                                                    <input class="form-control vld"
-                                                                                           type="text" id="txtconsulta"
-                                                                                           name="txtconsulta" required>
+                                                                                    <input class="form-control vld" type="text" id="txtconsulta" name="txtconsulta" required>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
@@ -277,58 +230,42 @@
                                                                             <div class="form-group">
                                                                                 <label>Descripcion</label>
                                                                                 <div class="input-group-prepend">
-                                                                                    <input class="form-control vld"
-                                                                                           type="text"
-                                                                                           id="txtdescripcion"
-                                                                                           name="txtdescripcion"
-                                                                                           required>
+                                                                                    <input class="form-control vld" type="text" id="txtdescripcion" name="txtdescripcion" required>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
                                                                     </div>
-
                                                                     <div class="row" id="estado_consulta"
                                                                          style="display: none;">
                                                                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                                                                             <div class="switches-stacked">
                                                                                 <label>Activo</label>
                                                                                 <label class="switch switch-primary">
-                                                                                    <input type="checkbox"
-                                                                                           id="chkestadoConsulta"
-                                                                                           name="chkestadoConsulta"
-                                                                                           class="s-input">
+                                                                                    <input type="checkbox" id="chkestadoConsulta" name="chkestadoConsulta" class="s-input">
                                                                                     <span class="s-content">
-                                                <span class="s-track"></span>
-                                                <span class="s-handle"></span>
-                                              </span>
+                                                                                    <span class="s-track"></span>
+                                                                                    <span class="s-handle"></span>
+                                                                                    </span>
                                                                                 </label>
                                                                             </div>
                                                                         </div>
                                                                     </div>
                                                                     <div class="clearfix m-t-30">
                                                                         <div class="pull-right">
-                                                                            <button type="submit"
-                                                                                    class="btn btn-outline-primary"
-                                                                                    id="agregarConsulta"><i
-                                                                                        class="zmdi zmdi-check zmdi-hc-fw m-r-5"></i><span> Guardar</span>
+                                                                            <button type="submit" class="btn btn-outline-primary" id="agregarConsulta">
+                                                                                <i class="zmdi zmdi-check zmdi-hc-fw m-r-5"></i><span> Guardar</span>
                                                                             </button>
-                                                                            <button type="submit"
-                                                                                    class="btn btn-outline-primary"
-                                                                                    id="updateConsulta"
-                                                                                    style="display: none;"><i
-                                                                                        class="zmdi zmdi-refresh zmdi-hc-fw m-r-5"></i><span> Actualizar</span>
+                                                                            <button type="submit" class="btn btn-outline-primary" id="updateConsulta" style="display: none;">
+                                                                                <i class="zmdi zmdi-refresh zmdi-hc-fw m-r-5"></i><span> Actualizar</span>
                                                                             </button>
-                                                                            <a class="btn btn-outline-danger"
-                                                                               id="cancelConsulta"
-                                                                               onclick="cancelConsulta();"><i
-                                                                                        class="zmdi zmdi-close zmdi-hc-fw m-r-5"></i><span>Cancelar</span></a>
+                                                                            <a class="btn btn-outline-danger" id="cancelConsulta" onclick="cancelConsulta();">
+                                                                                <i class="zmdi zmdi-close zmdi-hc-fw m-r-5"></i><span>Cancelar</span></a>
                                                                         </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                         </form>
                                                     </div>
-                                                    <!-- <div class="col-lg-1"></div> -->
                                                 </div>
                                             </div>
                                         </div>
@@ -337,8 +274,7 @@
                                     <div class="col-md-8 col-sm-8">
                                         <div class="panel panel-default panel-table m-b-0">
                                             <div class="panel-heading">
-                                                <h4 class="text-center text-primary font-12"><strong>LISTA DE CONSULTAS
-                                                        ELECTORALES</strong></h4>
+                                                <h4 class="text-center text-primary font-12"><strong>LISTA DE CONSULTAS ELECTORALES</strong></h4>
                                             </div>
                                             <div class="panel-body">
                                                 <div class="table-responsive">
@@ -373,22 +309,18 @@
                                     <div class="col-md-12 col-sm-12">
                                         <div class="panel panel-default panel-table m-b-0">
                                             <div class="panel-heading">
-                                                <h4 class="text-center text-primary font-12"><strong>LISTA DE ETAPAS
-                                                        ELECTORALES</strong></h4>
+                                                <h4 class="text-center text-primary font-12"><strong>LISTA DE ETAPAS ELECTORALES</strong></h4>
                                             </div>
                                             <div class="panel-body">
                                                 <div class="table-responsive">
                                                     <div id="tbl_etapa" class="dataTables_wrapper form-inline"
                                                          role="grid">
-                                                        <table id="tableEtapas"
-                                                               class="display table table-bordered table-hover"
-                                                               cellspacing="0" width="100%">
+                                                        <table id="tableEtapas" class="display table table-bordered table-hover" cellspacing="0" width="100%">
                                                             <thead class="text-center font-table">
                                                             <tr class="bg-primary">
                                                                 <th class="text-center" width="5%">Nº</th>
                                                                 <th class="text-center" width="25%">ETAPA</th>
-                                                                <th class="text-center" width="40%">DESCRIPCI&Oacute;N
-                                                                </th>
+                                                                <th class="text-center" width="40%">DESCRIPCI&Oacute;N</th>
                                                                 <th class="text-center" width="15%">ESTADO</th>
                                                                 <th class="text-center" width="15%">ACCI&Oacute;N</th>
                                                             </tr>
@@ -409,31 +341,22 @@
                                     <div class="col-md-4 col-sm-4">
                                         <div class="panel panel-default panel-table m-b-0">
                                             <div class="panel-heading">
-                                                <h4 class="text-center text-primary font-12" id="titleSolucion"><strong>REGISTRAR
-                                                        SOLUCI&Oacute;N TECNOL&Oacute;GICA</strong></h4>
+                                                <h4 class="text-center text-primary font-12" id="titleSolucion"><strong>REGISTRAR SOLUCI&Oacute;N TECNOL&Oacute;GICA</strong></h4>
                                             </div>
                                             <div class="panel-body">
                                                 <div class="row">
-                                                    <!-- <div class="col-lg-1"></div> -->
                                                     <div class="col-lg-12">
-                                                        <form class="form" id="form_registerSolucion" method="POST"
-                                                              autocomplete="off" action="javascript:void(0);">
-                                                            <input class="form-control" type="hidden" id="txtIDSolucion"
-                                                                   name="txtIDSolucion">
-                                                            <input class="form-control" type="hidden"
-                                                                   id="txtcontrolSolucion" name="txtcontrolSolucion"
-                                                                   value="0">
+                                                        <form class="form" id="form_registerSolucion" method="POST" autocomplete="off" action="javascript:void(0);">
+                                                            <input class="form-control" type="hidden" id="txtIDSolucion" name="txtIDSolucion">
+                                                            <input class="form-control" type="hidden" id="txtcontrolSolucion" name="txtcontrolSolucion" value="0">
                                                             <div class="panel panel-default">
                                                                 <div class="panel-body">
-                                                                    <!-- <h5 class="text-blue-grey m-b-15"><strong>DATOS PERSONALES</strong></h5> -->
                                                                     <div class="row">
                                                                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                                                                             <div class="form-group">
                                                                                 <label>Soluci&oacute;n Tecnol&oacute;gica</label>
                                                                                 <div class="input-group-prepend">
-                                                                                    <input class="form-control vld"
-                                                                                           type="text" id="txtsolucion"
-                                                                                           name="txtsolucion" required>
+                                                                                    <input class="form-control vld" type="text" id="txtsolucion" name="txtsolucion" required>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
@@ -443,51 +366,37 @@
                                                                             <div class="form-group">
                                                                                 <label>Descripci&oacute;n</label>
                                                                                 <div class="input-group-prepend">
-                                                                                    <input class="form-control vld"
-                                                                                           type="text"
-                                                                                           id="txtdescripcionSolucion"
-                                                                                           name="txtdescripcionSolucion"
-                                                                                           required>
+                                                                                    <input class="form-control vld" type="text" id="txtdescripcionSolucion"
+                                                                                           name="txtdescripcionSolucion" required>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
                                                                     </div>
 
-                                                                    <div class="row" id="estado_solucion"
-                                                                         style="display: none;">
+                                                                    <div class="row" id="estado_solucion" style="display: none;">
                                                                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                                                                             <div class="switches-stacked">
                                                                                 <label>Activo</label>
                                                                                 <label class="switch switch-primary">
-                                                                                    <input type="checkbox"
-                                                                                           id="chkestadoSolucion"
-                                                                                           name="chkestadoSolucion"
-                                                                                           class="s-input">
+                                                                                    <input type="checkbox" id="chkestadoSolucion" name="chkestadoSolucion" class="s-input">
                                                                                     <span class="s-content">
-                                                <span class="s-track"></span>
-                                                <span class="s-handle"></span>
-                                              </span>
+                                                                                    <span class="s-track"></span>
+                                                                                    <span class="s-handle"></span>
+                                                                                    </span>
                                                                                 </label>
                                                                             </div>
                                                                         </div>
                                                                     </div>
                                                                     <div class="clearfix m-t-30">
                                                                         <div class="pull-right">
-                                                                            <button type="submit"
-                                                                                    class="btn btn-outline-primary"
-                                                                                    id="agregarSolucion"><i
-                                                                                        class="zmdi zmdi-check zmdi-hc-fw m-r-5"></i><span> Guardar</span>
+                                                                            <button type="submit" class="btn btn-outline-primary" id="agregarSolucion">
+                                                                                <i class="zmdi zmdi-check zmdi-hc-fw m-r-5"></i><span> Guardar</span>
                                                                             </button>
-                                                                            <button type="submit"
-                                                                                    class="btn btn-outline-primary"
-                                                                                    id="updateSolucion"
-                                                                                    style="display: none;"><i
-                                                                                        class="zmdi zmdi-refresh zmdi-hc-fw m-r-5"></i><span> Actualizar</span>
+                                                                            <button type="submit" class="btn btn-outline-primary" id="updateSolucion" style="display: none;">
+                                                                                <i class="zmdi zmdi-refresh zmdi-hc-fw m-r-5"></i><span> Actualizar</span>
                                                                             </button>
-                                                                            <a class="btn btn-outline-danger"
-                                                                               id="cancelSolucion"
-                                                                               onclick="cancelSolucion();"><i
-                                                                                        class="zmdi zmdi-close zmdi-hc-fw m-r-5"></i><span>Cancelar</span></a>
+                                                                            <a class="btn btn-outline-danger" id="cancelSolucion" onclick="cancelSolucion();">
+                                                                                <i class="zmdi zmdi-close zmdi-hc-fw m-r-5"></i><span>Cancelar</span></a>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -503,8 +412,7 @@
                                     <div class="col-md-8 col-sm-8">
                                         <div class="panel panel-default panel-table m-b-0">
                                             <div class="panel-heading">
-                                                <h4 class="text-center text-primary font-12"><strong>LISTA DE SOLUCIONES
-                                                        TECNOLOGICAS</strong></h4>
+                                                <h4 class="text-center text-primary font-12"><strong>LISTA DE SOLUCIONES TECNOLOGICAS</strong></h4>
                                             </div>
                                             <div class="panel-body">
                                                 <div class="table-responsive">
@@ -541,8 +449,7 @@
                                     <div class="col-md-12 col-sm-12">
                                         <div class="panel panel-default panel-table m-b-0">
                                             <div class="panel-heading">
-                                                <h4 class="text-center text-primary font-12"><strong>LISTA DE MATERIALES
-                                                        ELECTORALES</strong></h4>
+                                                <h4 class="text-center text-primary font-12"><strong>LISTA DE MATERIALES ELECTORALES</strong></h4>
                                             </div>
                                             <div class="panel-body">
                                                 <div class="table-responsive">
@@ -572,17 +479,125 @@
                                 </div>
                             </div>
 
-                            <div role="tabpanel" class="tab-pane fade" id="tab-incidencia">
+                            <div role="tabpanel" class="tab-pane fade" id="tab-sufragio">
+                                <div class="row">
+                                    <div class="col-md-4 col-sm-4">
+                                        <div class="panel panel-default panel-table m-b-0">
+                                            <div class="panel-heading">
+                                                <h4 class="text-center text-primary font-12" id="titleIncidencia"><strong>REGISTRAR SUFRAGIO</strong></h4>
+                                            </div>
+                                            <div class="panel-body">
+                                                <div class="row">
+                                                    <div class="col-lg-12">
+                                                        <form class="form" id="form_registerIncidencia" method="POST" autocomplete="off" action="javascript:void(0);">
+                                                            <input class="form-control" type="hidden" id="txtIDIncidencia" name="txtIDIncidencia">
+                                                            <input class="form-control" type="hidden" id="txtcontrolIncidencia" name="txtcontrolIncidencia" value="0">
+                                                            <div class="panel panel-default">
+                                                                <div class="panel-body">
+                                                                    <div class="row">
+                                                                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                                                            <div class="form-group">
+                                                                                <label>sufragio :</label>
+                                                                                <div class="input-group-prepend">
+                                                                                    <input class="form-control vld" type="text" id="txtincidencia" name="txtincidencia" required>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="row">
+                                                                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                                                            <div class="form-group">
+                                                                                <label>Descripci&oacute;n :</label>
+                                                                                <div class="input-group-prepend">
+                                                                                    <input class="form-control vld" type="text" id="txtdescripcionIncidencia" name="txtdescripcionIncidencia" required>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="row" id="estado_incidencia" style="display: none;">
+                                                                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                                                            <div class="switches-stacked">
+                                                                                <label>Activo</label>
+                                                                                <label class="switch switch-primary">
+                                                                                    <input type="checkbox"
+                                                                                           id="chkestadoIncidencia"
+                                                                                           name="chkestadoIncidencia"
+                                                                                           class="s-input">
+                                                                                    <span class="s-content">
+                                                                                    <span class="s-track"></span>
+                                                                                    <span class="s-handle"></span>
+                                                                                  </span>
+                                                                                </label>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="clearfix m-t-30">
+                                                                        <div class="pull-right">
+                                                                            <button type="submit"
+                                                                                    class="btn btn-outline-primary"
+                                                                                    id="agregarIncidencia"><i
+                                                                                        class="zmdi zmdi-check zmdi-hc-fw m-r-5"></i><span> Guardar</span>
+                                                                            </button>
+                                                                            <button type="submit"
+                                                                                    class="btn btn-outline-primary"
+                                                                                    id="updateIncidencia"
+                                                                                    style="display: none;"><i
+                                                                                        class="zmdi zmdi-refresh zmdi-hc-fw m-r-5"></i><span> Actualizar</span>
+                                                                            </button>
+                                                                            <a class="btn btn-outline-danger"
+                                                                               id="cancelIncidencia"
+                                                                               onclick="cancelIncidencia();"><i
+                                                                                        class="zmdi zmdi-close zmdi-hc-fw m-r-5"></i><span>Cancelar</span></a>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-8 col-sm-8">
+                                        <div class="panel panel-default panel-table m-b-0">
+                                            <div class="panel-heading">
+                                                <h4 class="text-center text-primary font-12"><strong>LISTA DE SUFRAGIOS</strong></h4>
+                                            </div>
+                                            <div class="panel-body">
+                                                <div class="table-responsive">
+                                                    <div id="tbl_sufragio" class="dataTables_wrapper form-inline" role="grid">
+                                                        <table id="tableSufragios" class="display table table-bordered table-hover" cellspacing="0" width="100%">
+                                                            <thead class="text-center font-table">
+                                                            <tr class="bg-primary">
+                                                                <th class="text-center" width="10%">Nº</th>
+                                                                <th class="text-center" width="35%">SUFRAGIO</th>
+                                                                <th class="text-center" width="35%">DESCRIPCI&Oacute;N</th>
+                                                                <th class="text-center" width="10%">ESTADO</th>
+                                                                <th class="text-center" width="10%">ACCI&Oacute;N</th>
+                                                            </tr>
+                                                            </thead>
+                                                            <tbody class="text-center font-table">
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div role="tabpanel" class="tab-pane fade" id="tab-documento">
                                 <div class="row">
                                     <div class="col-md-4 col-sm-4">
                                         <div class="panel panel-default panel-table m-b-0">
                                             <div class="panel-heading">
                                                 <h4 class="text-center text-primary font-12" id="titleIncidencia">
-                                                    <strong>REGISTRAR INCIDENCIA</strong></h4>
+                                                    <strong>REGISTRAR DOCUMENTO</strong></h4>
                                             </div>
                                             <div class="panel-body">
                                                 <div class="row">
-                                                    <!-- <div class="col-lg-1"></div> -->
                                                     <div class="col-lg-12">
                                                         <form class="form" id="form_registerIncidencia" method="POST"
                                                               autocomplete="off" action="javascript:void(0);">
@@ -593,17 +608,12 @@
                                                                    value="0">
                                                             <div class="panel panel-default">
                                                                 <div class="panel-body">
-                                                                    <!-- <h5 class="text-blue-grey m-b-15"><strong>DATOS PERSONALES</strong></h5> -->
                                                                     <div class="row">
                                                                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                                                                             <div class="form-group">
-                                                                                <label>Incidencia</label>
+                                                                                <label>Documento :</label>
                                                                                 <div class="input-group-prepend">
-                                                                                    <input class="form-control vld"
-                                                                                           type="text"
-                                                                                           id="txtincidencia"
-                                                                                           name="txtincidencia"
-                                                                                           required>
+                                                                                    <input class="form-control vld" type="text" id="txtincidencia" name="txtincidencia" required>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
@@ -611,13 +621,10 @@
                                                                     <div class="row">
                                                                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                                                                             <div class="form-group">
-                                                                                <label>Descripci&oacute;n</label>
+                                                                                <label>Descripci&oacute;n :</label>
                                                                                 <div class="input-group-prepend">
-                                                                                    <input class="form-control vld"
-                                                                                           type="text"
-                                                                                           id="txtdescripcionIncidencia"
-                                                                                           name="txtdescripcionIncidencia"
-                                                                                           required>
+                                                                                    <input class="form-control vld" type="text" id="txtdescripcionIncidencia"
+                                                                                           name="txtdescripcionIncidencia" required>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
@@ -634,9 +641,9 @@
                                                                                            name="chkestadoIncidencia"
                                                                                            class="s-input">
                                                                                     <span class="s-content">
-                                                <span class="s-track"></span>
-                                                <span class="s-handle"></span>
-                                              </span>
+                                                                                    <span class="s-track"></span>
+                                                                                    <span class="s-handle"></span>
+                                                                                  </span>
                                                                                 </label>
                                                                             </div>
                                                                         </div>
@@ -673,20 +680,19 @@
                                     <div class="col-md-8 col-sm-8">
                                         <div class="panel panel-default panel-table m-b-0">
                                             <div class="panel-heading">
-                                                <h4 class="text-center text-primary font-12"><strong>LISTA DE
-                                                        INCIDENCIAS ELECOTRALES</strong></h4>
+                                                <h4 class="text-center text-primary font-12"><strong>LISTA DE DOCUMENTOS ELECTORALES</strong></h4>
                                             </div>
                                             <div class="panel-body">
                                                 <div class="table-responsive">
                                                     <div id="tbl_incidencia" class="dataTables_wrapper form-inline"
                                                          role="grid">
-                                                        <table id="tableIncidencias"
+                                                        <table id="tableDocumentos"
                                                                class="display table table-bordered table-hover"
                                                                cellspacing="0" width="100%">
                                                             <thead class="text-center font-table">
                                                             <tr class="bg-primary">
                                                                 <th class="text-center" width="10%">Nº</th>
-                                                                <th class="text-center" width="35%">INCIDENCIA</th>
+                                                                <th class="text-center" width="35%">DOCUMENTO</th>
                                                                 <th class="text-center" width="35%">DESCRIPCI&Oacute;N
                                                                 </th>
                                                                 <th class="text-center" width="10%">ESTADO</th>
@@ -704,40 +710,27 @@
                                 </div>
                             </div>
 
-                            <div role="tabpanel" class="tab-pane fade" id="tab-asignar">
+                            <div role="tabpanel" class="tab-pane fade" id="tab-asignarDocumentos">
                                 <div class="row">
-
                                     <div class="col-md-4 col-sm-4">
                                         <div class="panel panel-default panel-table m-b-0">
                                             <div class="panel-heading">
-                                                <h4 class="text-center text-primary font-12" id="titleAsignar"><strong>ASIGNAR
-                                                        INCIDENCIA</strong></h4>
+                                                <h4 class="text-center text-primary font-12" id="titleAsignar"><strong>ASIGNAR DOCUMENTOS</strong></h4>
                                             </div>
                                             <div class="panel-body">
                                                 <div class="row">
-                                                    <!-- <div class="col-lg-1"></div> -->
                                                     <div class="col-lg-12">
-                                                        <form class="form" id="form_registerAsignar" method="POST"
-                                                              autocomplete="off" action="javascript:void(0);">
-                                                            <input class="form-control" type="hidden" id="txtIDAsignar"
-                                                                   name="txtIDAsignar">
-                                                            <input class="form-control" type="hidden"
-                                                                   id="txtcontrolAsignar" name="txtcontrolAsignar"
-                                                                   value="0">
+                                                        <form class="form" id="form_registerAsignar" method="POST" autocomplete="off" action="javascript:void(0);">
+                                                            <input class="form-control" type="hidden" id="txtIDAsignar" name="txtIDAsignar">
+                                                            <input class="form-control" type="hidden" id="txtcontrolAsignar" name="txtcontrolAsignar" value="0">
                                                             <div class="panel panel-default">
                                                                 <div class="panel-body">
-                                                                    <!-- <h5 class="text-blue-grey m-b-15"><strong>DATOS PERSONALES</strong></h5> -->
                                                                     <div class="row">
                                                                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                                                                             <div class="form-group">
-                                                                                <label>Etapa</label>
-                                                                                <select class="form-control"
-                                                                                        name="cboincidenciaAsignar"
-                                                                                        id="cboincidenciaAsignar"
-                                                                                        data-dropup-auto="false"
-                                                                                        data-size="10"
-                                                                                        data-live-search="true"
-                                                                                        required>
+                                                                                <label>Solucion : </label>
+                                                                                <select class="form-control" name="cboincidenciaAsignar" id="cboincidenciaAsignar"
+                                                                                        data-dropup-auto="false" data-size="10" data-live-search="true" required>
                                                                                 </select>
                                                                             </div>
                                                                         </div>
@@ -745,7 +738,7 @@
                                                                     <div class="row">
                                                                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                                                                             <div class="form-group">
-                                                                                <label>Incidencias</label>
+                                                                                <label>Sobres :</label>
                                                                                 <select data-dropup-auto="false"
                                                                                         title="[ Seleccione Incidencias ]"
                                                                                         data-size="6"
@@ -757,37 +750,28 @@
                                                                                         data-live-search="true"
                                                                                         noneSelectedText show-menu-arrow
                                                                                         required>
-
                                                                                 </select>
-                                                                                <span id="errormultiIncidencia"
-                                                                                      class="font-error"></span>
+                                                                                <span id="errormultiIncidencia" class="font-error"></span>
                                                                             </div>
                                                                         </div>
                                                                     </div>
                                                                     <div class="clearfix m-t-30">
                                                                         <div class="pull-right">
-                                                                            <button type="submit"
-                                                                                    class="btn btn-outline-primary"
-                                                                                    id="agregarAsignar"><i
-                                                                                        class="zmdi zmdi-check zmdi-hc-fw m-r-5"></i><span> Guardar</span>
+                                                                            <button type="submit" class="btn btn-outline-primary" id="agregarAsignar">
+                                                                                <i class="zmdi zmdi-check zmdi-hc-fw m-r-5"></i><span> Guardar</span>
                                                                             </button>
-                                                                            <button type="submit"
-                                                                                    class="btn btn-outline-primary"
-                                                                                    id="updateAsignar"
-                                                                                    style="display: none;"><i
-                                                                                        class="zmdi zmdi-refresh zmdi-hc-fw m-r-5"></i><span> Actualizar</span>
+                                                                            <button type="submit" class="btn btn-outline-primary" id="updateAsignar" style="display: none;">
+                                                                                <i class="zmdi zmdi-refresh zmdi-hc-fw m-r-5"></i><span> Actualizar</span>
                                                                             </button>
-                                                                            <a class="btn btn-outline-danger"
-                                                                               data-dismiss="modal" id="cancelAsignar"
-                                                                               onclick="cancelAsignar();"><i
-                                                                                        class="zmdi zmdi-close zmdi-hc-fw m-r-5"></i><span>Cancelar</span></a>
+                                                                            <a class="btn btn-outline-danger" data-dismiss="modal" id="cancelAsignar" onclick="cancelAsignar();">
+                                                                                <i class="zmdi zmdi-close zmdi-hc-fw m-r-5"></i><span>Cancelar</span>
+                                                                            </a>
                                                                         </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                         </form>
                                                     </div>
-                                                    <!-- <div class="col-lg-1"></div> -->
                                                 </div>
                                             </div>
                                         </div>
@@ -795,28 +779,115 @@
                                     <div class="col-md-8 col-sm-8">
                                         <div class="panel panel-default panel-table m-b-0">
                                             <div class="panel-heading">
-                                                <h4 class="text-center text-primary font-12"><strong>INCIDENCIAS
-                                                        ASIGNADAS</strong></h4>
+                                                <h4 class="text-center text-primary font-12"><strong>DOCUMENTOS ASIGNADOS</strong></h4>
                                             </div>
                                             <div class="panel-body">
                                                 <div class="table-responsive">
-                                                    <div id="tbl_asignar" class="dataTables_wrapper form-inline"
-                                                         role="grid">
-                                                        <table id="tableAsignar"
-                                                               class="display table table-bordered table-hover"
-                                                               cellspacing="0" width="100%">
+                                                    <div id="tbl_asignar" class="dataTables_wrapper form-inline" role="grid">
+                                                        <table id="tableAsignarDocumentos" class="display table table-bordered table-hover" cellspacing="0" width="100%">
                                                             <thead class="text-center font-table">
                                                             <tr class="bg-primary">
                                                                 <th class="text-center" width="10%">Nº</th>
-                                                                <th class="text-center" width="20%">ETAPA</th>
-                                                                <th class="text-center" width="60%">IBCIDENCIAS
-                                                                    ASIGNADAS
-                                                                </th>
+                                                                <th class="text-center" width="20%">SOBRES</th>
+                                                                <th class="text-center" width="60%">DOCUMENTOS ASIGNADOS</th>
                                                                 <th class="text-center" width="10%">ACCI&Oacute;N</th>
                                                             </tr>
                                                             </thead>
                                                             <tbody class="font-table">
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 
+                            <div role="tabpanel" class="tab-pane fade" id="tab-asignarSufragios">
+                                <div class="row">
+                                    <div class="col-md-4 col-sm-4">
+                                        <div class="panel panel-default panel-table m-b-0">
+                                            <div class="panel-heading">
+                                                <h4 class="text-center text-primary font-12" id="titleAsignar"><strong>ASIGNAR SUFRAGIOS</strong></h4>
+                                            </div>
+                                            <div class="panel-body">
+                                                <div class="row">
+                                                    <div class="col-lg-12">
+                                                        <form class="form" id="form_registerAsignar" method="POST" autocomplete="off" action="javascript:void(0);">
+                                                            <input class="form-control" type="hidden" id="txtIDAsignar" name="txtIDAsignar">
+                                                            <input class="form-control" type="hidden" id="txtcontrolAsignar" name="txtcontrolAsignar" value="0">
+                                                            <div class="panel panel-default">
+                                                                <div class="panel-body">
+                                                                    <div class="row">
+                                                                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                                                            <div class="form-group">
+                                                                                <label>Solucion : </label>
+                                                                                <select class="form-control" name="cboincidenciaAsignar" id="cboincidenciaAsignar"
+                                                                                        data-dropup-auto="false" data-size="10" data-live-search="true" required>
+                                                                                </select>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="row">
+                                                                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                                                            <div class="form-group">
+                                                                                <label>Sobres :</label>
+                                                                                <select data-dropup-auto="false"
+                                                                                        title="[ Seleccione Incidencias ]"
+                                                                                        data-size="6"
+                                                                                        name="multiIncidencia"
+                                                                                        id="multiIncidencia"
+                                                                                        class="form-control selectpicker"
+                                                                                        multiple
+                                                                                        data-selected-text-format="count > 3"
+                                                                                        data-live-search="true"
+                                                                                        noneSelectedText show-menu-arrow
+                                                                                        required>
+                                                                                </select>
+                                                                                <span id="errormultiIncidencia" class="font-error"></span>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="clearfix m-t-30">
+                                                                        <div class="pull-right">
+                                                                            <button type="submit" class="btn btn-outline-primary" id="agregarAsignar">
+                                                                                <i class="zmdi zmdi-check zmdi-hc-fw m-r-5"></i><span> Guardar</span>
+                                                                            </button>
+                                                                            <button type="submit" class="btn btn-outline-primary" id="updateAsignar" style="display: none;">
+                                                                                <i class="zmdi zmdi-refresh zmdi-hc-fw m-r-5"></i><span> Actualizar</span>
+                                                                            </button>
+                                                                            <a class="btn btn-outline-danger" data-dismiss="modal" id="cancelAsignar" onclick="cancelAsignar();">
+                                                                                <i class="zmdi zmdi-close zmdi-hc-fw m-r-5"></i><span>Cancelar</span>
+                                                                            </a>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-8 col-sm-8">
+                                        <div class="panel panel-default panel-table m-b-0">
+                                            <div class="panel-heading">
+                                                <h4 class="text-center text-primary font-12"><strong>SUFRAGIOS ASIGNADOS</strong></h4>
+                                            </div>
+                                            <div class="panel-body">
+                                                <div class="table-responsive">
+                                                    <div id="tbl_asignarSufragio" class="dataTables_wrapper form-inline" role="grid">
+                                                        <table id="tableAsignarSufragio" class="display table table-bordered table-hover" cellspacing="0" width="100%">
+                                                            <thead class="text-center font-table">
+                                                            <tr class="bg-primary">
+                                                                <th class="text-center" width="10%">Nº</th>
+                                                                <th class="text-center" width="20%">CONSULTA</th>
+                                                                <th class="text-center" width="60%">SUFRAGIOS ASIGNADOS</th>
+                                                                <th class="text-center" width="10%">ACCI&Oacute;N</th>
+                                                            </tr>
+                                                            </thead>
+                                                            <tbody class="font-table">
                                                             </tbody>
                                                         </table>
                                                     </div>
@@ -832,20 +903,14 @@
                                     <div class="col-md-4 col-sm-4">
                                         <div class="panel panel-default panel-table m-b-0">
                                             <div class="panel-heading">
-                                                <h4 class="text-center text-primary font-12" id="titleDispositivo">
-                                                    <strong>REGISTRAR SOBRES</strong></h4>
+                                                <h4 class="text-center text-primary font-12" id="titleDispositivo"><strong>REGISTRAR SOBRES</strong></h4>
                                             </div>
                                             <div class="panel-body">
                                                 <div class="row">
-                                                    <!-- <div class="col-lg-1"></div> -->
                                                     <div class="col-lg-12">
-                                                        <form class="form" id="form_registerDispositivo" method="POST"
-                                                              autocomplete="off" action="javascript:void(0);">
-                                                            <input class="form-control" type="hidden"
-                                                                   id="txtIDDispositivo" name="txtIDDispositivo">
-                                                            <input class="form-control" type="hidden"
-                                                                   id="txtcontrolDispositivo"
-                                                                   name="txtcontrolDispositivo" value="0">
+                                                        <form class="form" id="form_registerDispositivo" method="POST" autocomplete="off" action="javascript:void(0);">
+                                                            <input class="form-control" type="hidden" id="txtIDDispositivo" name="txtIDDispositivo">
+                                                            <input class="form-control" type="hidden" id="txtcontrolDispositivo" name="txtcontrolDispositivo" value="0">
                                                             <div class="panel panel-default">
                                                                 <div class="panel-body">
                                                                     <div class="row">
@@ -853,11 +918,8 @@
                                                                             <div class="form-group">
                                                                                 <label>Descripci&oacute;n</label>
                                                                                 <div class="input-group-prepend">
-                                                                                    <input class="form-control vld"
-                                                                                           type="text"
-                                                                                           id="txtdescripcionDispositivo"
-                                                                                           name="txtdescripcionDispositivo"
-                                                                                           required>
+                                                                                    <input class="form-control vld" type="text" id="txtdescripcionDispositivo"
+                                                                                           name="txtdescripcionDispositivo" required>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
@@ -869,35 +931,25 @@
                                                                             <div class="switches-stacked">
                                                                                 <label>Activo</label>
                                                                                 <label class="switch switch-primary">
-                                                                                    <input type="checkbox"
-                                                                                           id="chkestadoDispositivo"
-                                                                                           name="chkestadoDispositivo"
-                                                                                           class="s-input">
+                                                                                    <input type="checkbox" id="chkestadoDispositivo" name="chkestadoDispositivo" class="s-input">
                                                                                     <span class="s-content">
-                                                <span class="s-track"></span>
-                                                <span class="s-handle"></span>
-                                              </span>
+                                                                                    <span class="s-track"></span>
+                                                                                    <span class="s-handle"></span>
+                                                                                    </span>
                                                                                 </label>
                                                                             </div>
                                                                         </div>
                                                                     </div>
                                                                     <div class="clearfix m-t-30">
                                                                         <div class="pull-right">
-                                                                            <button type="submit"
-                                                                                    class="btn btn-outline-primary"
-                                                                                    id="agregarDispositivo"><i
-                                                                                        class="zmdi zmdi-check zmdi-hc-fw m-r-5"></i><span> Guardar</span>
+                                                                            <button type="submit" class="btn btn-outline-primary" id="agregarDispositivo">
+                                                                                <i class="zmdi zmdi-check zmdi-hc-fw m-r-5"></i><span> Guardar</span>
                                                                             </button>
-                                                                            <button type="submit"
-                                                                                    class="btn btn-outline-primary"
-                                                                                    id="updateDispositivo"
-                                                                                    style="display: none;"><i
-                                                                                        class="zmdi zmdi-refresh zmdi-hc-fw m-r-5"></i><span> Actualizar</span>
+                                                                            <button type="submit" class="btn btn-outline-primary" id="updateDispositivo" style="display: none;">
+                                                                                <i class="zmdi zmdi-refresh zmdi-hc-fw m-r-5"></i><span> Actualizar</span>
                                                                             </button>
-                                                                            <a class="btn btn-outline-danger"
-                                                                               id="cancelDispositivo"
-                                                                               onclick="cancelDispositivo();"><i
-                                                                                        class="zmdi zmdi-close zmdi-hc-fw m-r-5"></i><span>Cancelar</span></a>
+                                                                            <a class="btn btn-outline-danger" id="cancelDispositivo" onclick="cancelDispositivo();">
+                                                                                <i class="zmdi zmdi-close zmdi-hc-fw m-r-5"></i><span>Cancelar</span></a>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -918,14 +970,11 @@
                                                 <div class="table-responsive">
                                                     <div id="tbl_dispositivo" class="dataTables_wrapper form-inline"
                                                          role="grid">
-                                                        <table id="tableDispositivos"
-                                                               class="display table table-bordered table-hover"
-                                                               cellspacing="0" width="100%">
+                                                        <table id="tableSobres" class="display table table-bordered table-hover" cellspacing="0" width="100%">
                                                             <thead class="text-center font-table">
                                                             <tr class="bg-primary">
                                                                 <th class="text-center" width="10%">Nº</th>
-                                                                <th class="text-center" width="60%">DESCRIPCI&Oacute;N
-                                                                </th>
+                                                                <th class="text-center" width="60%">DESCRIPCI&Oacute;N</th>
                                                                 <th class="text-center" width="15%">ESTADO</th>
                                                                 <th class="text-center" width="15%">ACCI&Oacute;N</th>
                                                             </tr>

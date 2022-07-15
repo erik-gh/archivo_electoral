@@ -8,7 +8,6 @@ class General extends Controllers
 
     public function __construct()
     {
-        # code...
         session_start();
         if (empty($_SESSION['login'])) {
             header('Location: ' . base_url() . '/login');
@@ -697,20 +696,46 @@ class General extends Controllers
         die();
     }
 
-    /* ===== INCIDENCIA ===== */
-    public function getIncidencias()
+    public function getSufragios()
     {
         $output = array();
-        $arrData = $this->model->selectincidencias(); //dep($arrData); exit;
+        $arrData = $this->model->selectSufragios(); //dep($arrData); exit;
+        //$filtro = ($_POST["search"]["value"]!= '') ? $arrData[1] : $arrData[2];
+        for ($i = 0; $i < count($arrData); $i++) {
+            $arrData[$i]['orden'] = $i + 1;
+            $arrData[$i]['ESTADO'] = $arrData[$i]['estado'] == 1 ? '<span class="label label-success label-pill m-w-60">ACTIVO</span>' : '<span class="label label-danger label-pill m-w-60">INACTIVO</span>';
+            $arrData[$i]['opciones'] = '<a class="btn btn-primary btn-xs" title="Editar" onclick="editarIncidencia(' . $arrData[$i]['id'] . ')">
+													<i class="zmdi zmdi-edit zmdi-hc-fw"></i>
+												</a>
+                                				<a class="btn btn-danger btn-xs" title="Eliminar" onclick="eliminarIncidencia(' . $arrData[$i]['id'] . ')">
+                                					<i data-toggle="tooltip" title="Eiiminar"class="zmdi zmdi-delete zmdi-hc-fw"></i>
+                                				</a>';
+        }
+        $output = array(
+            /*"draw"				=>	intval($_POST["draw"]),
+            "recordsTotal"		=> 	count($arrData),
+            "recordsFiltered"	=>	count($arrData),*/
+            "data" => $arrData
+        );
+        echo json_encode($output, JSON_UNESCAPED_UNICODE);
+        die();
+        // dep($arrData[0][0]['estado']);
+    }
+
+    /* ===== INCIDENCIA ===== */
+    public function getDocumentos()
+    {
+        $output = array();
+        $arrData = $this->model->selectDocumentos(); //dep($arrData); exit;
         //$filtro = ($_POST["search"]["value"]!= '') ? $arrData[1] : $arrData[2];
         for ($i = 0; $i < count($arrData); $i++) {
             # code...
             $arrData[$i]['orden'] = $i + 1;
             $arrData[$i]['ESTADO'] = $arrData[$i]['estado'] == 1 ? '<span class="label label-success label-pill m-w-60">ACTIVO</span>' : '<span class="label label-danger label-pill m-w-60">INACTIVO</span>';
-            $arrData[$i]['opciones'] = '<a class="btn btn-primary btn-xs" title="Editar" onclick="editarIncidencia(' . $arrData[$i]['ID_INCIDENCIA'] . ')">
+            $arrData[$i]['opciones'] = '<a class="btn btn-primary btn-xs" title="Editar" onclick="editarIncidencia(' . $arrData[$i]['id'] . ')">
 													<i class="zmdi zmdi-edit zmdi-hc-fw"></i>
 												</a>
-                                				<a class="btn btn-danger btn-xs" title="Eliminar" onclick="eliminarIncidencia(' . $arrData[$i]['ID_INCIDENCIA'] . ')">
+                                				<a class="btn btn-danger btn-xs" title="Eliminar" onclick="eliminarIncidencia(' . $arrData[$i]['id'] . ')">
                                 					<i data-toggle="tooltip" title="Eiiminar"class="zmdi zmdi-delete zmdi-hc-fw"></i>
                                 				</a>';
         }
@@ -899,7 +924,6 @@ class General extends Controllers
         die();
     }
 
-
     public function getSelectIncidencias()
     {
         $htmlOptions = '';
@@ -913,36 +937,56 @@ class General extends Controllers
         die();
     }
 
-
-    public function getIncidenciasAsignados()
+    public function getDocumentosAsignados()
     {
-
         $output = array();
-        $arrData = $this->model->selectincidenciasAsignar(); //dep($arrData); exit;
-        //$filtro = ($_POST["search"]["value"]!= '') ? $arrData[1] : $arrData[2];
+        $arrData = $this->model->selectDocumentosAsignados(); //dep($arrData); exit;
         for ($i = 0; $i < count($arrData); $i++) {
-            $incidencia = explode(";", $arrData[$i]['INCIDENCIAS']);
+            $incidencia = explode(",", $arrData[$i]['documentos']);
             $row_incidencia = count($incidencia);
-            $arrData[$i]['LISTA_INCIDENCIAS'] = '';
+            $arrData[$i]['lista_documentos'] = '';
 
             for ($y = 0; $y < $row_incidencia; $y++) {
-                $arrData[$i]['LISTA_INCIDENCIAS'] .= ($y + 1) . '.- <span>' . $incidencia[$y] . '</span><br> ';
+                $arrData[$i]['lista_documentos'] .= ($y + 1) . '.- <span>' . $incidencia[$y] . '</span><br> ';
             }
-
             $arrData[$i]['orden'] = $i + 1;
-            $arrData[$i]['INCIDENCIAS'] = '<span>' . $arrData[$i]['INCIDENCIAS'] . '</span>,';
-            $arrData[$i]['opciones'] = '<a class="btn btn-primary btn-xs" title="Editar" onclick="editarAsignar(' . $arrData[$i]['ID_ETAPA'] . ')">
+            $arrData[$i]['SOBRES'] = '<span>' . $arrData[$i]['sobres'] . '</span>,';
+            $arrData[$i]['opciones'] = '<a class="btn btn-primary btn-xs" title="Editar" onclick="editarAsignar(' . $arrData[$i]['id_sob'] . ')">
 													<i class="zmdi zmdi-edit zmdi-hc-fw"></i>
 												</a>
-												<a class="btn btn-danger btn-xs" title="Eliminar" onclick="eliminarAsignar(' . $arrData[$i]['ID_ETAPA'] . ')">
+												<a class="btn btn-danger btn-xs" title="Eliminar" onclick="eliminarAsignar(' . $arrData[$i]['id_sob'] . ')">
                                 					<i data-toggle="tooltip" title="Eiiminar"class="zmdi zmdi-delete zmdi-hc-fw"></i>
                                 				</a>';
         }
-
         $output = array("data" => $arrData);
         echo json_encode($output, JSON_UNESCAPED_UNICODE);
         die();
-        // dep($arrData[0][0]['estado']);
+    }
+
+    public function getSufragiosAsignados()
+    {
+        $output = array();
+        $arrData = $this->model->selectSufragiosAsignados(); //dep($arrData); exit;
+        for ($i = 0; $i < count($arrData); $i++) {
+            $incidencia = explode(",", $arrData[$i]['sufragios']);
+            $row_incidencia = count($incidencia);
+            $arrData[$i]['lista_documentos'] = '';
+
+            for ($y = 0; $y < $row_incidencia; $y++) {
+                $arrData[$i]['lista_documentos'] .= ($y + 1) . '.- <span>' . $incidencia[$y] . '</span><br> ';
+            }
+            $arrData[$i]['orden'] = $i + 1;
+            $arrData[$i]['SOBRES'] = '<span>' . $arrData[$i]['sobres'] . '</span>,';
+            $arrData[$i]['opciones'] = '<a class="btn btn-primary btn-xs" title="Editar" onclick="editarAsignar(' . $arrData[$i]['id_sob'] . ')">
+													<i class="zmdi zmdi-edit zmdi-hc-fw"></i>
+												</a>
+												<a class="btn btn-danger btn-xs" title="Eliminar" onclick="eliminarAsignar(' . $arrData[$i]['id_sob'] . ')">
+                                					<i data-toggle="tooltip" title="Eiiminar"class="zmdi zmdi-delete zmdi-hc-fw"></i>
+                                				</a>';
+        }
+        $output = array("data" => $arrData);
+        echo json_encode($output, JSON_UNESCAPED_UNICODE);
+        die();
     }
 
 
@@ -998,22 +1042,20 @@ class General extends Controllers
     }
 
     /* ===== DISPOSITIVOS USB ===== */
-    public function getDispositivos()
+    public function getSobres()
     {
 
         $output = array();
-        $arrData = $this->model->selecDispositivos(); //dep($arrData); exit;
-        //$filtro = ($_POST["search"]["value"]!= '') ? $arrData[1] : $arrData[2];
+        $arrData = $this->model->selecSobres(); //dep($arrData); exit;
         for ($i = 0; $i < count($arrData); $i++) {
-            # code...
             $arrData[$i]['orden'] = $i + 1;
             $arrData[$i]['ESTADO'] = $arrData[$i]['estado'] == 1 ? '<span class="label label-success label-pill m-w-60">ACTIVO</span>' : '<span class="label label-danger label-pill m-w-60">INACTIVO</span>';
-            $arrData[$i]['opciones'] = '<a class="btn btn-primary btn-xs" title="Editar" onclick="editarDispositivo(' . $arrData[$i]['ID_TIPO'] . ')">
-													<i class="zmdi zmdi-edit zmdi-hc-fw"></i>
-												</a>
-                                				<a class="btn btn-danger btn-xs" title="Eliminar" onclick="eliminarDispositivo(' . $arrData[$i]['ID_TIPO'] . ')">
-                                					<i data-toggle="tooltip" title="Eiiminar"class="zmdi zmdi-delete zmdi-hc-fw"></i>
-                                				</a>';
+            $arrData[$i]['opciones'] = '<a class="btn btn-primary btn-xs" title="Editar" onclick="editarDispositivo(' . $arrData[$i]['id'] . ')">
+										    <i class="zmdi zmdi-edit zmdi-hc-fw"></i>
+										</a>
+                                		<a class="btn btn-danger btn-xs" title="Eliminar" onclick="eliminarDispositivo(' . $arrData[$i]['id'] . ')">
+                                		    <i data-toggle="tooltip" title="Eiiminar"class="zmdi zmdi-delete zmdi-hc-fw"></i>
+                                		</a>';
         }
 
         $output = array(

@@ -2,7 +2,6 @@
 $(document).ready(function () {
 
     cboTipoProceso();
-    console.log('Revisando GAAAAA');
 });
 
 function SoloNum() {
@@ -150,7 +149,6 @@ $("#form_registerProceso").submit(function () {
     }
 });
 
-
 /* SHOW PROCESO */
 function editarProceso(id) {
     // alert('ID a mostrar: '+id);
@@ -277,7 +275,6 @@ var tableConsultas = $('#tableConsultas').DataTable({
     }, ],*/
 });
 
-
 /* REGISTER USUARIOS */
 $("#form_registerConsulta").submit(function () {
     var consulta = $('#txtconsulta').val()
@@ -340,7 +337,6 @@ $("#form_registerConsulta").submit(function () {
     }
 });
 
-
 /* SHOW CONSULTA */
 function editarConsulta(id) {
     // alert('ID a mostrar: '+id);
@@ -377,7 +373,6 @@ function editarConsulta(id) {
     });
     return false;
 }
-
 
 /* DELETE CONSULTA */
 function eliminarConsulta(id) {
@@ -421,7 +416,6 @@ function eliminarConsulta(id) {
         });
 }
 
-
 /* CANCEL CONSULTA */
 function cancelConsulta() {
     $("#agregarConsulta").removeAttr('style');
@@ -433,7 +427,6 @@ function cancelConsulta() {
     $('#txtcontrolConsulta').val('0');
     $('#form_registerConsulta .form-group').removeClass('has-success');
 }
-
 
 /*================================================  FUNCTIONS ETAPA  ================================================*/
 
@@ -465,7 +458,6 @@ var tableEtapas = $('#tableEtapas').DataTable({
         "orderable": false,
     }, ],*/
 });
-
 
 /* REGISTER ETAPA */
 $("#form_registerEtapa").submit(function () {
@@ -530,7 +522,6 @@ $("#form_registerEtapa").submit(function () {
     }
 });
 
-
 /* SHOW ETAPA */
 function editarEtapa(id) {
     // alert('ID a mostrar: '+id);
@@ -568,7 +559,6 @@ function editarEtapa(id) {
     return false;
 }
 
-
 /* CANCEL ETAPA */
 function cancelEtapa() {
     $("#agregarEtapa").removeAttr('style');
@@ -578,7 +568,6 @@ function cancelEtapa() {
     $('#txtcontrolEtapa').val('0');
     $('#form_registerEtapa .form-group').removeClass('has-success');
 }
-
 
 /*================================================  FUNCTIONS SOLUCION TECNOLOGICA  ================================================*/
 
@@ -610,7 +599,6 @@ var tableSoluciones = $('#tableSoluciones').DataTable({
         "orderable": false,
     }, ],*/
 });
-
 
 /* REGISTER ETAPA */
 $("#form_registerSolucion").submit(function () {
@@ -675,7 +663,6 @@ $("#form_registerSolucion").submit(function () {
     }
 });
 
-
 /* SHOW SOLUCION */
 function editarSolucion(id) {
     // alert('ID a mostrar: '+id);
@@ -712,7 +699,6 @@ function editarSolucion(id) {
     });
     return false;
 }
-
 
 /* DELETE SOLUCION */
 function eliminarSolucion(id) {
@@ -755,7 +741,6 @@ function eliminarSolucion(id) {
             return false;
         });
 }
-
 
 /* CANCEL SOLUCION */
 function cancelSolucion() {
@@ -862,7 +847,6 @@ $("#form_registerMaterial").submit(function () {
     }
 });
 
-
 /* SHOW SOLUCION */
 function editarMaterial(id) {
     // alert('ID a mostrar: '+id);
@@ -900,7 +884,6 @@ function editarMaterial(id) {
     return false;
 }
 
-
 /* CANCEL CONSULTA */
 function cancelMaterial() {
     $("#agregarMaterial").removeAttr('style');
@@ -912,25 +895,210 @@ function cancelMaterial() {
 }
 
 
+/*================================================  FUNCTIONS SUFRAGIOS  ================================================*/
+var tableSufragios = $('#tableSufragios').DataTable({
+    /*"processing": true,
+    "serverSide": true,*/
+    "order": [],
+    "language": {
+        "url": base_url+'/Assets/js/es-pe.json'
+    },
+    "ajax": {
+        "url": base_url+"/General/getSufragios",
+        "type": "POST",
+        "dataType": "json"
+    },
+    "columns": [
+        {"data":"orden"},
+        {"data":"codigo"},
+        {"data":"descripcion"},
+        {"data":"ESTADO"},
+        {"data":"opciones"},
+    ],
+    "resonsieve":"true",
+    "dDestroy": true,
+    "iDisplayLength": 10,
+    // "order": [[0,"asc"]],
+    /*"columnDefs": [{
+        "targets": [0 , 7],
+        "orderable": false,
+    }, ],*/
+});
+/* REGISTER SUFRAGIO */
+$("#form_registerIncidencia").submit(function () {
+    var incidencia = $('#txtincidencia').val()
+    var descripcion = $('#txtdescripcionIncidencia').val();
+    var total = incidencia.length * descripcion.length;
+
+    var requestIncidencia = new Object();
+    requestIncidencia["IdIncidencia"] = $("#txtIDIncidencia").val();
+    requestIncidencia["controlIncidencia"] = $("#txtcontrolIncidencia").val();
+    requestIncidencia["incidencia"] = $("#txtincidencia").val();
+    requestIncidencia["descripcion"] = $("#txtdescripcionIncidencia").val();
+    requestIncidencia["estado"] = ($('#chkestadoIncidencia').prop('checked') ? '1' : '2');
+
+    if (total > 0) {
+
+        $.ajax({
+            url: base_url + '/General/setincidencia',
+            type: "POST",
+            dataType: 'json',
+            data: requestIncidencia,
+            cache: false,
+
+            success: function (data, textStatus, jqXHR) {
+                console.log(data.msg);
+
+                if (jqXHR.status == 200) {
+                    if (data.status) {
+                        // console.log(textStatus);
+                        // console.log(jqXHR.status);
+                        swal(data.title, data.msg, "success");
+                        $('.confirm').removeClass('btn btn-danger').removeClass('btn btn-warning').addClass('btn btn-success');
+                        $('#tableSufragios').DataTable().ajax.reload();
+                        cancelIncidencia();
+                        return false;
+
+                    } else {
+                        swal({
+                                title: data.title,
+                                text: data.msg,
+                                type: "error"
+                            },
+                            function () {
+                                setTimeout(function () {
+                                    // $('#txtperfil').focus();
+                                }, 10)
+                            });
+                        $('.confirm').removeClass('btn btn-success').removeClass('btn btn-warning').addClass('btn btn-danger');
+                        return false;
+                    }
+                }
+
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                console.log(errorThrown);
+                // console.log(textStatus);
+                // console.log(jqXHR.status);
+            }
+        });
+        return false;
+
+    }
+
+});
+
+/* SHOW SUFRAGIO */
+function editarIncidencia(id) {
+    // alert('ID a mostrar: '+id);
+    $('#txtIDIncidencia').val(id);
+    $('#txtcontrolIncidencia').val('1');
+    $("#updateIncidencia").removeAttr('style');
+    $("#agregarIncidencia").css("display", "none");
+    $("#titleIncidencia").html("<strong>EDITAR INCIDENCIA</strong>");
+    $('#estado_incidencia').show();
+
+    $.ajax({
+        type: 'GET',
+        url: base_url + "/General/getIncidencia/" + id,
+        dataType: 'json',
+        success: function (data, textStatus, jqXHR) {
+
+            if (jqXHR.status == 200) {
+                console.log(data);
+                if (data.status) {
+
+                    var estado = (data.data.ESTADO == 1) ? true : false;
+                    $('#txtincidencia').val(data.data.INCIDENCIA);
+                    $('#txtdescripcionIncidencia').val(data.data.DESCRIPCION);
+                    $('#chkestadoIncidencia').prop("checked", estado);
+                    return false;
+
+                } else {
+                    swal(data.title, data.msg, "error");
+                    $('.confirm').removeClass('btn btn-success').removeClass('btn btn-warning').addClass('btn btn-danger');
+                    return false;
+                }
+            }
+        }
+    });
+    return false;
+}
+
+
+/* DELETE SUFRAGIO */
+function eliminarIncidencia(id) {
+    //alert('ID a eliminar es: '+id)
+    $('.confirm').removeClass('btn btn-success').removeClass('btn btn-danger').removeClass('btn btn-warning');
+    swal({
+            title: "Eliminar Incidencia",
+            text: "¿Desea eliminar este Incidencia?",
+            type: "warning",
+            showCancelButton: true,
+            cancelButtonText: "Cancelar",
+            confirmButtonColor: "#ff9600",
+            confirmButtonText: "Aceptar",
+            closeOnConfirm: false
+        },
+        function () {
+            $.ajax({
+                type: 'DELETE',
+                url: base_url + "/General/delIncidencia/" + id,
+                dataType: 'json',
+                success: function (data, textStatus, jqXHR) {
+                    if (jqXHR.status == 200) {
+                        console.log(data);
+                        if (data.status) {
+
+                            swal(data.title, data.msg, "success");
+                            $('.confirm').removeClass('btn btn-danger').removeClass('btn btn-warning').addClass('btn btn-success');
+                            $('#tableDocumentos').DataTable().ajax.reload();
+                            cancelIncidencia();
+                            return false;
+
+                        } else {
+                            swal(data.title, data.msg, "error");
+                            $('.confirm').removeClass('btn btn-success').removeClass('btn btn-warning').addClass('btn btn-danger');
+                            return false;
+                        }
+                    }
+                }
+            });
+            return false;
+        });
+}
+
+
+/* CANCEL SUFRAGIO */
+function cancelIncidencia() {
+    $("#agregarIncidencia").removeAttr('style');
+    $("#updateIncidencia").css("display", "none");
+    $("#titleIncidencia").html("<strong>REGISTRAR CONSULTA</strong>");
+    $('#estado_incidencia').hide();
+    $('#form_registerIncidencia')[0].reset();
+    $('#form_registerIncidencia').validate().resetForm();
+    $('#txtcontrolIncidencia').val('0');
+    $('#form_registerIncidencia .form-group').removeClass('has-success');
+}
+
 /*================================================  FUNCTIONS INCIDENCIA  ================================================*/
 
-/*
-var tableIncidencias = $('#tableIncidencias').DataTable({
-		/!*"processing": true,
-		"serverSide": true,*!/
+var tableDocumentos = $('#tableDocumentos').DataTable({
+		/*"processing": true,
+		"serverSide": true,*/
 		"order": [],
 		"language": {
 			"url": base_url+'/Assets/js/es-pe.json'
 		},
 		"ajax": {
-			"url": base_url+"/General/getIncidencias",
+			"url": base_url+"/General/getDocumentos",
 			"type": "POST",
 			"dataType": "json"
 		},
 		"columns": [
 		{"data":"orden"}, 
-		{"data":"INCIDENCIA"},
-		{"data":"DESCRIPCION"}, 
+		{"data":"documento"},
+		{"data":"descripcion"},
 		{"data":"ESTADO"},
 		{"data":"opciones"}, 
 		],
@@ -938,12 +1106,12 @@ var tableIncidencias = $('#tableIncidencias').DataTable({
 		"dDestroy": true,
 		"iDisplayLength": 10,
 		// "order": [[0,"asc"]],
-		/!*"columnDefs": [{
+		/*"columnDefs": [{
 			"targets": [0 , 7],
 			"orderable": false,
-		}, ],*!/
+		}, ],*/
 });
-*/
+
 
 /* REGISTER INCIDENCIA */
 $("#form_registerIncidencia").submit(function () {
@@ -976,7 +1144,7 @@ $("#form_registerIncidencia").submit(function () {
                         // console.log(jqXHR.status);
                         swal(data.title, data.msg, "success");
                         $('.confirm').removeClass('btn btn-danger').removeClass('btn btn-warning').addClass('btn btn-success');
-                        $('#tableIncidencias').DataTable().ajax.reload();
+                        $('#tableDocumentos').DataTable().ajax.reload();
                         cancelIncidencia();
                         return false;
 
@@ -1046,7 +1214,6 @@ function editarIncidencia(id) {
     return false;
 }
 
-
 /* DELETE INCIDENCIA */
 function eliminarIncidencia(id) {
     //alert('ID a eliminar es: '+id)
@@ -1073,7 +1240,7 @@ function eliminarIncidencia(id) {
 
                             swal(data.title, data.msg, "success");
                             $('.confirm').removeClass('btn btn-danger').removeClass('btn btn-warning').addClass('btn btn-success');
-                            $('#tableIncidencias').DataTable().ajax.reload();
+                            $('#tableDocumentos').DataTable().ajax.reload();
                             cancelIncidencia();
                             return false;
 
@@ -1088,7 +1255,6 @@ function eliminarIncidencia(id) {
             return false;
         });
 }
-
 
 /* CANCEL INCIDENCIA */
 function cancelIncidencia() {
@@ -1143,45 +1309,45 @@ function multicIncidencias() {
     });
 }
 
+/*==================================  FUNCTIONES ASIGNAR DOCUMENTOS ==================================================*/
 
-/* TABLE ASIGNAR MODULOS */
-/*
-var tableAsignar = $('#tableAsignar').DataTable({
-		// "processing": true,
-		// "serverSide": true,
-		"order": [],
-		"language": {
-			"url": base_url+'/Assets/js/es-pe.json'
-		},
-		"ajax": {
-			"url": base_url+"/General/getIncidenciasAsignados",
-			"type": "POST",
-			"dataType": "json"
-		},
-		"columns": [
-		{"data":"orden"}, 
-		{"data":"ETAPA"},
-		{"data":"LISTA_INCIDENCIAS"}, 
-		{"data":"opciones"}, 
-		],
-		"resonsieve":"true",
-		"dDestroy": true,
-		"iDisplayLength": 10,
-		'columnDefs': [
-		{
-		      "targets": 0, // your case first column
-		      "className": "text-center",
-		},
-		{
-		      "targets": 1,
-		      "className": "text-center",
-		},
-		{
-		      "targets": 3, // your case first column
-		      "className": "text-center",
-		}],
-		// "order": [[0,"asc"]],
-});*/
+/* TABLE ASIGNAR DOCUMENTOS */
+var tableAsignarDocumento = $('#tableAsignarDocumentos').DataTable({
+    // "processing": true,
+    // "serverSide": true,
+    "order": [],
+    "language": {
+        "url": base_url+'/Assets/js/es-pe.json'
+    },
+    "ajax": {
+        "url": base_url+"/General/getDocumentosAsignados",
+        "type": "POST",
+        "dataType": "json"
+    },
+    "columns": [
+        {"data":"orden"},
+        {"data":"SOBRES"},
+        {"data":"lista_documentos"},
+        {"data":"opciones"},
+    ],
+    "resonsieve":"true",
+    "dDestroy": true,
+    "iDisplayLength": 10,
+    'columnDefs': [
+        {
+            "targets": 0, // your case first column
+            "className": "text-center",
+        },
+        {
+            "targets": 1,
+            "className": "text-center",
+        },
+        {
+            "targets": 3, // your case first column
+            "className": "text-center",
+        }],
+    // "order": [[0,"asc"]],
+});
 
 /* SHOW ASIGNAR MODULO */
 function editarAsignar(id) {
@@ -1223,7 +1389,6 @@ function editarAsignar(id) {
     return false;
 }
 
-
 /* REGISTER MODULO */
 $("#form_registerAsignar").submit(function () {
 
@@ -1254,7 +1419,7 @@ $("#form_registerAsignar").submit(function () {
                         // console.log(jqXHR.status);
                         swal(data.title, data.msg, "success");
                         $('.confirm').removeClass('btn btn-danger').removeClass('btn btn-warning').addClass('btn btn-success');
-                        $('#tableAsignar').DataTable().ajax.reload();
+                        $('#tableAsignarDocumentos').DataTable().ajax.reload();
                         cancelAsignar();
                         return false;
 
@@ -1313,7 +1478,7 @@ function eliminarAsignar(id) {
 
                             swal(data.title, data.msg, "success");
                             $('.confirm').removeClass('btn btn-danger').removeClass('btn btn-warning').addClass('btn btn-success');
-                            $('#tableAsignar').DataTable().ajax.reload();
+                            $('#tableAsignarDocumentos').DataTable().ajax.reload();
                             cancelAsignar();
                             return false;
 
@@ -1329,6 +1494,205 @@ function eliminarAsignar(id) {
         });
 }
 
+/* CANCEL ASIGNAR */
+function cancelAsignar() {
+    $('#cboincidenciaAsignar').attr("disabled", false)
+    $("#agregarAsignar").removeAttr('style');
+    $("#updateAsignar").css("display", "none");
+    $("#titleAsignar").html("<strong>ASIGNAR INCIDENCIAS</strong>");
+    $('#form_registerAsignar')[0].reset();
+    $('#form_registerAsignar').validate().resetForm();
+    $('#form_registerAsignar .form-group').removeClass('has-success');
+    cboEtapaAsignar();
+    $('#multiIncidencia').selectpicker("refresh");
+    $('#txtcontrolAsignar').val('0');
+    $('#errormultiIncidencia').html('');
+}
+/*==================================  FUNCTIONES ASIGNAR DOCUMENTOS ==================================================*/
+
+/*==================================  FUNCTIONES ASIGNAR SUFRAGIOS ==================================================*/
+
+/* TABLE ASIGNAR SUFRAGIOS */
+var tableAsignarSufragio = $('#tableAsignarSufragios').DataTable({
+		// "processing": true,
+		// "serverSide": true,
+		"order": [],
+		"language": {
+			"url": base_url+'/Assets/js/es-pe.json'
+		},
+		"ajax": {
+			"url": base_url+"/General/getSufragiosAsignados",
+			"type": "POST",
+			"dataType": "json"
+		},
+		"columns": [
+		{"data":"orden"}, 
+		{"data":"SOBRES"},
+		{"data":"lista_documentos"},
+		{"data":"opciones"}, 
+		],
+		"resonsieve":"true",
+		"dDestroy": true,
+		"iDisplayLength": 10,
+		'columnDefs': [
+		{
+		      "targets": 0, // your case first column
+		      "className": "text-center",
+		},
+		{
+		      "targets": 1,
+		      "className": "text-center",
+		},
+		{
+		      "targets": 3, // your case first column
+		      "className": "text-center",
+		}],
+		// "order": [[0,"asc"]],
+});
+
+/* SHOW ASIGNAR MODULO */
+function editarAsignar(id) {
+    $('#txtIDAsignar').val(id);
+    $('#txtcontrolAsignar').val('1');
+    $("#updateAsignar").removeAttr('style');
+    $("#agregarAsignar").css("display", "none");
+    $("#titleAsignar").html("<strong>EDITAR LA ASIGNACI&Oacute;N DE INCIDENCIAS</strong>");
+    $('#form_registerAsignar').validate().resetForm();
+    $('#form_registerAsignar .form-group').removeClass('has-success');
+    $('#multiIncidencia').selectpicker('deselectAll');
+    // $('#multimodulo').multiselect("deselectAll", false);
+
+    $.ajax({
+        type: 'GET',
+        url: base_url + "/General/getAsignar/" + id,
+        dataType: 'json',
+        success: function (data, textStatus, jqXHR) {
+
+            if (jqXHR.status == 200) {
+                console.log(data);
+                if (data.status) {
+
+                    $('#cboincidenciaAsignar').attr("disabled", true).html('<option value="' + id + '">' + data.data.ETAPA + '</option>').selectpicker('refresh');
+                    $('#cboincidenciaAsignar').selectpicker('val', id);
+
+                    var modulo = data.data.INCIDENCIA.split(',');
+                    $('#multiIncidencia').selectpicker('val', modulo);
+                    return false;
+
+                } else {
+                    swal(data.title, data.msg, "error");
+                    $('.confirm').removeClass('btn btn-success').removeClass('btn btn-warning').addClass('btn btn-danger');
+                    return false;
+                }
+            }
+        }
+    });
+    return false;
+}
+
+/* REGISTER MODULO */
+$("#form_registerAsignar").submit(function () {
+
+    var cboIncidenciaAsignar = $('#cboincidenciaAsignar').val();
+    var multiIncidencia = $('#multiIncidencia').val();
+
+    var total = cboIncidenciaAsignar.length * multiIncidencia.length;
+
+    var requesAsignar = new Object();
+    requesAsignar["controlAsignar"] = $("#txtcontrolAsignar").val();
+    requesAsignar["etapa"] = $("#cboincidenciaAsignar").val();
+    requesAsignar["incidencias"] = $("#multiIncidencia").val();
+
+    if (total > 0) {
+        $.ajax({
+            url: base_url + '/General/setAsignar',
+            type: "POST",
+            dataType: 'json',
+            data: requesAsignar,
+            cache: false,
+
+            success: function (data, textStatus, jqXHR) {
+                console.log(data.msg);
+
+                if (jqXHR.status == 200) {
+                    if (data.status) {
+                        // console.log(textStatus);
+                        // console.log(jqXHR.status);
+                        swal(data.title, data.msg, "success");
+                        $('.confirm').removeClass('btn btn-danger').removeClass('btn btn-warning').addClass('btn btn-success');
+                        $('#tableAsignarDocumentos').DataTable().ajax.reload();
+                        cancelAsignar();
+                        return false;
+
+                    } else {
+                        swal({
+                                title: data.title,
+                                text: data.msg,
+                                type: "error"
+                            },
+                            function () {
+                                setTimeout(function () {
+
+                                }, 10)
+                            });
+                        $('.confirm').removeClass('btn btn-success').removeClass('btn btn-warning').addClass('btn btn-danger');
+                        return false;
+                    }
+                }
+
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                console.log(errorThrown);
+                // console.log(textStatus);
+                // console.log(jqXHR.status);
+            }
+        });
+        return false;
+    }
+    return false;
+});
+
+/* DELETE ASIGNAR */
+function eliminarAsignar(id) {
+    //alert('ID a eliminar es: '+id)
+    $('.confirm').removeClass('btn btn-success').removeClass('btn btn-danger').removeClass('btn btn-warning');
+    swal({
+            title: "Eliminar Etapa",
+            text: "¿Desea eliminar esta Etapa?",
+            type: "warning",
+            showCancelButton: true,
+            cancelButtonText: "Cancelar",
+            confirmButtonColor: "#ff9600",
+            confirmButtonText: "Aceptar",
+            closeOnConfirm: false
+        },
+        function () {
+            $.ajax({
+                type: 'DELETE',
+                url: base_url + "/General/delAsignar/" + id,
+                dataType: 'json',
+                success: function (data, textStatus, jqXHR) {
+                    if (jqXHR.status == 200) {
+                        console.log(data);
+                        if (data.status) {
+
+                            swal(data.title, data.msg, "success");
+                            $('.confirm').removeClass('btn btn-danger').removeClass('btn btn-warning').addClass('btn btn-success');
+                            $('#tableAsignarDocumentos').DataTable().ajax.reload();
+                            cancelAsignar();
+                            return false;
+
+                        } else {
+                            swal(data.title, data.msg, "error");
+                            $('.confirm').removeClass('btn btn-success').removeClass('btn btn-warning').addClass('btn btn-danger');
+                            return false;
+                        }
+                    }
+                }
+            });
+            return false;
+        });
+}
 
 /* CANCEL ASIGNAR */
 function cancelAsignar() {
@@ -1344,35 +1708,31 @@ function cancelAsignar() {
     $('#txtcontrolAsignar').val('0');
     $('#errormultiIncidencia').html('');
 }
+/*==================================  FUNCTIONES ASIGNAR SUFRAGIO ==================================================*/
 
+/*======================================  FUNCTIONS DISPOSITIVOS USB  ================================================*/
 
-/*================================================  FUNCTIONS DISPOSITIVOS USB  ================================================*/
-/*
-var tableDispositivos = $('#tableDispositivos').DataTable({
-	// "processing": true,
-	// "serverSide": true,
+var tableSobres = $('#tableSobres').DataTable({
 	"order": [],
 	"language": {
 		"url": base_url+'/Assets/js/es-pe.json'
 	},
 	"ajax": {
-		"url": base_url+"/General/getDispositivos",
+		"url": base_url+"/General/getSobres",
 		"type": "POST",
 		"dataType": "json"
 	},
 	"columns": [
 	{"data":"orden"}, 
-	{"data":"DESCRIPCION"}, 
+	{"data":"descripcion"},
 	{"data":"ESTADO"},
 	{"data":"opciones"}, 
 	],
 	"resonsieve":"true",
 	"dDestroy": true,
 	"iDisplayLength": 10,
-	// "order": [[0,"asc"]],
-	// "columnDefs": [{"targets": [0 , 7], "orderable": false,},],
 });
-*/
+
 
 /* REGISTER DISPOSITIVO */
 $("#form_registerDispositivo").submit(function () {
@@ -1404,7 +1764,7 @@ $("#form_registerDispositivo").submit(function () {
                         // console.log(jqXHR.status);
                         swal(data.title, data.msg, "success");
                         $('.confirm').removeClass('btn btn-danger').removeClass('btn btn-warning').addClass('btn btn-success');
-                        $('#tableDispositivos').DataTable().ajax.reload();
+                        $('#tableSobres').DataTable().ajax.reload();
                         cancelDispositivo();
                         return false;
 
@@ -1498,13 +1858,11 @@ function eliminarDispositivo(id) {
                     if (jqXHR.status == 200) {
                         console.log(data);
                         if (data.status) {
-
                             swal(data.title, data.msg, "success");
                             $('.confirm').removeClass('btn btn-danger').removeClass('btn btn-warning').addClass('btn btn-success');
-                            $('#tableDispositivos').DataTable().ajax.reload();
+                            $('#tableSobres').DataTable().ajax.reload();
                             cancelDispositivo();
                             return false;
-
                         } else {
                             swal(data.title, data.msg, "error");
                             $('.confirm').removeClass('btn btn-success').removeClass('btn btn-warning').addClass('btn btn-danger');
