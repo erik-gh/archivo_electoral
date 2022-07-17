@@ -7,3 +7,4 @@ out
 .idea/workspace.xml
 .idea/workspace.xml
 *.xml
+Config/Config.php
