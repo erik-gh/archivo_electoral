@@ -60,10 +60,10 @@
                                    onclick="cboEtapaAsignar(); multicIncidencias();">
                                     <i class="zmdi zmdi-assignment-check"></i>ASIGNAR SUFRAGIOS</a>
                             </li>
-                            <li class="">
-                                <a href="#tab-material" role="tab" data-toggle="tab" aria-expanded="false">
-                                    <i class="zmdi zmdi-tablet"></i>LISTADO</a>
-                            </li>
+<!--                            <li class="">-->
+<!--                                <a href="#tab-material" role="tab" data-toggle="tab" aria-expanded="false">-->
+<!--                                    <i class="zmdi zmdi-tablet"></i>LISTADO</a>-->
+<!--                            </li>-->
                         </ul>
 
                         <div class="tab-content">
@@ -444,40 +444,40 @@
                                 </div>
                             </div>
 
-                            <div role="tabpanel" class="tab-pane fade" id="tab-material">
-                                <div class="row">
-                                    <div class="col-md-12 col-sm-12">
-                                        <div class="panel panel-default panel-table m-b-0">
-                                            <div class="panel-heading">
-                                                <h4 class="text-center text-primary font-12"><strong>LISTA DE MATERIALES ELECTORALES</strong></h4>
-                                            </div>
-                                            <div class="panel-body">
-                                                <div class="table-responsive">
-                                                    <div id="tbl_material" class="dataTables_wrapper form-inline"
-                                                         role="grid">
-                                                        <table id="tableMateriales"
-                                                               class="display table table-bordered table-hover"
-                                                               cellspacing="0" width="100%">
-                                                            <thead class="text-center font-table">
-                                                            <tr class="bg-primary">
-                                                                <th class="text-center" width="5%">Nº</th>
-                                                                <th class="text-center" width="20%">MATERIAL</th>
-                                                                <th class="text-center" width="45%">DESCRIPCI&Oacute;N
-                                                                </th>
-                                                                <th class="text-center" width="15%">ESTADO</th>
-                                                                <th class="text-center" width="15%">ACCI&Oacute;N</th>
-                                                            </tr>
-                                                            </thead>
-                                                            <tbody class="text-center font-table">
-                                                            </tbody>
-                                                        </table>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+<!--                            <div role="tabpanel" class="tab-pane fade" id="tab-material">-->
+<!--                                <div class="row">-->
+<!--                                    <div class="col-md-12 col-sm-12">-->
+<!--                                        <div class="panel panel-default panel-table m-b-0">-->
+<!--                                            <div class="panel-heading">-->
+<!--                                                <h4 class="text-center text-primary font-12"><strong>LISTA DE MATERIALES ELECTORALES</strong></h4>-->
+<!--                                            </div>-->
+<!--                                            <div class="panel-body">-->
+<!--                                                <div class="table-responsive">-->
+<!--                                                    <div id="tbl_material" class="dataTables_wrapper form-inline"-->
+<!--                                                         role="grid">-->
+<!--                                                        <table id="tableMateriales"-->
+<!--                                                               class="display table table-bordered table-hover"-->
+<!--                                                               cellspacing="0" width="100%">-->
+<!--                                                            <thead class="text-center font-table">-->
+<!--                                                            <tr class="bg-primary">-->
+<!--                                                                <th class="text-center" width="5%">Nº</th>-->
+<!--                                                                <th class="text-center" width="20%">MATERIAL</th>-->
+<!--                                                                <th class="text-center" width="45%">DESCRIPCI&Oacute;N-->
+<!--                                                                </th>-->
+<!--                                                                <th class="text-center" width="15%">ESTADO</th>-->
+<!--                                                                <th class="text-center" width="15%">ACCI&Oacute;N</th>-->
+<!--                                                            </tr>-->
+<!--                                                            </thead>-->
+<!--                                                            <tbody class="text-center font-table">-->
+<!--                                                            </tbody>-->
+<!--                                                        </table>-->
+<!--                                                    </div>-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
 
                             <div role="tabpanel" class="tab-pane fade" id="tab-sufragio">
                                 <div class="row">
