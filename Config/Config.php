@@ -4,6 +4,7 @@
 	const BASE_URL = 'http://localhost/archivo_electoral';
 //    	const BASE_URL = 'http://10.50.34.74/archivo_electoral';
 
+
 	// ZONA HORARIA
 	date_default_timezone_set('America/Lima');
 	// DATOS DE LA BASE DE DATOS
@@ -14,7 +15,7 @@
 
 //    const DB_HOST 		= "10.50.20.132";
 	const DB_HOST 		= "localhost:3306";
-    const DB_NAME 		= "archelect";
+    const DB_NAME 		= "wprueba";
     const DB_USER 		= "root";
     const DB_PASSWORD 	= "";
     const DB_CHARSET 	= "charset=utf8";
