@@ -57,14 +57,14 @@ function cboSolucionTecnologica() {
 */
 function cboOdpe(etapa) {
     resetInpbarra(etapa);
-    $('#cboconsulta' + etapa).selectpicker('destroy');
-    $('#cboconsulta' + etapa).html('<option value="">[ SELECCIONE UNA CONSULTA  ]</option>').selectpicker('refresh');
     $('#cbodepart' + etapa).selectpicker('destroy');
     $('#cbodepart' + etapa).html('<option value="">[ SELECCIONE UN DEPARTAMENTO ]</option>').selectpicker('refresh');
     $('#cboprov' + etapa).selectpicker('destroy');
     $('#cboprov' + etapa).html('<option value="">[ SELECCIONE UNA PROVINCIA ]</option>').selectpicker('refresh');
     $('#cbodist' + etapa).selectpicker('destroy');
     $('#cbodist' + etapa).html('<option value="">[ SELECCIONE UN DISTRITO ]</option>').selectpicker('refresh');
+    $('#cboconsulta' + etapa).selectpicker('destroy');
+    $('#cboconsulta' + etapa).html('<option value="">[ SELECCIONE UNA CONSULTA  ]</option>').selectpicker('refresh');
     $('#cbosobre' + etapa).selectpicker('destroy');
     $('#cbosobre' + etapa).html('<option value="">[ SELECCIONE TIPO DE SOBRE ]</option>').selectpicker('refresh');
     $('#cbosufragio' + etapa).selectpicker('destroy');
@@ -97,44 +97,6 @@ function cboOdpe(etapa) {
     }, 120);
 }
 
-function cboConsulta(etapa) {
-    resetInpbarra(etapa);
-    $('#cbodepart' + etapa).selectpicker('destroy');
-    $('#cbodepart' + etapa).html('<option value="">[ SELECCIONE UN DEPARTAMENTO ]</option>').selectpicker('refresh');
-    $('#cboprov' + etapa).selectpicker('destroy');
-    $('#cboprov' + etapa).html('<option value="">[ SELECCIONE UNA PROVINCIA ]</option>').selectpicker('refresh');
-    $('#cbodist' + etapa).selectpicker('destroy');
-    $('#cbodist' + etapa).html('<option value="">[ SELECCIONE UN DISTRITO ]</option>').selectpicker('refresh');
-    $('#cbosobre' + etapa).selectpicker('destroy');
-    $('#cbosobre' + etapa).html('<option value="">[ SELECCIONE TIPO DE SOBRE ]</option>').selectpicker('refresh');
-    $('#cbosufragio' + etapa).selectpicker('destroy');
-    $('#cbosufragio' + etapa).html('<option value="">[ SELECCIONE TIPO DE SUFRAGIO ]</option>').selectpicker('refresh');
-    $('#cbodocumento' + etapa).selectpicker('destroy');
-    $('#cbodocumento' + etapa).html('<option value="">[ SELECCIONE UN SUFRAGIO ]</option>').selectpicker('refresh');
-
-    var requestOdpe = new Object();
-    requestOdpe["idProceso"] = $("#cboProceso").val();
-    $.ajax({
-        url: base_url + '/Control_cedula/getSelectConsulta',
-        type: "POST",
-        // dataType: 'json',
-        data: requestOdpe,
-        cache: false,
-        success: function (data, textStatus, jqXHR) {
-            // console.log(data);
-            if (jqXHR.status == 200) {
-                $('#cboconsulta' + etapa).selectpicker('destroy');
-                $('#cboconsulta' + etapa).html(data).selectpicker('refresh');
-            }
-        },
-    });
-    setTimeout(function () {
-        // cargaAvanceOdpe(etapa);
-        //cargaAvanceAgrupacion(etapa);
-        enabledAvance(etapa);
-    }, 120);
-}
-
 function cboDepartamento(etapa) {
     resetInpbarra(etapa);
     // cargaAvanceOdpe(etapa);
@@ -143,6 +105,8 @@ function cboDepartamento(etapa) {
     $('#cboprov' + etapa).html('<option value="">[ SELECCIONE UNA PROVINCIA ]</option>').selectpicker('refresh');
     $('#cbodist' + etapa).selectpicker('destroy');
     $('#cbodist' + etapa).html('<option value="">[ SELECCIONE UN DISTRITO ]</option>').selectpicker('refresh');
+    $('#cboconsulta' + etapa).selectpicker('destroy');
+    $('#cboconsulta' + etapa).html('<option value="">[ SELECCIONE UNA CONSULTA  ]</option>').selectpicker('refresh');
     $('#cbosobre' + etapa).selectpicker('destroy');
     $('#cbosobre' + etapa).html('<option value="">[ SELECCIONE TIPO DE SOBRE ]</option>').selectpicker('refresh');
     $('#cbosufragio' + etapa).selectpicker('destroy');
@@ -184,6 +148,8 @@ function cboProvincia(etapa) {
     resetInpbarra(etapa);
     $('#cbodist' + etapa).selectpicker('destroy');
     $('#cbodist' + etapa).html('<option value="">[ SELECCIONE UN DISTRITO ]</option>').selectpicker('refresh');
+    $('#cboconsulta' + etapa).selectpicker('destroy');
+    $('#cboconsulta' + etapa).html('<option value="">[ SELECCIONE UNA CONSULTA  ]</option>').selectpicker('refresh');
     $('#cbosobre' + etapa).selectpicker('destroy');
     $('#cbosobre' + etapa).html('<option value="">[ SELECCIONE TIPO DE SOBRE ]</option>').selectpicker('refresh');
     $('#cbosufragio' + etapa).selectpicker('destroy');
@@ -218,6 +184,8 @@ function cboProvincia(etapa) {
 
 function cboDistrito(etapa) {
     resetInpbarra(etapa);
+    $('#cboconsulta' + etapa).selectpicker('destroy');
+    $('#cboconsulta' + etapa).html('<option value="">[ SELECCIONE UNA CONSULTA  ]</option>').selectpicker('refresh');
     $('#cbosobre' + etapa).selectpicker('destroy');
     $('#cbosobre' + etapa).html('<option value="">[ SELECCIONE UN SOBRE ]</option>').selectpicker('refresh');
     $('#cbosufragio' + etapa).selectpicker('destroy');
@@ -250,6 +218,42 @@ function cboDistrito(etapa) {
             }
         },
     });
+}
+
+function cboConsulta(etapa) {
+    resetInpbarra(etapa);
+    $('#cbosobre' + etapa).selectpicker('destroy');
+    $('#cbosobre' + etapa).html('<option value="">[ SELECCIONE TIPO DE SOBRE ]</option>').selectpicker('refresh');
+    $('#cbosufragio' + etapa).selectpicker('destroy');
+    $('#cbosufragio' + etapa).html('<option value="">[ SELECCIONE TIPO DE SUFRAGIO ]</option>').selectpicker('refresh');
+    $('#cbodocumento' + etapa).selectpicker('destroy');
+    $('#cbodocumento' + etapa).html('<option value="">[ SELECCIONE UN SUFRAGIO ]</option>').selectpicker('refresh');
+
+    var requestConsulta = new Object();
+    requestConsulta["idProceso"] = $("#cboProceso").val();
+    requestConsulta["idOdpe"] = $("#cboodpe" + etapa).val();
+    requestConsulta["idDepartamento"] = $("#cbodepart" + etapa).val();
+    requestConsulta["idProvincia"] = $("#cboprov" + etapa).val();
+    requestConsulta["idDistrito"] = $("#cbodist" + etapa).val();
+    $.ajax({
+        url: base_url + '/Control_cedula/getSelectConsulta',
+        type: "POST",
+        // dataType: 'json',
+        data: requestConsulta,
+        cache: false,
+        success: function (data, textStatus, jqXHR) {
+            // console.log(data);
+            if (jqXHR.status == 200) {
+                $('#cboconsulta' + etapa).selectpicker('destroy');
+                $('#cboconsulta' + etapa).html(data).selectpicker('refresh');
+            }
+        },
+    });
+    setTimeout(function () {
+        // cargaAvanceOdpe(etapa);
+        //cargaAvanceAgrupacion(etapa);
+        enabledAvance(etapa);
+    }, 120);
 }
 
 function cboSobre(etapa) {
@@ -286,10 +290,11 @@ function cboSobre(etapa) {
 function cboSufragio(etapa) {
     $('#cbodocumento' + etapa).selectpicker('destroy');
     $('#cbodocumento' + etapa).html('<option value="">[ SELECCIONE UN DOCUMENTO ]</option>').selectpicker('refresh');
-
+    console.log('Aqui vente');
     resetInpbarra(etapa);
     var requestConsulta = new Object();
-    requestConsulta["idSolucion"] = $("#cbosoltec" + etapa).val();
+    // requestConsulta["idSolucion"] = $("#cbosoltec" + etapa).val();
+    requestConsulta["idConsulta"] = $("#cboconsulta" + etapa).val();
     if (eleccion == 2 && etapa == 'Empaque') {
         if (etapaControl == 3) {
             habilInpbarra(etapa);

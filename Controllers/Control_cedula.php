@@ -25,7 +25,8 @@ class Control_cedula extends Controllers
     }
 
     /* INICIO COMBOS DE SELECT */
-    public function getSelectSolucion(){
+    public function getSelectSolucion()
+    {
         //dep($_POST); exit;
         if ($_POST) {
             $intIdProceso = intval(strClean($_POST['idProceso']));
@@ -43,7 +44,8 @@ class Control_cedula extends Controllers
         }
     }
 
-    public function getSelectOdpe(){
+    public function getSelectOdpe()
+    {
         //dep($_POST); exit;
         if ($_POST) {
             $intIdProceso = intval(strClean($_POST['idProceso']));
@@ -83,23 +85,6 @@ class Control_cedula extends Controllers
         }
     }
 
-    public function getSelectConsulta()
-    {
-        if ($_POST) {
-            $intIdProceso = intval(strClean($_POST['idProceso']));
-
-            $htmlOptions = '<option value="">[ SELECCIONE UNA CONSULTA ]</option>';
-            $arrData = $this->model->selectCboConsulta($intIdProceso);
-            if (count($arrData) > 0) {
-                for ($i = 0; $i < count($arrData); $i++) {
-                    $htmlOptions .= '<option value="' . $arrData[$i]['id'] . '"> ' . $arrData[$i]['descripcion'] . '</option>';
-                }
-            }
-            echo $htmlOptions;
-            die();
-        }
-    }
-
     public function getSelectProvincia()
     {
         //dep($_POST); exit;
@@ -122,7 +107,8 @@ class Control_cedula extends Controllers
         }
     }
 
-    public function getSelectDistrito(){
+    public function getSelectDistrito()
+    {
         //dep($_POST); exit;
         if ($_POST) {
             $intIdProceso = intval(strClean($_POST['idProceso']));
@@ -144,7 +130,28 @@ class Control_cedula extends Controllers
         }
     }
 
-    public function getSelectSobre(){
+    public function getSelectConsulta()
+    {
+        if ($_POST) {
+            $intIdProceso = intval(strClean($_POST['idProceso']));
+            $intIdodpe = intval(strClean($_POST['idOdpe']));
+            $intIdDepartamento = intval(strClean($_POST['idDepartamento']));
+            $intIdProvincia = intval(strClean($_POST['idProvincia']));
+            $intIdDistrito = intval(strClean($_POST['idDistrito']));
+            $htmlOptions = '<option value="">[ SELECCIONE UNA CONSULTA ]</option>';
+            $arrData = $this->model->selectCboConsulta($intIdProceso, $intIdodpe,$intIdDepartamento, $intIdProvincia,$intIdDistrito);
+            if (count($arrData) > 0) {
+                for ($i = 0; $i < count($arrData); $i++) {
+                    $htmlOptions .= '<option value="' . $arrData[$i]['id'] . '"> ' . $arrData[$i]['descripcion'] . '</option>';
+                }
+            }
+            echo $htmlOptions;
+            die();
+        }
+    }
+
+    public function getSelectSobre()
+    {
         //dep($_POST); exit;
         if ($_POST) {
             $intIdSolucion = intval(strClean($_POST['idSolucion']));
@@ -160,10 +167,12 @@ class Control_cedula extends Controllers
             die();
         }
     }
-public function getSelectSufragio(){
+
+    public function getSelectSufragio()
+    {
         //dep($_POST); exit;
         if ($_POST) {
-            $intIdSolucion = intval(strClean($_POST['idSolucion']));
+            $intIdSolucion = intval(strClean($_POST['idConsulta']));
 
             $htmlOptions = '<option value="">[ SELECCIONE TIPO DE SUFRAGIO ]</option>';
             $arrData = $this->model->selectCboSufragio($intIdSolucion);
@@ -177,7 +186,8 @@ public function getSelectSufragio(){
         }
     }
 
-    public function getSelectDocumento(){
+    public function getSelectDocumento()
+    {
         //dep($_POST); exit;
         if ($_POST) {
             $intIdSolucion = intval(strClean($_POST['idSolucion']));
@@ -194,6 +204,7 @@ public function getSelectSufragio(){
             die();
         }
     }
+
     /* FIN DE COMBOS SELECT */
 
     public function getBarra()
