@@ -1834,7 +1834,6 @@ function editarDispositivo(id) {
     return false;
 }
 
-
 /* DELETE DISPOSITIVO */
 function eliminarDispositivo(id) {
     //alert('ID a eliminar es: '+id)

@@ -22,6 +22,7 @@ if (eleccion == 2) {
 }
 
 /* ** FUNCIONES DE LOS COMBOS ** */
+
 /*
 function cboSolucionTecnologica() {
     console.log('Veamos si entra');
@@ -567,6 +568,7 @@ function verTotalAgrup(idAgrupacion, agrupacion, etapa, valor) {
 
 /* *** CARGA COD BARRAS ****** */
 function selTipoCedula(etapa) {
+    console.log('Se ingreso aqui!!!')
     if ($('#cboconsulta' + etapa).val() != "") {
         habilInpbarra(etapa);
         $('#btnIncid' + etapa).hide();
@@ -578,15 +580,18 @@ function selTipoCedula(etapa) {
         // var eleccionN = eleccion;
 
         var requestConsulta = new Object();
-        requestConsulta["idMaterial"] = $("#idMaterial").val();
+        // requestConsulta["idMaterial"] = $("#idMaterial").val();
+        // requestConsulta["idAgrupacion"] = $("#cboagrupacion" + etapa).val();
+
         requestConsulta["idProceso"] = $("#cboProceso").val();
         requestConsulta["idSolucion"] = $("#cbosoltec" + etapa).val();
         requestConsulta["idOdpe"] = $("#cboodpe" + etapa).val();
-        requestConsulta["idAgrupacion"] = $("#cboagrupacion" + etapa).val();
         requestConsulta["idDepartamento"] = $("#cbodepart" + etapa).val();
         requestConsulta["idProvincia"] = $("#cboprov" + etapa).val();
         requestConsulta["idDistrito"] = $("#cbodist" + etapa).val();
-        requestConsulta["consulta"] = $("#cboconsulta" + etapa).val();
+        requestConsulta["id_sobre"] = $("#cboconsulta" + etapa).val();
+        requestConsulta["id_sufragio"] = $("#cboconsulta" + etapa).val();
+        requestConsulta["id_documento"] = $("#cboconsulta" + etapa).val();
         requestConsulta["idEleccion"] = eleccionN;
 
         $.ajax({

@@ -109,7 +109,7 @@
                                                     <label class="col-sm-4 control-label" for="form-control-1">DOCUMENTO :</label>
                                                     <div class="col-sm-8 z-1">
                                                         <select class="form-control" name="cbodocumentoRecepcion" id="cbodocumentoRecepcion" data-size="6"
-                                                                data-dropup-auto="false" data-live-search="true" onChange="" required>
+                                                                data-dropup-auto="false" data-live-search="true" onChange="selTipoCedula('Recepcion');" required>
                                                             <option value="">[ SELECCIONE UN DOCUMENTO ]</option>
                                                         </select>
                                                     </div>
@@ -154,7 +154,7 @@
                                     <div class="table-responsive">
                                         <div class="clearfix">
                                             <div class="pull-right">
-                                                Esto se habilitara o se quitara
+<!--                                                Esto se habilitara o se quitara-->
                                                 <!--<a class="btn btn-blue btn-sm" data-dismiss="modal" id="updateRecepcion"
                                                    onclick="cargaAvanceFase('Recepcion'); cargaAvanceOdpe('Recepcion')" disabled>
                                                     <i class="zmdi zmdi-refresh zmdi-hc-fw"></i><span></span></a>-->
@@ -222,14 +222,6 @@
                                                 </tr>
                                                 </thead>
                                                 <tbody>
-                                                <!--<tr class="text-center font-table">
-                                                    <td>--</td>
-                                                    <td>0</td>
-                                                    <td>0</td>
-                                                    <td>0</td>
-                                                    <td>% 0</td>
-                                                    <td>% 0</td>
-                                                </tr>-->
                                                 </tbody>
                                             </table>
                                         </div>
