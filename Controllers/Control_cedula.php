@@ -139,7 +139,7 @@ class Control_cedula extends Controllers
             $intIdProvincia = intval(strClean($_POST['idProvincia']));
             $intIdDistrito = intval(strClean($_POST['idDistrito']));
             $htmlOptions = '<option value="">[ SELECCIONE UNA CONSULTA ]</option>';
-            $arrData = $this->model->selectCboConsulta($intIdProceso, $intIdodpe,$intIdDepartamento, $intIdProvincia,$intIdDistrito);
+            $arrData = $this->model->selectCboConsulta($intIdProceso, $intIdodpe, $intIdDepartamento, $intIdProvincia, $intIdDistrito);
             if (count($arrData) > 0) {
                 for ($i = 0; $i < count($arrData); $i++) {
                     $htmlOptions .= '<option value="' . $arrData[$i]['id'] . '"> ' . $arrData[$i]['descripcion'] . '</option>';
@@ -211,18 +211,20 @@ class Control_cedula extends Controllers
     {
         // dep($_POST); exit;
         if ($_POST) {
-            $intIdMaterial = intval(strClean($_POST['idMaterial']));
             $intIdProceso = intval(strClean($_POST['idProceso']));
             $intIdSolucion = intval(strClean($_POST['idSolucion']));
             $intIdodpe = intval(strClean($_POST['idOdpe']));
 //            $intIdAgrupacion = intval(strClean($_POST['idAgrupacion']));
-            $strDepartamento = strClean($_POST['idDepartamento']);
-            $strProvincia = strClean($_POST['idProvincia']);
-            $strDistrito = strClean($_POST['idDistrito']);
-            $strConsulta = strClean($_POST['consulta']);
+            $intIdDepartamento = strClean($_POST['idDepartamento']);
+            $intIdProvincia = strClean($_POST['idProvincia']);
+            $intIdDistrito = strClean($_POST['idDistrito']);
+            $intIdConsulta = strClean($_POST['idConsulta']);
+            $intIdsobre = strClean($_POST['idSobre']);
+            $intIdDocumento = strClean($_POST['idDocumento']);
             $intIdEleccion = intval(strClean($_POST['idEleccion']));
 
-            $arrData = $this->model->selectinpBarra($intIdMaterial, $intIdProceso, $intIdSolucion, $intIdodpe, $strDepartamento, $strProvincia, $strDistrito, $strConsulta, $intIdEleccion);
+            $arrData = $this->model->selectinpBarra(
+                $intIdProceso, $intIdSolucion, $intIdodpe, $intIdDepartamento, $intIdProvincia, $intIdDistrito, $intIdConsulta, $intIdsobre, $intIdDocumento, $intIdEleccion);
 
             $arrResponse = [
                 "status" => true,
@@ -262,11 +264,8 @@ class Control_cedula extends Controllers
                 $strEtapa = strClean($_POST['etapa']);
 
                 if ($intIdEleccion == 1) {
-
                     $requestOrden = $this->model->ordenEmpaquetado($intIdMaterial, $intIdProceso, $intIdEtapa, $intIdFase, $intIdSolucion, $intIdodpe, $strDepartamento, $strProvincia, $strDistrito, $strConsulta, $intIdValidacion);
-
                 } else {
-
                     $requestOrden = $this->model->ordenEmpaquetadoEI($intIdMaterial, $intIdProceso, $intIdEtapa, $intIdFase, $intIdSolucion, $intIdodpe, $strDepartamento, $strProvincia, $strDistrito, $strConsulta, $intIdValidacion);
                     // dep($requestOrden); exit;
                 }
@@ -277,9 +276,7 @@ class Control_cedula extends Controllers
                         "msg" => "Orden Empaquetado",
                         "data" => $requestOrden,
                     ];
-
                 } else {
-
                     $arrResponse = [
                         "status" => false,
                         "title" => "Control de Cedulas",
@@ -292,7 +289,23 @@ class Control_cedula extends Controllers
         echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
         die();
     }
+    public function ingresarMesa(){
+        $intIdProceso = intval(strClean($_POST['idProceso']));
+        $intIdSolucion = intval(strClean($_POST['idSolucion']));
+        $intIdodpe = intval(strClean($_POST['idOdpe']));
+        $intDepartamento = strClean($_POST['idDepartamento']);
+        $intProvincia = strClean($_POST['idProvincia']);
+        $intDistrito = strClean($_POST['idDistrito']);
+        $idConsulta = strClean($_POST['idConsulta']);
+        $idSobre = strClean($_POST['idSobre']);
+        $intSufragio = strClean($_POST['idSufragio']);
+        $idDocumento = strClean($_POST['idDocumento']);
+        $codMesa = strClean($_POST['codMesa']);
 
+        $requestProyecto= $this->model->insertRecepcionDocumentos(
+            $intIdProceso, $intIdSolucion, $intIdodpe, $intDepartamento, $intProvincia,
+            $intDistrito, $idConsulta, $idSobre,$intSufragio, $idDocumento, $codMesa);
+    }
     public function validarMesa()
     {
         // dep($_POST); exit;
@@ -348,7 +361,6 @@ class Control_cedula extends Controllers
                     "NroMesa" => $strMesa
                 ];
             } else {
-
                 if (strlen($preUbigeo) != strlen($arrData['PREF_UBIGEO']) || $preUbigeo != $arrData['PREF_UBIGEO']) {
                     //if($strUbigeo != $UbigeoUnico ){
                     $arrResponse = [
@@ -435,19 +447,6 @@ class Control_cedula extends Controllers
                                         }
                                     } else {
 
-                                        /*$requestValidarUbig	= $this->model->validarUbigeoExiste($intIdProceso, $strCUbigeo, $intValorE);
-
-                                        if($requestValidarUbig == 0)
-                                        {
-                                            $arrResponse = 	[
-                                                                "status"	=> false,
-                                                                "title"		=> "Control de Cedulas",
-                                                                "msg" 		=> "Numero de Ubigeo No existe",
-                                                                "valor" 	=> 0,
-                                                                "NroMesa" 	=> $strMesa
-                                                            ];
-
-                                        }else{*/
                                         $requestValidarMesa = $this->model->validarMesaExiste($intIdProceso, $strMesa);
 
                                         if ($requestValidarMesa == 0) {
@@ -473,8 +472,6 @@ class Control_cedula extends Controllers
                                                     "NroMesa" => $strMesa
                                                 ];
                                             } else {
-
-
                                                 $requestValidarOdpe = $this->model->validarMesaOdpe($intIdProceso, $intIdodpe, $strMesa);
 
                                                 if ($requestValidarOdpe == 0) {
@@ -485,10 +482,7 @@ class Control_cedula extends Controllers
                                                         "valor" => 0,
                                                         "NroMesa" => $strMesa
                                                     ];
-
-
                                                 } else {
-
                                                     if ($intIdEleccion == 2) {
 
                                                         $requestValidarAgrupacion = $this->model->validarMesaAgrupacion($intIdProceso, $intIdAgrupacion, $strMesa);
@@ -504,35 +498,7 @@ class Control_cedula extends Controllers
                                                             echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
                                                             return false;
                                                         }
-
                                                     }
-
-                                                    /*$requestValidarDepart	= $this->model->validarMesaDepart($intIdProceso, $strDepartamento, $strMesa);
-
-                                                    if($requestValidarDepart == 0)
-                                                    {
-                                                        $arrResponse = 	[
-                                                                            "status"	=> false,
-                                                                            "title"		=> "Control de Cedulas",
-                                                                            "msg" 		=> "Numero de Mesa no pertenece al Departamento seleccionado",
-                                                                            "valor" 	=> 0,
-                                                                            "NroMesa" 	=> $strMesa
-                                                                        ];
-                                                    }else{
-
-                                                        $requestValidarProv	= $this->model->validarMesaProv($intIdProceso, $strDepartamento, $strProvincia, $strMesa);
-
-                                                        if($requestValidarProv == 0)
-                                                        {
-                                                            $arrResponse = 	[
-                                                                                "status"	=> false,
-                                                                                "title"		=> "Control de Cedulas",
-                                                                                "msg" 		=> "Numero de Mesa no pertenece a la Provinecia seleccionada",
-                                                                                "valor" 	=> 0,
-                                                                                "NroMesa" 	=> $strMesa
-                                                                            ];
-                                                        }else{*/
-
                                                     $requestValidarDist = $this->model->validarMesaDist($intIdProceso, $strDepartamento, $strProvincia, $strDistrito, $strMesa);
 
                                                     if ($requestValidarDist == 0) {
@@ -544,11 +510,7 @@ class Control_cedula extends Controllers
                                                             "NroMesa" => $strMesa
                                                         ];
                                                     } else {
-
-
                                                         $requestValidarElect = $this->model->validarMesaElect($intIdProceso, $strElectores, $strMesa);
-
-
                                                         if ($requestValidarElect == 0) {
                                                             $arrResponse = [
                                                                 "status" => false,
@@ -559,27 +521,6 @@ class Control_cedula extends Controllers
                                                             ];
                                                         } else {
 
-                                                            /*if($intIdEleccion == 1){
-                                                                $strCUbigeoMU = (substr($_POST["cboubigeo"],0,2) == 14 && substr($_POST["cboubigeo"],2,2) == 01 ) ? substr($_POST["cboubigeo"],0,4) : substr($_POST["cboubigeo"],0,2);
-                                                                $intValorMU   = (substr($strCUbigeo,0,2) == 14 && substr($_POST["cboubigeo"],2,2) == 01 ) ? 1 : 2;
-                                                            }else{
-                                                                $strCUbigeoMU = $_POST["cboubigeo"];
-                                                            }
-
-                                                            $requestValidarUbigeo	= $this->model->validarMesaUbigeo($intIdProceso, $strCUbigeoMU, $strMesa, $intValorMU );
-                                                            //echo $requestValidarUbigeo.' '.$intValorMU.'-----'.$strCUbigeoMU; exit;
-
-                                                            if($requestValidarUbigeo == 0)
-                                                            {
-                                                                $arrResponse = 	[
-                                                                                    "status"	=> false,
-                                                                                    "title"		=> "Control de Cedulas",
-                                                                                    "msg" 		=> "Numero de Ubigeo no corresponde a la Mesa",
-                                                                                    "valor" 	=> 0,
-                                                                                    "NroMesa" 	=> $strMesa
-                                                                                ];
-                                                            }else{*/
-
                                                             $requestValidarIncid = $this->model->IncidenciaExiste($intIdMaterial, $intIdProceso, $intIdEtapa, $strMesa, $strConsulta);
 
                                                             if (!empty($requestValidarIncid)) {
@@ -589,10 +530,8 @@ class Control_cedula extends Controllers
                                                                     "msg" => "El Paquete de Cedulas presenta una Incidencia en la Etapa de " . $strEtapa,
                                                                     "valor" => 2,
                                                                     "NroMesa" => $strMesa
-
                                                                 ];
                                                             } else {
-
                                                                 if ($intIdEtapa != 3) {
 
                                                                     if ($intIdEtapa == 2) {
@@ -633,7 +572,6 @@ class Control_cedula extends Controllers
                                                                     $requestMesaControl = $this->model->MesaExisteControl($intIdMaterial, $intIdProceso, $intIdEtapa, $strMesa, $intIdSolucion, $strConsulta, $validacionExiste, $strCUbigeo);
                                                                     //echo $requestMesaControl; exit;
                                                                     if (!empty($requestMesaControl)) {
-
                                                                         $arrResponse = [
                                                                             "status" => false,
                                                                             "title" => "Control de Cedulas",
@@ -641,8 +579,6 @@ class Control_cedula extends Controllers
                                                                             "valor" => 0,
                                                                             "NroMesa" => $strMesa
                                                                         ];
-
-
                                                                     } else {
                                                                         // echo 'insert';exit;
                                                                         if ($intIdValidacion == 1) {
@@ -650,11 +586,8 @@ class Control_cedula extends Controllers
 
                                                                         } else {
                                                                             $requestCedula = $this->model->updateCedula($intIdMaterial, $intIdProceso, $intIdEtapa, $intIdSolucion, $intIdodpe, $strMesa, $strConsulta, $intIdValidacion, $strCUbigeo);
-
                                                                         }
-
                                                                         if ($requestCedula > 0) {
-
                                                                             if ($intIdValidacion == 1) {
                                                                                 $arrResponse = [
                                                                                     "status" => true,
@@ -709,7 +642,6 @@ class Control_cedula extends Controllers
                                                                                 "NroMesa" => $strMesa
                                                                             ];
                                                                         } else {
-
                                                                             if ($intIdEleccion == 1) {
                                                                                 $requestOrdenEmp = $this->model->ordenEmpaquetado($intIdMaterial, $intIdProceso, $intIdEtapa, $intIdFase, $intIdSolucion, $intIdodpe, $strDepartamento, $strProvincia, $strDistrito, $strConsulta, $intIdValidacion);
                                                                             } else {
@@ -729,9 +661,7 @@ class Control_cedula extends Controllers
                                                                                         "NroMesa" => $strMesa
                                                                                     ];
                                                                                 }
-
                                                                             } else {
-
                                                                                 $arrResponse = [
                                                                                     "status" => false,
                                                                                     "title" => "Control de Cedulas",
@@ -739,36 +669,17 @@ class Control_cedula extends Controllers
                                                                                     "valor" => 0,
                                                                                     "NroMesa" => $strMesa
                                                                                 ];
-
-
                                                                             }
-
                                                                         }
-
                                                                     }
-
                                                                 }
-
                                                             }
-
-                                                            //}
-
                                                         }
-
                                                     }
-
-                                                    /*	}
-
-                                                    }*/
-
                                                 }
-
                                             }
-
                                         }
-                                        // }
                                     }
-
                                 }
                             }
                         }
@@ -776,7 +687,6 @@ class Control_cedula extends Controllers
                 }
             }
         }
-
         echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
         die();
     }

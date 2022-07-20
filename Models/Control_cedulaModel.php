@@ -16,13 +16,17 @@ class Control_cedulaModel extends Mysql
     private $intIdDepartamento;
     private $intIdProvincia;
     private $intIdDistrito;
+
     private $strDepartamento;
     private $strProvincia;
     private $strDistrito;
+
     private $strConsulta;
     private $intIdUsusario;
     private $intIdSobre;
-    private $idConsulta;
+    private $intIdConsulta;
+    private $strCodMesa;
+    private $intIdDocumento;
 
     private $conOracle;
 
@@ -172,34 +176,66 @@ class Control_cedulaModel extends Mysql
         return $request;
     }
 
-    public function selectinpBarra(int $idMaterial, int $idprocesos, int $idSolucion, int $idOdpe, int $idAgrupacion, string $Departamento, string $Provincia, string $Distrito, string $consulta, int $idEleccion)
+    public function selectinpBarra(int $idprocesos, int $idSolucion, int $idOdpe, int $idDepartamento, int $idProvincia, int $idDistrito, string $idConsulta, int $idSobre,int $idDocumento, int $idEleccion)
     {
-//        Revisar el Query de aqui!
-        $this->intIdMaterial = $idMaterial;
         $this->intIdProceso = $idprocesos;
         $this->intIdSolucion = $idSolucion;
         $this->intIdOdpe = $idOdpe;
-        $this->intIdAgrupacion = $idAgrupacion;
-        $this->strDepartamento = $Departamento;
-        $this->strProvincia = $Provincia;
-        $this->strDistrito = $Distrito;
-        $this->strConsulta = $consulta;
+        $this->intIdDepartamento = $idDepartamento;
+        $this->intIdProvincia = $idProvincia;
+        $this->intIdDistrito = $idDistrito;
+        $this->intIdConsulta = $idConsulta;
+        $this->intIdSobre = $idSobre;
+        $this->intIdDocumento = $idDocumento;
         $this->intIdEleccion = $idEleccion;
 
-        $query = "SELECT DISTINCT cp.suf_ubigeo, cp.tipo_cedula, cp.id_barra, cp.dig_ubigeo, cp.pref_ubigeo, cp.dig_rotulo, cp.pref_rotulo, cp.suf_rotulo, cp.id_consulta
-										FROM mesa_sufragio m
-										INNER JOIN UBIGEO u ON m.ID_UBIGEO = u.ID_UBIGEO
-										INNER JOIN cedula_proceso cp ON m.id_consulta = cp.id_consulta AND  cp.id_material = $this->intIdMaterial AND cp.id_proceso = $this->intIdProceso
-										WHERE m.id_proceso = $this->intIdProceso AND m.id_solucion = $this->intIdSolucion AND m.id_odpe = $this->intIdOdpe AND  SUBSTR(u.ubigeo,1,2) = $this->strDepartamento AND  SUBSTR(u.ubigeo,3,2) = $this->strProvincia AND SUBSTR(u.ubigeo,5,2) = $this->strDistrito 
-					                    AND  
-					                    (CASE 	WHEN 1=$this->intIdEleccion AND cp.suf_rotulo = '{$this->strConsulta}' THEN 1
-					                            WHEN 2=$this->intIdEleccion AND cp.suf_rotulo = '{$this->strConsulta}' AND m.id_agrupacion = $this->intIdAgrupacion THEN 1
-					                            ELSE 0 END) = 1
-										ORDER BY cp.id_barra DESC";
+        $query = "SELECT cod_documento, cant_digito FROM documentos WHERE id= $this->intIdDocumento;";
         $request = $this->select($query);
         return $request;
+    }
+
+    public function insertRecepcionDocumentos(
+        int $idprocesos, int $idSolucion, int $idOdpe, int $idDepartamento, int $idProvincia, int $idDistrito,
+        int $idConsulta, int $idSobre, int $idSufragio,int $idDocumento, string $codMesa)
+    {
+        $this->intIdProceso = $idprocesos;
+        $this->intIdSolucion = $idSolucion;
+        $this->intIdOdpe = $idOdpe;
+        $this->intIdDepartamento = $idDepartamento;
+        $this->intIdProvincia = $idProvincia;
+        $this->intIdDistrito = $idDistrito;
+        $this->intIdConsulta = $idConsulta;
+        $this->intIdSobre = $idSobre;
+        $this->intIdSufragio = $idSufragio;
+        $this->intIdDocumento = $idDocumento;
+        $this->strNroMesa = $codMesa;
+
+        /* Revisar el la mesa */
+        $queryIdMesa = "SELECT id FROM mesas WHERE nro_mesa = SUBSTRING('{$this->strNroMesa}', 1, 6);";
+        $requestIdMesa = (int)$this->select($queryIdMesa);
+
+        /* Revisar el ubigeo */
+        $queryIdUbigeo = "SELECT id FROM ubigeos WHERE id_departamento=$this->intIdDepartamento 
+                         AND id_provincia=$this->intIdProvincia AND id_distrito=$this->intIdDistrito;";
+        $requestIdUbigeo = (int)$this->select($queryIdUbigeo);
+
+//        if(empty($requestIdMesa)){
+            $query = "INSERT INTO recepcion_documentos (
+                                        id_proceso, id_solucion, id_odpe, id_ubigeo, id_consulta, id_sobre,
+                                        id_sufragio, id_documento, id_mesa, created_at, updated_at) 
+                                        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, NOW(), NOW())";
+            $arrData = array(
+                $this->intIdProceso ,$this->intIdSolucion,$this->intIdOdpe, $requestIdUbigeo, $this->intIdConsulta,
+                $this->intIdSobre, $this->intIdSufragio, $this->intIdDocumento, $requestIdMesa);
+            $requestInsert = $this->insert($query, $arrData);
+            return $requestInsert;
+
+//        }else{
+//            return  'exist';
+//        }
 
     }
+
 
     public function validarUbigeoExiste(int $idprocesos, string $nroUbigeo, int $idValor)
     {
@@ -535,7 +571,6 @@ class Control_cedulaModel extends Mysql
         return $request;
 
     }
-
 
     public function insertCedula(int $idMaterial, int $idprocesos, int $idEtapa, int $idSoltec, int $idOdpe, string $nroMesa, string $consulta, int $validacion, int $idUsuario, string $nroUbigeo)
     {

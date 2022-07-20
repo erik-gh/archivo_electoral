@@ -109,7 +109,7 @@
                                                     <label class="col-sm-4 control-label" for="form-control-1">DOCUMENTO :</label>
                                                     <div class="col-sm-8 z-1">
                                                         <select class="form-control" name="cbodocumentoRecepcion" id="cbodocumentoRecepcion" data-size="6"
-                                                                data-dropup-auto="false" data-live-search="true" onChange="selTipoCedula('Recepcion');" required>
+                                                                data-dropup-auto="false" data-live-search="true" onChange="selecMesa('Recepcion');" required>
                                                             <option value="">[ SELECCIONE UN DOCUMENTO ]</option>
                                                         </select>
                                                     </div>
@@ -117,9 +117,9 @@
                                                 <div class="form-group form-group-sm">
                                                     <label class="col-sm-4 control-label" for="form-control-1">N. MESA :</label>
                                                     <div class="col-sm-8">
-                                                        <input id="rotuloRecepcion" name="rotuloRecepcion" class="form-control" type="text"
+                                                        <input id="mesaRecepcion" name="mesaRecepcion" class="form-control" type="text"
                                                                placeholder="C&oacute;digo de Barras numero de Mesa" style="text-transform: uppercase;" disabled
-                                                               onKeyPress="inpRotulo('Recepcion');">
+                                                               onKeyPress="inpMesa('Recepcion');">
                                                     </div>
                                                 </div>
                                                 <input type="hidden" id="idConsultaRecepcion">

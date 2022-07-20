@@ -369,6 +369,7 @@ function cargaCbo(etapa) {
 function resetCbo(etapa) {
     $('#sign_add' + etapa + 'Cedula')[0].reset();
     $('#sign_add' + etapa + 'Cedula').validate().resetForm();
+
     $('#cbofase' + etapa).selectpicker('destroy');
     $('#cbofase' + etapa).html('<option value="">[ SELECCIONE UNA FASE ]</option><option value="1">SUFRAGIO</option>').selectpicker('refresh');
     $('#cbosoltec' + etapa).selectpicker('destroy');
@@ -389,8 +390,8 @@ function resetCbo(etapa) {
 }
 
 function resetInpbarra(etapa) {
-    $("#ubigeo" + etapa).prop('disabled', true).val("");
-    $("#rotulo" + etapa).prop('disabled', true).val("");
+    $("#mesa" + etapa).prop('disabled', true).val("");
+    // $("#rotulo" + etapa).prop('disabled', true).val("");
     $("#txtValidacion" + etapa).val('1');
     $('#btnIncid' + etapa).hide();
     $('#btnResetInput' + etapa).hide();
@@ -399,30 +400,30 @@ function resetInpbarra(etapa) {
 }
 
 function habilInpbarra(etapa) {
-    $("#ubigeo" + etapa).prop('disabled', false).val("").focus();
-    $("#rotulo" + etapa).prop('disabled', false).val("");
+    $("#mesa" + etapa).prop('disabled', false).val("").focus();
+    // $("#rotulo" + etapa).prop('disabled', false).val("");
     $("#txtValidacion" + etapa).val('1');
 }
 
 function inhabilitaEscbarra(etapa) {
-    $("#ubigeo" + etapa).prop('disabled', true);
-    $("#rotulo" + etapa).prop('disabled', true);
+    $("#mesa" + etapa).prop('disabled', true);
+    // $("#rotulo" + etapa).prop('disabled', true);
     $('#btnIncid' + etapa).removeAttr('style');
     $('#btnResetInput' + etapa).removeAttr('style');
     //$('#add'+etapa+'Cedula').removeAttr('style');
 }
 
 function habilBtnValidar(etapa) {
-    $("#ubigeo" + etapa).prop('disabled', true);
-    $("#rotulo" + etapa).prop('disabled', true);
+    $("#mesa" + etapa).prop('disabled', true);
+    // $("#rotulo" + etapa).prop('disabled', true);
     $('#btnIncid' + etapa).removeAttr('style');
     $('#add' + etapa + 'Cedula').removeAttr('style');
     $('#btnResetInput' + etapa).removeAttr('style');
 }
 
 function resetInput(etapa) {
-    $("#ubigeo" + etapa).prop('disabled', false).val("").focus();
-    $("#rotulo" + etapa).prop('disabled', false).val("");
+    $("#mesa" + etapa).prop('disabled', false).val("").focus();
+    // $("#rotulo" + etapa).prop('disabled', false).val("");
     $("#txtValidacion" + etapa).val('1');
     $('#btnIncid' + etapa).css("display", "none");
     $('#btnResetInput' + etapa).css("display", "none");
@@ -500,6 +501,7 @@ function cargaAvanceAgrupacion(etapa) {
         var nomEtapa = 'RECEPCIÖN';
     } else if ($("#txtIdEtapa" + etapa).val() == 2) {
         var nomEtapa = 'CONTROL DE CALIDAD';
+        var nomEtapa = 'CONTROL DE CALIDAD';
     } else {
         var nomEtapa = 'EMPAQUETADO';
     }
@@ -567,7 +569,7 @@ function verTotalAgrup(idAgrupacion, agrupacion, etapa, valor) {
 }
 
 /* *** CARGA COD BARRAS ****** */
-function selTipoCedula(etapa) {
+function selecMesa(etapa) {
     console.log('Se ingreso aqui!!!')
     if ($('#cboconsulta' + etapa).val() != "") {
         habilInpbarra(etapa);
@@ -580,18 +582,16 @@ function selTipoCedula(etapa) {
         // var eleccionN = eleccion;
 
         var requestConsulta = new Object();
-        // requestConsulta["idMaterial"] = $("#idMaterial").val();
-        // requestConsulta["idAgrupacion"] = $("#cboagrupacion" + etapa).val();
-
         requestConsulta["idProceso"] = $("#cboProceso").val();
         requestConsulta["idSolucion"] = $("#cbosoltec" + etapa).val();
         requestConsulta["idOdpe"] = $("#cboodpe" + etapa).val();
         requestConsulta["idDepartamento"] = $("#cbodepart" + etapa).val();
         requestConsulta["idProvincia"] = $("#cboprov" + etapa).val();
         requestConsulta["idDistrito"] = $("#cbodist" + etapa).val();
-        requestConsulta["id_sobre"] = $("#cboconsulta" + etapa).val();
-        requestConsulta["id_sufragio"] = $("#cboconsulta" + etapa).val();
-        requestConsulta["id_documento"] = $("#cboconsulta" + etapa).val();
+        requestConsulta["idConsulta"] = $("#cboconsulta" + etapa).val();
+        requestConsulta["idSobre"] = $("#cbosobre" + etapa).val();
+        requestConsulta["idSufragio"] = $("#cbosufragio" + etapa).val();
+        requestConsulta["idDocumento"] = $("#cbodocumento" + etapa).val();
         requestConsulta["idEleccion"] = eleccionN;
 
         $.ajax({
@@ -601,13 +601,12 @@ function selTipoCedula(etapa) {
             data: requestConsulta,
             cache: false,
             success: function (data, textStatus, jqXHR) {
-                // console.log(data);
+                console.log(data);
                 if (jqXHR.status == 200) {
-                    document.getElementById('ubigeo' + etapa).maxLength = data.data.DIG_UBIGEO;
-                    document.getElementById('rotulo' + etapa).maxLength = data.data.DIG_ROTULO;
-                    if (etapaControl == 3) {
+                    document.getElementById('mesa' + etapa).maxLength = data.data.cant_digito;
+/*                    if (etapaControl == 3) {
                         ordenEmpaquetado(etapa);
-                    }
+                    }*/
                 }
             },
         });
@@ -694,61 +693,38 @@ function inpUbigeo(etapa) {
 }
 
 /*INPUT ROTULO*/
-function inpRotulo(etapa) {
+
+function inpMesa(etapa) {
+    console.log('Ingreso de mesa !!!');
     //var validar = $('#addControlCedula').click;
     if (event.keyCode == 13 || event.which == 13) {
 
-        var departamento = $("#cbodepart" + etapa).val();
-        var provincia = $("#cboprov" + etapa).val();
-        var distrito = $("#cbodist" + etapa).val();
-
-        var cboubigeo = departamento + provincia + distrito;
-        var ubigeo = $("#ubigeo" + etapa).val().toUpperCase().trim();
-        var rotulo = $("#rotulo" + etapa).val().toUpperCase().trim();
         var validacion = $("#txtValidacion" + etapa).val();
-        var consulta = (eleccion == 2 && etapa == 'Empaque') ? $("#idConsulta" + etapa).val() : $("#cboconsulta" + etapa).val();
-        var eleccionN = (eleccion == 1 || (eleccion == 2 && etapa == 'Empaque')) ? 1 : eleccion;
-        var eleccionV = eleccion;
+        // var eleccionN = (eleccion == 1 || (eleccion == 2 && etapa == 'Empaque')) ? 1 : eleccion;
+        // var eleccionV = eleccion;
 
-        var nomdepartamento = $('#cbodepart' + etapa + ' option:selected').text();
-        var nomprovincia = $('#cboprov' + etapa + ' option:selected').text();
-        var nomdistrito = $('#cbodist' + etapa + ' option:selected').text();
-        var etapaControl = $('#txtIdEtapa' + etapa).val();
+        // var etapaControl = $('#txtIdEtapa' + etapa).val();
 
-        var requestCedula = new Object();
-        requestCedula["idMaterial"] = $("#idMaterial").val();
-        requestCedula["idProceso"] = $("#cboProceso").val();
-        requestCedula["idEtapa"] = $("#txtIdEtapa" + etapa).val();
-        requestCedula["idFase"] = $("#cbofase" + etapa).val();
-        requestCedula["idSolucion"] = $("#cbosoltec" + etapa).val();
-        requestCedula["idOdpe"] = $("#cboodpe" + etapa).val();
-        requestCedula["idAgrupacion"] = $("#cboagrupacion" + etapa).val();
-        requestCedula["idDepartamento"] = $("#cbodepart" + etapa).val();
-        requestCedula["idProvincia"] = $("#cboprov" + etapa).val();
-        requestCedula["idDistrito"] = $("#cbodist" + etapa).val();
-        requestCedula["consulta"] = consulta;
-        requestCedula["cboubigeo"] = cboubigeo;
-        requestCedula["ubigeo"] = ubigeo;
-        requestCedula["rotulo"] = rotulo;
-        requestCedula["validacion"] = validacion;
-        requestCedula["idEleccion"] = eleccionN;
-        requestCedula["idEleccionv"] = eleccionV;
-        requestCedula["nomdepartamento"] = nomdepartamento;
-        requestCedula["nomprovincia"] = nomprovincia;
-        requestCedula["nomdistrito"] = nomdistrito;
-        requestCedula["etapa"] = etapa;
+        var requestDocMesa = new Object();
+        requestDocMesa["idProceso"] = $("#cboProceso").val();
+        requestDocMesa["idSolucion"] = $("#cbosoltec" + etapa).val();
+        requestDocMesa["idOdpe"] = $("#cboodpe" + etapa).val();
+        requestDocMesa["idDepartamento"] = $("#cbodepart" + etapa).val();
+        requestDocMesa["idProvincia"] = $("#cboprov" + etapa).val();
+        requestDocMesa["idDistrito"] = $("#cbodist" + etapa).val();
+        requestDocMesa["idConsulta"] = $("#cboconsulta" + etapa).val();
+        requestDocMesa["idSobre"] = $("#cbosobre" + etapa).val();
+        requestDocMesa["idSufragio"] = $("#cbosufragio" + etapa).val();
+        requestDocMesa["idDocumento"] = $("#cbodocumento" + etapa).val();
+        requestDocMesa["codMesa"] = $("#mesa" + etapa).val();
 
-        var mesa = rotulo.substr(1, 6);
-        $('#txtMesaIncidencia').val(mesa).prop('disabled', true);
-
+        requestDocMesa["validacion"] = validacion;
         $.ajax({
-
-            url: base_url + '/Control_cedula/validarMesa',
+            url: base_url + '/Control_cedula/ingresarMesa',
             type: "POST",
             dataType: 'json',
-            data: requestCedula,
+            data: requestDocMesa,
             cache: false,
-
             success: function (data, textStatus, jqXHR) {
                 // console.log(data);
                 if (jqXHR.status == 200) {
@@ -774,17 +750,9 @@ function inpRotulo(etapa) {
 
                         } else {
                             habilInpbarra(etapa);
-
                         }
                         return false;
-
                     } else {
-
-                        /*swal({  title:  data.title,
-                                  text:   data.msg,
-                                  type:   "success",
-                                  timer:  4000
-                                });*/
                         if (data.valor == 3) {
                             $('#msj_' + etapa).removeClass('alert alert-outline-danger').removeClass('alert alert-outline-warning').addClass('alert alert-outline-success').html('<span class="alert-icon"><i class="zmdi zmdi-check-circle"></i></span><strong>Correcto!</strong> El Paquete de Cedulas ha sido Recepcionado').show(10).delay(4000).hide(10);
                             $('#btnIncid' + etapa).css("display", "none");
@@ -802,13 +770,10 @@ function inpRotulo(etapa) {
                                     //$('#txtcargo').focus();
                                     $('#archivo').trigger('click');
                                 }, 500)
-
-
                             } else {
                                 ordenEmpaquetado(etapa);
                                 habilInpbarra(etapa);
                             }
-
                         } else {
                             $('#msj_' + etapa).removeClass('alert alert-outline-danger').removeClass('alert alert-outline-warning').addClass('alert alert-outline-success').html('<span class="alert-icon"><i class="zmdi zmdi-check-circle"></i></span><strong>Correcto!</strong> El Paquete de Cedulas ha sido Validado').show(10).delay(4000).hide(10);
                             resetInput(etapa);
@@ -822,16 +787,7 @@ function inpRotulo(etapa) {
                 }
             },
         });
-        // }
-
-        /*   }
-
-         },
-
-       });*/
-
     }
-
 }
 
 function inpRotuloValidar(etapa) {
@@ -839,7 +795,7 @@ function inpRotuloValidar(etapa) {
     var departamento = $("#cbodepart" + etapa).val();
     var provincia = $("#cboprov" + etapa).val();
     var distrito = $("#cbodist" + etapa).val();
-    var rotulo = $("#rotulo" + etapa).val().toUpperCase().trim();
+    // var rotulo = $("#rotulo" + etapa).val().toUpperCase().trim();
 
     var cboubigeo = departamento + provincia + distrito;
     var validacion = $("#txtValidacion" + etapa).val();
@@ -1185,7 +1141,7 @@ function addIncidencia(etapa) { //alert(etapa)
                                     $('#btnResetInput' + etapa).css("display", "none");
                                     habilInpbarra(etapa);
                                     $('#modal_incidencia').modal('hide');
-                                    $("#ubigeo" + etapa).focus();
+                                    $("#mesa" + etapa).focus();
                                 }, 10)
                             });
                         $('.confirm').removeClass('btn btn-danger').removeClass('btn btn-warning').addClass('btn btn-success');
