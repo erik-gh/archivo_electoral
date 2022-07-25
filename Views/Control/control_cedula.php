@@ -43,9 +43,9 @@
                                                         <select class="form-control" name="cbosoltecRecepcion" id="cbosoltecRecepcion" data-dropup-auto="false"
                                                                 data-size="6" data-live-search="true" onChange="cboDepartamento('Recepcion');" required>
                                                             <option value="">[ SELECCIONE UNA SOL. TECN. ]</option>
-<!--                                                            <option value="1">CON</option>-->
-<!--                                                            <option value="2">STAE</option>-->
-<!--                                                            <option value="3">VEP</option>-->
+                                                            <!--                                                            <option value="1">CON</option>-->
+                                                            <!--                                                            <option value="2">STAE</option>-->
+                                                            <!--                                                            <option value="3">VEP</option>-->
                                                         </select>
                                                     </div>
                                                 </div>
@@ -150,18 +150,18 @@
                                     <h4 class="text-center text-info font-12"><strong>AVANCE GENERAL DE RECEPCI&Oacute;N DOCUMENTOS</strong></h4>
                                 </div>
                                 <div class="panel-body">
-                                    <h4 class="">AVANCE GENERAL POR SOLUCION TECNOLOGICA</h4>
+                                    <h4 class="">AVANCE GENERAL POR DOCUMENTOS</h4>
                                     <div class="table-responsive">
                                         <div class="clearfix">
                                             <div class="pull-right">
-<!--                                                Esto se habilitara o se quitara-->
-                                                <!--<a class="btn btn-blue btn-sm" data-dismiss="modal" id="updateRecepcion"
+                                                <!-- Esto se habilitara o se quitara -->
+                                                <a class="btn btn-blue btn-sm" data-dismiss="modal" id="updateRecepcion"
                                                    onclick="cargaAvanceFase('Recepcion'); cargaAvanceOdpe('Recepcion')" disabled>
-                                                    <i class="zmdi zmdi-refresh zmdi-hc-fw"></i><span></span></a>-->
+                                                    <i class="zmdi zmdi-refresh zmdi-hc-fw"></i><span></span></a>
                                             </div>
                                         </div>
                                         <div id="tbl_cedulaAvanceFaseRecepcion" class="dataTables_wrapper form-inline" role="grid">
-                                            FASE: <span id="nomFaseRecepcion"></span><br><br>
+                                            DOCUMENTO : <span id="nomFaseRecepcion"></span><br><br>
                                             <table id="tbl_cedulaRecepcionAvanceFase" class="display table table-bordered table-hover" cellspacing="0" width="100%">
                                                 <thead class="text-center font-table">
                                                 <tr class="text-primary">
@@ -183,7 +183,31 @@
                                                     <td>0 %</td>
                                                 </tr>
                                                 <tr class="text-center font-table">
-                                                    <td>PAQUETES</td>
+                                                    <td>ACTAS</td>
+                                                    <td>0</td>
+                                                    <td>0</td>
+                                                    <td>0</td>
+                                                    <td>0 %</td>
+                                                    <td>0 %</td>
+                                                </tr>
+                                                <tr class="text-center font-table">
+                                                    <td>HCAMM</td>
+                                                    <td>0</td>
+                                                    <td>0</td>
+                                                    <td>0</td>
+                                                    <td>0 %</td>
+                                                    <td>0 %</td>
+                                                </tr>
+                                                <tr class="text-center font-table">
+                                                    <td>PUESTA CERO</td>
+                                                    <td>0</td>
+                                                    <td>0</td>
+                                                    <td>0</td>
+                                                    <td>0 %</td>
+                                                    <td>0 %</td>
+                                                </tr>
+                                                <tr class="text-center font-table">
+                                                    <td>LISTA ELECTORES <br/> Folios </td>
                                                     <td>0</td>
                                                     <td>0</td>
                                                     <td>0</td>
@@ -208,7 +232,7 @@
                                                 </span>
                                             </div>
                                         </div>
-                                        <div id="tbl_cedulaAvanceOdpeRecepcion" class="dataTables_wrapper form-inline" role="grid">ODPE: <span id="nomOdpeRecepcion"></span><br><br>
+                                        <div id="tbl_cedulaAvanceOdpeRecepcion" class="dataTables_wrapper form-inline" role="grid">SOLUCION : <span id="nomOdpeRecepcion"></span><br><br>
                                             <table id="tbl_cedulaRecepcionAvanceOdpe" class="display table table-bordered table-hover" cellspacing="0" width="100%">
                                                 <thead class="text-center font-table">
                                                 <tr class="text-primary">

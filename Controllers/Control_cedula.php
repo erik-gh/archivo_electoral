@@ -842,23 +842,20 @@ class Control_cedula extends Controllers
         die();
     }
 
-    public function getAvanceFase()
+    public function getAvanceDocumentos()
     {
         // dep($_POST); exit;
         if ($_POST) {
-            $intIdFase = intval(strClean($_POST['idFase']));
-            $intIdMaterial = intval(strClean($_POST['idMaterial']));
-            $intIdProceso = ($intIdFase != '') ? intval(strClean($_POST['idProceso'])) : 0;
-            $intIdEtapa = intval(strClean($_POST['idEtapa']));
-            $intIdValidacion = ($intIdEtapa == 2) ? 2 : 1;
-            $strFase = ($intIdFase != '') ? strClean($_POST['nomfase']) : '';
+//            $intIdFase = intval(strClean($_POST['idFase']));
+//            $intIdMaterial = intval(strClean($_POST['idMaterial']));
+            $intIdProceso = intval(strClean($_POST['idProceso']));
+//            $intIdEtapa = intval(strClean($_POST['idEtapa']));
+//            $intIdValidacion = ($intIdEtapa == 2) ? 2 : 1;
+            $strFase = strClean($_POST['nomfase']);
 
-            $requestFase = $this->model->avanceFase($intIdMaterial, $intIdProceso, $intIdEtapa, $intIdFase, $intIdValidacion);
-
+            $requestFase = $this->model->avanceDocumentos($intIdProceso);
             $data = '';
-
             foreach ($requestFase as $a) {
-
                 $data .= '<tr  class="text-center font-table">
 	                					<td>' . $a['TIPO'] . '</td>
 	                					<td>' . $a['TOTAL'] . '</td>
@@ -868,7 +865,6 @@ class Control_cedula extends Controllers
 	                					<td>' . $a['PORC_FALTANTES'] . ' %</td>
 	                				</tr>';
             }
-
             $arrResponse = [
                 "status" => true,
                 "title" => "Control de Cedulas!",
@@ -885,15 +881,13 @@ class Control_cedula extends Controllers
     {
         //dep($_POST); exit;
         if ($_POST) {
-            $intIdFase = intval(strClean($_POST['idFase']));
-            $intIdMaterial = intval(strClean($_POST['idMaterial']));
-            $intIdProceso = ($intIdFase != '') ? intval(strClean($_POST['idProceso'])) : 0;
-            $intIdEtapa = intval(strClean($_POST['idEtapa']));
+            $intIdProceso = intval(strClean($_POST['idProceso']));
+//            $intIdEtapa = intval(strClean($_POST['idEtapa']));
             $intIdodpe = intval(strClean($_POST['idOdpe']));
-            $intIdValidacion = ($intIdEtapa == 2) ? 2 : 1;
+//            $intIdValidacion = ($intIdEtapa == 2) ? 2 : 1;
             $strOdpe = ($intIdodpe != '') ? strClean($_POST['nomOdpe']) : '';
 
-            $requestOdpe = $this->model->avanceOdpe($intIdMaterial, $intIdProceso, $intIdEtapa, $intIdFase, $intIdodpe, $intIdValidacion);
+            $requestOdpe = $this->model->avanceOdpe($intIdProceso, $intIdodpe);
             //dep($requestOdpe); exit;
             $data = '';
 

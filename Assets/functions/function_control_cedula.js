@@ -345,10 +345,11 @@ function Validador(correo) {
 
 /*RESET DE COMBO E IMPUT*/
 function cargaCbo(etapa) {
+    console.log('cargaCbo');
     resetCbo(etapa);
     resetInpbarra(etapa);
     cargaAvanceFase(etapa);
-    cargaAvanceOdpe(etapa);
+    // cargaAvanceOdpe(etapa);
 }
 
 function resetCbo(etapa) {
@@ -414,21 +415,21 @@ function resetInput(etapa) {
     $('#btnResetInput' + etapa).css("display", "none");
     $('#add' + etapa + 'Cedula').css("display", "none");
 }
-
 /* FIN RESET*/
 
 /*CARGA AVANCE FASE*/
 function cargaAvanceFase(etapa) {
+    console.log('Entro en el Avance documento');
     var requestAvanceFase = new Object();
     requestAvanceFase["idProceso"] = $("#cboProceso").val();
-    requestAvanceFase["idMaterial"] = $("#idMaterial").val();
-    requestAvanceFase["idEtapa"] = $("#txtIdEtapa" + etapa).val();
-    requestAvanceFase["idFase"] = $("#cbofase" + etapa).val();
+    // requestAvanceFase["idMaterial"] = $("#idMaterial").val();
+    // requestAvanceFase["idEtapa"] = $("#txtIdEtapa" + etapa).val();
+    // requestAvanceFase["idFase"] = $("#cbofase" + etapa).val();
     requestAvanceFase["nomfase"] = $('#cbofase' + etapa + ' option:selected').text();
     requestAvanceFase["validacion"] = $("#txtValidacion" + etapa).val();
 
     $.ajax({
-        url: base_url + '/Control_cedula/getAvanceFase',
+        url: base_url + '/Control_cedula/getAvanceDocumentos',
         type: "POST",
         dataType: 'json',
         data: requestAvanceFase,
@@ -447,9 +448,6 @@ function cargaAvanceOdpe(etapa) {
 
     var requestAvanceOdpe = new Object();
     requestAvanceOdpe["idProceso"] = $("#cboProceso").val();
-    requestAvanceOdpe["idMaterial"] = $("#idMaterial").val();
-    requestAvanceOdpe["idEtapa"] = $("#txtIdEtapa" + etapa).val();
-    requestAvanceOdpe["idFase"] = $("#cbofase" + etapa).val();
     requestAvanceOdpe["idOdpe"] = $("#cboodpe" + etapa).val();
     requestAvanceOdpe["nomOdpe"] = $('#cboodpe' + etapa + ' option:selected').text();
     requestAvanceOdpe["validacion"] = $("#txtValidacion" + etapa).val();

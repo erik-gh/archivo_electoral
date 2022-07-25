@@ -789,66 +789,147 @@ class Control_cedulaModel extends Mysql
 
     }
 
-    public function avanceFase(int $idMaterial, int $idprocesos, int $idEtapa, int $idFase, int $validacion)
+    public function avanceDocumentos(int $idprocesos)
     {
-
-        $this->intIdMaterial = $idMaterial;
         $this->intIdProceso = $idprocesos;
-        $this->intIdEtapa = $idEtapa;
-        $this->intIdFase = $idFase;
-        $this->intIdValidacion = $validacion;
-
-        $query = "	SELECT 'MESAS' AS TIPO, T1.TOTAL, T2. RECIBIDOS, 
-			(T1.TOTAL - T2. RECIBIDOS) AS FALTANTES, 
-			NVL(ROUND(((T2.RECIBIDOS/NULLIF(T1.TOTAL,0))*100),4),0) AS PORC_RECIBIDOS, 
-			NVL(ROUND((100-ROUND(((T2.RECIBIDOS/NULLIF(T1.TOTAL,0))*100),4)),4),0) AS PORC_FALTANTES
-										FROM (	SELECT COUNT(1) AS TOTAL 
-										        FROM MESA_SUFRAGIO
-										        WHERE ID_PROCESO=$this->intIdProceso AND id_fase = $this->intIdFase) T1,    
-										     (	SELECT COUNT(1) AS RECIBIDOS 
-										        FROM (	SELECT ID_SUFRAGIO, COUNT (ID_SUFRAGIO) AS CANTIDAD_ESCANEADOS , CANTIDAD_PAQUETES 
-										                FROM(	SELECT CP.CANTIDAD_PAQUETES, CC.ID_SUFRAGIO 
-										                        FROM  MESA_SUFRAGIO S
-										                  		INNER JOIN  CONSULTA_PROCESO CP ON S.ID_CONSULTA = CP.ID_CONSULTA AND CP.ID_PROCESO=$this->intIdProceso 
-										                  		INNER JOIN  CONSULTA C ON CP.ID_CONSULTA = C.ID_CONSULTA 
-										                   		LEFT JOIN  CONTROL_CALIDAD CC ON CC.ID_SUFRAGIO = S.ID_SUFRAGIO AND CC.ID_PROCESO=$this->intIdProceso 
-										                       	WHERE CC.ID_MATERIAL = $this->intIdMaterial AND CC.ID_ETAPA = $this->intIdEtapa AND CC.VALIDACION=$this->intIdValidacion) AZ
-										                    	GROUP BY ID_SUFRAGIO,CANTIDAD_PAQUETES) 
-										WHERE CANTIDAD_ESCANEADOS = CANTIDAD_PAQUETES) T2 
-
-										UNION ALL
-                            
-                    SELECT 'PAQUETES', T1.TOTAL_PAQUETES, T2.PAQUETES_ESCANEADOS, (T1.TOTAL_PAQUETES - T2. PAQUETES_ESCANEADOS) AS PAQUETES_FALTANTES, 
-                    NVL(ROUND(((T2.PAQUETES_ESCANEADOS/NULLIF(T1.TOTAL_PAQUETES,0))*100),4),0) AS P_RECIBIDOS, NVL(ROUND((100-ROUND(((T2.PAQUETES_ESCANEADOS/NULLIF(T1.TOTAL_PAQUETES,0))*100),4)),4),0) AS P_FALTANTE 
-										FROM (	SELECT NVL(SUM(COUNT(ID_SUFRAGIO)*CP.CANTIDAD_PAQUETES),0) AS TOTAL_PAQUETES 
-												FROM MESA_SUFRAGIO S 
-                        LEFT JOIN CONSULTA_PROCESO CP ON S.ID_CONSULTA = CP.ID_CONSULTA AND CP.ID_PROCESO= $this->intIdProceso 
-												WHERE S.ID_PROCESO= $this->intIdProceso 
-												GROUP BY CP.CANTIDAD_PAQUETES) T1, 
-											(	SELECT COUNT(CC.PAQUETE) AS PAQUETES_ESCANEADOS 
-												FROM MESA_SUFRAGIO S 
-												INNER JOIN CONSULTA_PROCESO CP ON S.ID_CONSULTA = CP.ID_CONSULTA AND CP.ID_PROCESO= $this->intIdProceso 
-												INNER JOIN CONSULTA C ON CP.ID_CONSULTA = C.ID_CONSULTA 
-												LEFT JOIN CONTROL_CALIDAD CC ON CC.ID_SUFRAGIO = S.ID_SUFRAGIO AND CC.ID_PROCESO= $this->intIdProceso 
-												WHERE S.ID_PROCESO= $this->intIdProceso
-												AND CC.ID_MATERIAL = $this->intIdMaterial 
-												AND CC.ID_ETAPA = $this->intIdEtapa AND CC.VALIDACION=$this->intIdValidacion) T2";
-
+        $query = "SELECT 'MESAS'                                                                       AS TIPO,
+       TOTAL,
+       RECIBIDOS,
+       (TOTAL - RECIBIDOS)                                                           AS FALTANTES,
+       IFNULL(ROUND(((RECIBIDOS / NULLIF(TOTAL, 0)) * 100), 4), 0)                   AS PORC_RECIBIDOS,
+       IFNULL(ROUND((100 - ROUND(((RECIBIDOS / NULLIF(TOTAL, 0)) * 100), 4)), 4), 0) AS PORC_FALTANTES
+FROM (
+         SELECT COUNT(*) AS TOTAL, (SELECT COUNT(*) AS cantDoc FROM recepcion_documentos) AS RECIBIDOS
+         FROM (
+                  SELECT m.nro_mesa,
+                         c.consulta,
+                         sb.descripcion AS sobres,
+                         s3.solucion_tecnologica,
+                         d.descripcion  AS documentos
+                  FROM mesas m
+                           INNER JOIN consultas c ON m.id_consulta = c.id
+                           INNER JOIN ubigeo_consultas uc ON m.id_consulta = uc.id -- id_proceso
+                           INNER JOIN consulta_sufragios cs on cs.id_consulta = c.id
+                           INNER JOIN sufragios s2 on cs.id_sufragio = s2.id
+                           INNER JOIN soluciones s on m.id_solucion = s.id
+                           INNER JOIN solucion_documentos sd on sd.id_solucion = s.id
+                           INNER JOIN soluciones s3 on sd.id_solucion = s3.id
+                           INNER JOIN sobres sb on sd.id_sobre = sb.id
+                           INNER JOIN documentos d on sd.id_documento = d.id
+                  WHERE sd.id_sobre IN (1, 2, 3) AND uc.id_proceso = $this->intIdProceso
+                  UNION ALL
+                  SELECT DISTINCT m.nro_mesa,
+                                  c.consulta,
+                                  sb.descripcion AS sobres,
+                                  s3.solucion_tecnologica,
+                                  d.descripcion  AS documentos
+                  FROM mesas m
+                           INNER JOIN consultas c ON m.id_consulta = c.id
+                           INNER JOIN ubigeo_consultas uc ON m.id_consulta = uc.id -- id_proceso
+                           INNER JOIN consulta_sufragios cs on c.id = cs.id_consulta
+                           INNER JOIN soluciones s on m.id_solucion = s.id
+                           INNER JOIN solucion_documentos sd on s.id = sd.id_solucion
+                           INNER JOIN soluciones s3 on sd.id_solucion = s3.id
+                           INNER JOIN sobres sb on sd.id_sobre = sb.id
+                           INNER JOIN documentos d on sd.id_documento = d.id
+                  WHERE sd.id_sobre NOT IN (1, 2, 3) AND uc.id_proceso = $this->intIdProceso
+              ) AS DC
+     ) AS MESAS
+UNION ALL
+SELECT 'ACTAS'                                                                       AS TIPO,
+       TOTAL,
+       RECIBIDOS,
+       (TOTAL - RECIBIDOS)                                                           AS FALTANTES,
+       IFNULL(ROUND(((RECIBIDOS / NULLIF(TOTAL, 0)) * 100), 4), 0)                   AS PORC_RECIBIDOS,
+       IFNULL(ROUND((100 - ROUND(((RECIBIDOS / NULLIF(TOTAL, 0)) * 100), 4)), 4), 0) AS PORC_FALTANTES
+FROM (
+         SELECT COUNT(*)                                                                                AS TOTAL,
+                (SELECT COUNT(*) AS cantDocActas FROM recepcion_documentos rdoc WHERE rdoc.id_sobre IN (1, 2, 3) AND rdoc.id_proceso = $this->intIdProceso) AS RECIBIDOS
+         FROM mesas m
+                  INNER JOIN consultas c ON m.id_consulta = c.id
+                  INNER JOIN ubigeo_consultas uc ON m.id_consulta = uc.id -- id_proceso
+                  INNER JOIN consulta_sufragios cs on cs.id_consulta = c.id
+                  INNER JOIN sufragios s2 on cs.id_sufragio = s2.id-- Aqui se amarra los sufragios
+                  INNER JOIN soluciones s on m.id_solucion = s.id
+                  INNER JOIN solucion_documentos sd on sd.id_solucion = s.id
+                  INNER JOIN soluciones s3 on sd.id_solucion = s3.id
+                  INNER JOIN sobres sb on sd.id_sobre = sb.id
+                  INNER JOIN documentos d on sd.id_documento = d.id -- Aqui se amarra los documentos
+         WHERE sd.id_sobre IN (1, 2, 3) AND uc.id_proceso = $this->intIdProceso
+     ) AS ACTAS
+UNION ALL
+SELECT 'HCAMM'                                                                       AS TIPO,
+       TOTAL,
+       RECIBIDOS,
+       (TOTAL - RECIBIDOS)                                                           AS FALTANTES,
+       IFNULL(ROUND(((RECIBIDOS / NULLIF(TOTAL, 0)) * 100), 4), 0)                   AS PORC_RECIBIDOS,
+       IFNULL(ROUND((100 - ROUND(((RECIBIDOS / NULLIF(TOTAL, 0)) * 100), 4)), 4), 0) AS PORC_FALTANTES
+FROM (
+         SELECT COUNT(*)                                                                       AS TOTAL,
+                (SELECT COUNT(*) AS cantDocActas FROM recepcion_documentos rdoc WHERE id_sobre = 5 AND rdoc.id_proceso = $this->intIdProceso) AS RECIBIDOS
+         FROM mesas m
+                  INNER JOIN ubigeo_consultas uc ON m.id_consulta = uc.id -- id_proceso
+                  INNER JOIN soluciones s on m.id_solucion = s.id
+                  INNER JOIN solucion_documentos sd on s.id = sd.id_solucion
+                  INNER JOIN soluciones s3 on sd.id_solucion = s3.id
+                  INNER JOIN sobres sb on sd.id_sobre = sb.id
+                  INNER JOIN documentos d on sd.id_documento = d.id
+         WHERE sd.id_sobre = 5 AND uc.id_proceso = $this->intIdProceso
+     ) AS HCAMM
+UNION ALL
+SELECT 'PUESTA CERO'                                                                 AS TIPO,
+       TOTAL,
+       RECIBIDOS,
+       (TOTAL - RECIBIDOS)                                                           AS FALTANTES,
+       IFNULL(ROUND(((RECIBIDOS / NULLIF(TOTAL, 0)) * 100), 4), 0)                   AS PORC_RECIBIDOS,
+       IFNULL(ROUND((100 - ROUND(((RECIBIDOS / NULLIF(TOTAL, 0)) * 100), 4)), 4), 0) AS PORC_FALTANTES
+FROM (SELECT COUNT(*)                                                                       AS TOTAL,
+             (SELECT COUNT(*) AS cantDocActas FROM recepcion_documentos rdoc WHERE id_sobre = 6 AND rdoc.id_proceso = $this->intIdProceso) AS RECIBIDOS
+      FROM mesas m
+               INNER JOIN ubigeo_consultas uc ON m.id_consulta = uc.id -- id_proceso
+               INNER JOIN soluciones s on m.id_solucion = s.id
+               INNER JOIN solucion_documentos sd on s.id = sd.id_solucion
+               INNER JOIN soluciones s3 on sd.id_solucion = s3.id
+               INNER JOIN sobres sb on sd.id_sobre = sb.id
+               INNER JOIN documentos d on sd.id_documento = d.id -- Aqui se amarra los sufragios
+      WHERE sd.id_sobre = 6 AND uc.id_proceso = $this->intIdProceso
+     ) AS PUESTA_CERO
+UNION ALL
+SELECT 'LISTA ELECTORES'                                                             AS TIPO,
+       TOTAL,
+       RECIBIDOS,
+       (TOTAL - RECIBIDOS)                                                           AS FALTANTES,
+       IFNULL(ROUND(((RECIBIDOS / NULLIF(TOTAL, 0)) * 100), 4), 0)                   AS PORC_RECIBIDOS,
+       IFNULL(ROUND((100 - ROUND(((RECIBIDOS / NULLIF(TOTAL, 0)) * 100), 4)), 4), 0) AS PORC_FALTANTES
+FROM (SELECT SUM(CASE
+                     WHEN
+                         MOD(nro_electores, 40) = 0
+                         THEN nro_electores DIV 40
+                     WHEN MOD(nro_electores, 40) <> 0
+                         THEN FLOOR(nro_electores DIV 40) + 1
+      END)                          AS TOTAL,
+             (SELECT COUNT(*)
+              FROM recepcion_documentos rdoc
+                       INNER JOIN recepcion_detalles rd on rdoc.id = rd.id_recdoc
+              WHERE rdoc.id_sobre = 4 AND rdoc.id_proceso = $this->intIdProceso) AS RECIBIDOS
+      FROM mesas m
+               INNER JOIN ubigeo_consultas uc ON m.id_consulta = uc.id -- id_proceso
+               INNER JOIN soluciones s on m.id_solucion = s.id
+               INNER JOIN solucion_documentos sd on s.id = sd.id_solucion
+               INNER JOIN soluciones s3 on sd.id_solucion = s3.id
+               INNER JOIN sobres sb on sd.id_sobre = sb.id
+               INNER JOIN documentos d on sd.id_documento = d.id
+      WHERE sd.id_sobre = 4 AND uc.id_proceso = $this->intIdProceso ) AS FOLIOS;";
         $request = $this->select_all($query);
         return $request;
 
     }
 
 
-    public function avanceOdpe(int $idMaterial, int $idprocesos, int $idEtapa, int $idFase, int $idOdpe, int $validacion)
+    public function avanceOdpe(int $idprocesos, int $idOdpe)
     {
-        $this->intIdMaterial = $idMaterial;
         $this->intIdProceso = $idprocesos;
-        $this->intIdEtapa = $idEtapa;
-        $this->intIdFase = $idFase;
         $this->intIdOdpe = $idOdpe;
-        $this->intIdValidacion = $validacion;
-
 
         $query = "	SELECT 	ST.SOLUCIONTECNOLOGICA AS CODIGO_SOLUCION, 
                             COUNT(DISTINCT S.ID_SUFRAGIO) AS TOTAL, 
