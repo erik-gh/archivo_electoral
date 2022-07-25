@@ -27,25 +27,25 @@
                                                 <input class="form-control" type="hidden" id="txtIDUsuarioRecepcion" name="txtIDUsuarioRecepcion">
                                                 <input class="form-control" type="hidden" id="txtIdEtapaRecepcion" name="txtIdEtapaRecepcion" value="1">
                                                 <input class="form-control" type="hidden" id="txtValidacionRecepcion" name="txtValidacionRecepcion" value="1">
-                                                <div class="form-group form-group-sm">
-                                                    <label class="col-sm-4 control-label" for="form-control-1">SOLUCI&Oacute;N TECNOL&Oacute;G. :</label>
-                                                    <div class="col-sm-8 z-9">
-                                                        <select class="form-control" name="cbosoltecRecepcion" id="cbosoltecRecepcion" data-dropup-auto="false"
-                                                                data-size="6" data-live-search="true" onChange="cboOdpe('Recepcion');" required>
-                                                            <option value="">[ SELECCIONE UNA SOL. TECN. ]</option>
-                                                            <option value="1">CON</option>
-                                                            <option value="2">STAE</option>
-                                                            <option value="3">VEP</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
 
                                                 <div class="form-group form-group-sm">
                                                     <label class="col-sm-4 control-label" for="form-control-1">ODPE :</label>
-                                                    <div class="col-sm-8 z-8">
+                                                    <div class="col-sm-8 z-9">
                                                         <select class="form-control" name="cboodpeRecepcion" id="cboodpeRecepcion" data-dropup-auto="false" data-size="6"
-                                                                data-live-search="true" onChange="cboDepartamento('Recepcion');" required>
+                                                                data-live-search="true" onChange="cboSolucionTecnologica('Recepcion');" required>
                                                             <option value="">[ SELECCIONE UNA ODPE ]</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group form-group-sm">
+                                                    <label class="col-sm-4 control-label" for="form-control-1">SOLUCI&Oacute;N TECNOL&Oacute;G. :</label>
+                                                    <div class="col-sm-8 z-8">
+                                                        <select class="form-control" name="cbosoltecRecepcion" id="cbosoltecRecepcion" data-dropup-auto="false"
+                                                                data-size="6" data-live-search="true" onChange="cboDepartamento('Recepcion');" required>
+                                                            <option value="">[ SELECCIONE UNA SOL. TECN. ]</option>
+<!--                                                            <option value="1">CON</option>-->
+<!--                                                            <option value="2">STAE</option>-->
+<!--                                                            <option value="3">VEP</option>-->
                                                         </select>
                                                     </div>
                                                 </div>

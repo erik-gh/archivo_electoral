@@ -1,8 +1,8 @@
 // JavaScript Document
 $(document).ready(function () {
-    $('#cbofaseRecepcion').selectpicker();
-    $('#cbosoltecRecepcion').selectpicker();
+    cboOdpe();
     $('#cboodpeRecepcion').selectpicker();
+    $('#cbosoltecRecepcion').selectpicker();
     $('#cboconsultaRecepcion').selectpicker();
     $('#cbodepartRecepcion').selectpicker();
     $('#cboprovRecepcion').selectpicker();
@@ -22,41 +22,26 @@ if (eleccion == 2) {
 }
 
 /* ** FUNCIONES DE LOS COMBOS ** */
-
-/*
-function cboSolucionTecnologica() {
-    console.log('Veamos si entra');
-    // resetInpbarra(etapa);
-    // cargaAvanceFase(etapa);
-    // cargaAvanceOdpe(etapa);
-    setTimeout(function () {
-        // cargaAvanceOdpe(etapa);
-    }, 120);
-    if ($('#cbofase' + etapa).val() != '') {
-        var requestSolucion = new Object();
-        requestSolucion["idProceso"] = $("#cboProceso").val();
-
-        $.ajax({
-            url: base_url + '/Control_cedula/getSelectSolucion',
-            type: "POST",
-            // dataType: 'json',
-            data: requestSolucion,
-            cache: false,
-            success: function (data, textStatus, jqXHR) {
-                // console.log(data);
-                if (jqXHR.status == 200) {
-                    $('#cbosoltec' + etapa).selectpicker('destroy');
-                    $('#cbosoltec' + etapa).html(data).selectpicker('refresh');
-                }
-            },
-        });
-        return false;
-    } else {
-        resetCbo(etapa);
-    }
+function cboOdpe() {
+    console.log('REVIsando');
+    var requestSolucion = new Object();
+    requestSolucion["idProceso"] = $("#cboProceso").val();
+    $.ajax({
+        url: base_url + '/Control_cedula/getSelectOdpe',
+        type: "POST",
+        data: requestSolucion,
+        cache: false,
+        success: function (data, textStatus, jqXHR) {
+            if (jqXHR.status == 200) {
+                $('#cboodpeRecepcion').selectpicker('destroy');
+                $('#cboodpeRecepcion').html(data).selectpicker('refresh');
+            }
+        },
+    });
+    return false;
 }
-*/
-function cboOdpe(etapa) {
+
+function cboSolucionTecnologica(etapa) {
     resetInpbarra(etapa);
     $('#cbodepart' + etapa).selectpicker('destroy');
     $('#cbodepart' + etapa).html('<option value="">[ SELECCIONE UN DEPARTAMENTO ]</option>').selectpicker('refresh');
@@ -65,7 +50,7 @@ function cboOdpe(etapa) {
     $('#cbodist' + etapa).selectpicker('destroy');
     $('#cbodist' + etapa).html('<option value="">[ SELECCIONE UN DISTRITO ]</option>').selectpicker('refresh');
     $('#cboconsulta' + etapa).selectpicker('destroy');
-    $('#cboconsulta' + etapa).html('<option value="">[ SELECCIONE UNA CONSULTA  ]</option>').selectpicker('refresh');
+    $('#cboconsulta' + etapa).html('<option value="">[ SELECCIONE UNA CONSULTA ]</option>').selectpicker('refresh');
     $('#cbosobre' + etapa).selectpicker('destroy');
     $('#cbosobre' + etapa).html('<option value="">[ SELECCIONE TIPO DE SOBRE ]</option>').selectpicker('refresh');
     $('#cbosufragio' + etapa).selectpicker('destroy');
@@ -74,20 +59,18 @@ function cboOdpe(etapa) {
     $('#cbodocumento' + etapa).html('<option value="">[ SELECCIONE UN DOCUMENTO ]</option>').selectpicker('refresh');
 
     var requestOdpe = new Object();
-    requestOdpe["idProceso"] = $("#cboProceso").val();
-    requestOdpe["idSolucion"] = $("#cbosoltec" + etapa).val();
+    requestOdpe["idOdpe"] = $("#cboodpe" + etapa).val();
 
     $.ajax({
-        url: base_url + '/Control_cedula/getSelectOdpe',
+        url: base_url + '/Control_cedula/getSelectSolucion',
         type: "POST",
-        // dataType: 'json',
         data: requestOdpe,
         cache: false,
         success: function (data, textStatus, jqXHR) {
             // console.log(data);
             if (jqXHR.status == 200) {
-                $('#cboodpe' + etapa).selectpicker('destroy');
-                $('#cboodpe' + etapa).html(data).selectpicker('refresh');
+                $('#cbosoltec' + etapa).selectpicker('destroy');
+                $('#cbosoltec' + etapa).html(data).selectpicker('refresh');
             }
         },
     });
@@ -96,6 +79,7 @@ function cboOdpe(etapa) {
         //cargaAvanceAgrupacion(etapa);
         enabledAvance(etapa);
     }, 120);
+
 }
 
 function cboDepartamento(etapa) {
@@ -146,6 +130,7 @@ function cboDepartamento(etapa) {
 }
 
 function cboProvincia(etapa) {
+    cboConsulta(etapa);
     resetInpbarra(etapa);
     $('#cbodist' + etapa).selectpicker('destroy');
     $('#cbodist' + etapa).html('<option value="">[ SELECCIONE UN DISTRITO ]</option>').selectpicker('refresh');
@@ -604,9 +589,9 @@ function selecMesa(etapa) {
                 console.log(data);
                 if (jqXHR.status == 200) {
                     document.getElementById('mesa' + etapa).maxLength = data.data.cant_digito;
-/*                    if (etapaControl == 3) {
-                        ordenEmpaquetado(etapa);
-                    }*/
+                    /*                    if (etapaControl == 3) {
+                                            ordenEmpaquetado(etapa);
+                                        }*/
                 }
             },
         });

@@ -25,18 +25,17 @@ class Control_cedula extends Controllers
     }
 
     /* INICIO COMBOS DE SELECT */
-    public function getSelectSolucion()
+    public function getSelectOdpe()
     {
         //dep($_POST); exit;
         if ($_POST) {
             $intIdProceso = intval(strClean($_POST['idProceso']));
 
-            //Aqui revisar el cambio
-            $htmlOptions = '<option value="">[ SELECCIONE UNA SOL. TECN. ]</option>';
-            $arrData = $this->model->selectCboSolucion($intIdProceso);
+            $htmlOptions = '<option value="">[ SELECCIONE UNA ODPE ]</option>';
+            $arrData = $this->model->selectCboOdpe($intIdProceso);
             if (count($arrData) > 0) {
                 for ($i = 0; $i < count($arrData); $i++) {
-                    $htmlOptions .= '<option value="' . $arrData[$i]['id'] . '"> ' . $arrData[$i]['solucion_tecnologica'] . '</option>';
+                    $htmlOptions .= '<option value="' . $arrData[$i]['id'] . '"> ' . $arrData[$i]['nombre_odpe'] . '</option>';
                 }
             }
             echo $htmlOptions;
@@ -44,18 +43,18 @@ class Control_cedula extends Controllers
         }
     }
 
-    public function getSelectOdpe()
+    public function getSelectSolucion()
     {
         //dep($_POST); exit;
         if ($_POST) {
-            $intIdProceso = intval(strClean($_POST['idProceso']));
-            $intIdSolucion = intval(strClean($_POST['idSolucion']));
+            $intIdOdpe = intval(strClean($_POST['idOdpe']));
 
-            $htmlOptions = '<option value="">[ SELECCIONE UNA ODPE ]</option>';
-            $arrData = $this->model->selectCboOdpe($intIdProceso, $intIdSolucion);
+            //Aqui revisar el cambio
+            $htmlOptions = '<option value="">[ SELECCIONE UNA SOL. TECN. ]</option>';
+            $arrData = $this->model->selectCboSolucion($intIdOdpe);
             if (count($arrData) > 0) {
                 for ($i = 0; $i < count($arrData); $i++) {
-                    $htmlOptions .= '<option value="' . $arrData[$i]['id'] . '"> ' . $arrData[$i]['nombre_odpe'] . '</option>';
+                    $htmlOptions .= '<option value="' . $arrData[$i]['id'] . '"> ' . $arrData[$i]['solucion_tecnologica'] . '</option>';
                 }
             }
             echo $htmlOptions;
@@ -136,8 +135,10 @@ class Control_cedula extends Controllers
             $intIdProceso = intval(strClean($_POST['idProceso']));
             $intIdodpe = intval(strClean($_POST['idOdpe']));
             $intIdDepartamento = intval(strClean($_POST['idDepartamento']));
-            $intIdProvincia = intval(strClean($_POST['idProvincia']));
-            $intIdDistrito = intval(strClean($_POST['idDistrito']));
+//            $intIdProvincia = intval(strClean($_POST['idProvincia']));
+            $intIdProvincia =  isset($_POST['idProvincia']) ? $_POST['idProvincia'] : null;
+//            $intIdDistrito = intval(strClean($_POST['idDistrito']));
+            $intIdDistrito = isset($_POST['idDistrito']) ? $_POST['idDistrito'] : null;
             $htmlOptions = '<option value="">[ SELECCIONE UNA CONSULTA ]</option>';
             $arrData = $this->model->selectCboConsulta($intIdProceso, $intIdodpe, $intIdDepartamento, $intIdProvincia, $intIdDistrito);
             if (count($arrData) > 0) {
@@ -206,6 +207,23 @@ class Control_cedula extends Controllers
     }
 
     /* FIN DE COMBOS SELECT */
+    public function ingresarMesa(){
+        $intIdProceso = intval(strClean($_POST['idProceso']));
+        $intIdSolucion = intval(strClean($_POST['idSolucion']));
+        $intIdodpe = intval(strClean($_POST['idOdpe']));
+        $intDepartamento = strClean($_POST['idDepartamento']);
+        $intProvincia = strClean($_POST['idProvincia']);
+        $intDistrito = strClean($_POST['idDistrito']);
+        $idConsulta = strClean($_POST['idConsulta']);
+        $idSobre = strClean($_POST['idSobre']);
+        $intSufragio = strClean($_POST['idSufragio']);
+        $idDocumento = strClean($_POST['idDocumento']);
+        $codMesa = strClean($_POST['codMesa']);
+
+        $requestProyecto= $this->model->insertRecepcionDocumentos(
+            $intIdProceso, $intIdSolucion, $intIdodpe, $intDepartamento, $intProvincia,
+            $intDistrito, $idConsulta, $idSobre,$intSufragio, $idDocumento, $codMesa);
+    }
 
     public function getBarra()
     {
@@ -289,23 +307,7 @@ class Control_cedula extends Controllers
         echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
         die();
     }
-    public function ingresarMesa(){
-        $intIdProceso = intval(strClean($_POST['idProceso']));
-        $intIdSolucion = intval(strClean($_POST['idSolucion']));
-        $intIdodpe = intval(strClean($_POST['idOdpe']));
-        $intDepartamento = strClean($_POST['idDepartamento']);
-        $intProvincia = strClean($_POST['idProvincia']);
-        $intDistrito = strClean($_POST['idDistrito']);
-        $idConsulta = strClean($_POST['idConsulta']);
-        $idSobre = strClean($_POST['idSobre']);
-        $intSufragio = strClean($_POST['idSufragio']);
-        $idDocumento = strClean($_POST['idDocumento']);
-        $codMesa = strClean($_POST['codMesa']);
 
-        $requestProyecto= $this->model->insertRecepcionDocumentos(
-            $intIdProceso, $intIdSolucion, $intIdodpe, $intDepartamento, $intProvincia,
-            $intDistrito, $idConsulta, $idSobre,$intSufragio, $idDocumento, $codMesa);
-    }
     public function validarMesa()
     {
         // dep($_POST); exit;

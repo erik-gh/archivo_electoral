@@ -45,25 +45,29 @@ class Control_cedulaModel extends Mysql
     }
 
     /* INICIO DE MODELOS DE COMBO */
-    public function selectCboSolucion(int $idprocesos)
+    public function selectCboOdpe(int $idprocesos)
     {
         $this->intIdProceso = $idprocesos;
-        $query = "SELECT s.id, s.solucion_tecnologica FROM procesos p
-					INNER JOIN proceso_odpes po on p.id = po.id_proceso
-					INNER JOIN odpe_soluciones os on po.id_odpe = os.id_odpe
-					INNER JOIN soluciones s on os.id_solucion = s.id WHERE p.id = $this->intIdProceso
-					GROUP BY S.id, s.solucion_tecnologica ORDER BY solucion_tecnologica;";
-
+//        $this->intIdSolucion = $idSolucion;
+        $query = "SELECT o.id, o.nombre_odpe FROM procesos p
+                        INNER JOIN ubigeo_consultas uc on p.id = uc.id_proceso
+                        INNER JOIN ubigeos u on uc.id_ubigeo = u.id
+                        INNER JOIN odpes o on u.id_odpe = o.id
+                    WHERE p.id = $this->intIdProceso
+                    group by o.id, o.nombre_odpe
+                    order by o.id, o.nombre_odpe;";
         $request = $this->select_all($query);
         return $request;
     }
-
-    public function selectCboOdpe(int $idprocesos, int $idSolucion)
+    public function selectCboSolucion(int $idodpe)
     {
-        $this->intIdProceso = $idprocesos;
-        $this->intIdSolucion = $idSolucion;
-        $query = "SELECT o.id, o.nombre_odpe FROM odpe_soluciones os INNER JOIN odpes o on os.id_odpe = o.id
-                    WHERE os.id_solucion= $this->intIdSolucion GROUP BY o.id, o.nombre_odpe ORDER BY nombre_odpe;";
+        $this->intIdOdpe = $idodpe;
+        $query = "SELECT s.id, s.solucion_tecnologica
+                    FROM odpe_soluciones os
+                             INNER JOIN soluciones s on os.id_solucion = s.id
+                    WHERE os.id_odpe = $this->intIdOdpe
+                    ORDER BY s.solucion_tecnologica;";
+
         $request = $this->select_all($query);
         return $request;
     }
@@ -118,7 +122,28 @@ class Control_cedulaModel extends Mysql
         $this->intIdDepartamento = $iddepartamento;
         $this->intIdProvincia = $idprovincia;
         $this->intIdDistrito = $iddistrito;
-        $query = "SELECT c.id, c.descripcion
+        $query="";
+        if($this->intIdProvincia == null){
+            $query = "SELECT DISTINCT c.id, c.descripcion
+                    FROM ubigeo_consultas uc
+                             INNER JOIN consultas c ON c.id = uc.id_consulta
+                             INNER JOIN ubigeos u ON uc.id_ubigeo = u.id
+                    WHERE uc.id_proceso = $this->intIdProceso
+                      AND u.id_odpe = $this->intIdOdpe
+                      AND u.id_departamento = $this->intIdDepartamento
+                    ORDER BY c.id;";
+        }elseif ($this->intIdDistrito == null){
+            $query = "SELECT DISTINCT c.id, c.descripcion
+                    FROM ubigeo_consultas uc
+                             INNER JOIN consultas c ON c.id = uc.id_consulta
+                             INNER JOIN ubigeos u ON uc.id_ubigeo = u.id
+                    WHERE uc.id_proceso = $this->intIdProceso
+                      AND u.id_odpe = $this->intIdOdpe
+                      AND u.id_departamento = $this->intIdDepartamento
+                      AND u.id_provincia = $this->intIdProvincia
+                    ORDER BY c.id;";
+        }else{
+            $query = "SELECT c.id, c.descripcion
                     FROM ubigeo_consultas uc
                              INNER JOIN consultas c ON c.id = uc.id_consulta
                              INNER JOIN ubigeos u ON uc.id_ubigeo = u.id
@@ -128,6 +153,7 @@ class Control_cedulaModel extends Mysql
                       AND u.id_provincia = $this->intIdProvincia
                       AND u.id_distrito = $this->intIdDistrito
                     ORDER BY c.id;";
+        }
         $request = $this->select_all($query);
         return $request;
     }
