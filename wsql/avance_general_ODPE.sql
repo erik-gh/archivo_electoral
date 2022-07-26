@@ -105,3 +105,5 @@ FROM mesas m
          INNER JOIN documentos d on sd.id_documento = d.id -- Aqui se amarra los sufragios
 WHERE s.id = 3 AND sd.id_sobre NOT IN (1,2,3)
 ) AS documento_mesas;
+
+SELECT * from mesas;

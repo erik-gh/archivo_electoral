@@ -13,8 +13,6 @@ $(document).ready(function () {
 });
 
 var eleccion = $('#cboProceso option:selected').attr('data');
-//$('#txtdata').val(eleccion);
-// var eleccion = 1;
 if (eleccion == 2) {
     $('#divAgrupacionRecepcion').show();
 } else {
@@ -23,7 +21,6 @@ if (eleccion == 2) {
 
 /* ** FUNCIONES DE LOS COMBOS ** */
 function cboOdpe() {
-    console.log('REVIsando');
     var requestSolucion = new Object();
     requestSolucion["idProceso"] = $("#cboProceso").val();
     $.ajax({
@@ -67,7 +64,6 @@ function cboSolucionTecnologica(etapa) {
         data: requestOdpe,
         cache: false,
         success: function (data, textStatus, jqXHR) {
-            // console.log(data);
             if (jqXHR.status == 200) {
                 $('#cbosoltec' + etapa).selectpicker('destroy');
                 $('#cbosoltec' + etapa).html(data).selectpicker('refresh');
@@ -422,9 +418,6 @@ function cargaAvanceFase(etapa) {
     console.log('Entro en el Avance documento');
     var requestAvanceFase = new Object();
     requestAvanceFase["idProceso"] = $("#cboProceso").val();
-    // requestAvanceFase["idMaterial"] = $("#idMaterial").val();
-    // requestAvanceFase["idEtapa"] = $("#txtIdEtapa" + etapa).val();
-    // requestAvanceFase["idFase"] = $("#cbofase" + etapa).val();
     requestAvanceFase["nomfase"] = $('#cbofase' + etapa + ' option:selected').text();
     requestAvanceFase["validacion"] = $("#txtValidacion" + etapa).val();
 

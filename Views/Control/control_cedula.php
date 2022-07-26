@@ -238,7 +238,7 @@
                                                 <tr class="text-primary">
                                                     <th class="text-center" width="14%">SOL. TEC.</th>
                                                     <th class="text-center" width="14%">TOTAL MESAS</th>
-                                                    <th class="text-center" width="14%">TOTAL PAQUETES</th>
+                                                    <th class="text-center" width="14%">TOTAL DOCUMENTOS</th>
                                                     <th class="text-center" width="14%">RECIBIDAS</th>
                                                     <th class="text-center" width="14%">POR RECIBIR</th>
                                                     <th class="text-center" width="15%">% RECIBIDOS</th>
