@@ -205,8 +205,78 @@ class Control_cedula extends Controllers
             die();
         }
     }
-
     /* FIN DE COMBOS SELECT */
+    /* */
+    public function getAvanceDocumentos()
+    {
+        // dep($_POST); exit;
+        if ($_POST) {
+//            $intIdFase = intval(strClean($_POST['idFase']));
+//            $intIdMaterial = intval(strClean($_POST['idMaterial']));
+            $intIdProceso = intval(strClean($_POST['idProceso']));
+//            $intIdEtapa = intval(strClean($_POST['idEtapa']));
+//            $intIdValidacion = ($intIdEtapa == 2) ? 2 : 1;
+            $strFase = strClean($_POST['nomfase']);
+
+            $requestFase = $this->model->avanceDocumentos($intIdProceso);
+            $data = '';
+            foreach ($requestFase as $a) {
+                $data .= '<tr  class="text-center font-table">
+	                					<td>' . $a['TIPO'] . '</td>
+	                					<td>' . $a['TOTAL'] . '</td>
+	                					<td>' . $a['RECIBIDOS'] . '</td>
+	                					<td>' . $a['FALTANTES'] . '</td>
+	                					<td>' . $a['PORC_RECIBIDOS'] . ' %</td>
+	                					<td>' . $a['PORC_FALTANTES'] . ' %</td>
+	                				</tr>';
+            }
+            $arrResponse = [
+                "status" => true,
+                "title" => "Control de Cedulas!",
+                "msg" => "Datos por Fase.",
+                "data" => $data,
+                "nomFase" => $strFase
+            ];
+        }
+        echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
+        die();
+    }
+
+    public function getAvanceOdpe()
+    {
+        if ($_POST) {
+            $intIdProceso = intval(strClean($_POST['idProceso']));
+//            $intIdEtapa = intval(strClean($_POST['idEtapa']));
+            $intIdodpe = intval(strClean($_POST['idOdpe']));
+            $strOdpe = ($intIdodpe != '') ? strClean($_POST['nomOdpe']) : '';
+
+            $requestOdpe = $this->model->avanceOdpe($intIdProceso, $intIdodpe);
+            $data = '';
+
+            foreach ($requestOdpe as $a) {
+
+                $data .= '<tr  class="text-center font-table">
+	                					<td>' . $a['CODIGO_SOLUCION'] . '</td>
+	                					<td>' . $a['TOTAL'] . '</td>
+	                					<td>' . $a['TOTAL_PAQUETE'] . '</td>
+	                					<td>' . $a['PAQUETES_RECIBIDOS'] . '</td>
+	                					<td>' . $a['PAQUETES_FALTANTES'] . '</td>
+	                					<td>' . $a['PORCENTAJE_RECIBIDOS'] . ' %</td>
+	                					<td>' . $a['PORCENTAJE_FALTANTES'] . ' %</td>
+	                				</tr>';
+            }
+            $arrResponse = [
+                "status" => true,
+                "title" => "Control de Cedulas!",
+                "msg" => "Datos por ODPE.",
+                "data" => $data,
+                "nomOdpe" => $strOdpe
+            ];
+        }
+        echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
+        die();
+    }
+
     public function ingresarMesa(){
         $intIdProceso = intval(strClean($_POST['idProceso']));
         $intIdSolucion = intval(strClean($_POST['idSolucion']));
@@ -837,80 +907,6 @@ class Control_cedula extends Controllers
                 }
             }
 
-        }
-        echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
-        die();
-    }
-
-    public function getAvanceDocumentos()
-    {
-        // dep($_POST); exit;
-        if ($_POST) {
-//            $intIdFase = intval(strClean($_POST['idFase']));
-//            $intIdMaterial = intval(strClean($_POST['idMaterial']));
-            $intIdProceso = intval(strClean($_POST['idProceso']));
-//            $intIdEtapa = intval(strClean($_POST['idEtapa']));
-//            $intIdValidacion = ($intIdEtapa == 2) ? 2 : 1;
-            $strFase = strClean($_POST['nomfase']);
-
-            $requestFase = $this->model->avanceDocumentos($intIdProceso);
-            $data = '';
-            foreach ($requestFase as $a) {
-                $data .= '<tr  class="text-center font-table">
-	                					<td>' . $a['TIPO'] . '</td>
-	                					<td>' . $a['TOTAL'] . '</td>
-	                					<td>' . $a['RECIBIDOS'] . '</td>
-	                					<td>' . $a['FALTANTES'] . '</td>
-	                					<td>' . $a['PORC_RECIBIDOS'] . ' %</td>
-	                					<td>' . $a['PORC_FALTANTES'] . ' %</td>
-	                				</tr>';
-            }
-            $arrResponse = [
-                "status" => true,
-                "title" => "Control de Cedulas!",
-                "msg" => "Datos por Fase.",
-                "data" => $data,
-                "nomFase" => $strFase
-            ];
-        }
-        echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
-        die();
-    }
-
-    public function getAvanceOdpe()
-    {
-        //dep($_POST); exit;
-        if ($_POST) {
-            $intIdProceso = intval(strClean($_POST['idProceso']));
-//            $intIdEtapa = intval(strClean($_POST['idEtapa']));
-            $intIdodpe = intval(strClean($_POST['idOdpe']));
-//            $intIdValidacion = ($intIdEtapa == 2) ? 2 : 1;
-            $strOdpe = ($intIdodpe != '') ? strClean($_POST['nomOdpe']) : '';
-
-            $requestOdpe = $this->model->avanceOdpe($intIdProceso, $intIdodpe);
-            //dep($requestOdpe); exit;
-            $data = '';
-
-            foreach ($requestOdpe as $a) {
-
-                $data .= '<tr  class="text-center font-table">
-	                					<td>' . $a['CODIGO_SOLUCION'] . '</td>
-	                					<td>' . $a['TOTAL'] . '</td>
-	                					<td>' . $a['TOTAL_PAQUETE'] . '</td>
-	                					<td>' . $a['PAQUETES_RECIBIDOS'] . '</td>
-	                					<td>' . $a['PAQUETES_FALTANTES'] . '</td>
-	                					<td>' . $a['PORCENTAJE_RECIBIDOS'] . ' %</td>
-	                					<td>' . $a['PORCENTAJE_FALTANTES'] . ' %</td>
-	                				</tr>';
-            }
-
-            $arrResponse = [
-                "status" => true,
-                "title" => "Control de Cedulas!",
-                "msg" => "Datos por ODPE.",
-                "data" => $data,
-                "nomOdpe" => $strOdpe
-            ];
         }
         echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
         die();
