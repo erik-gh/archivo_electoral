@@ -73,7 +73,7 @@ class Control_cedula extends Controllers
 
 
             $arrData = $this->model->selectCboDepartamento($intIdProceso, $intIdSolucion, $intIdodpe, $intIdEleccion);
-            $htmlOptions = '<option value="">[ SELECCIONE ' . $arrData[0]['selector'] . ' ]</option>';
+            $htmlOptions = '<option value="">[ SELECCIONE UN DEPARTAMENTO ]</option>';
             if (count($arrData) > 0) {
                 for ($i = 0; $i < count($arrData); $i++) {
                     $htmlOptions .= '<option value="' . $arrData[$i]['id'] . '"> ' . $arrData[$i]['descripcion'] . '</option>';

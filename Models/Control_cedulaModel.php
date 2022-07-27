@@ -48,7 +48,6 @@ class Control_cedulaModel extends Mysql
     public function selectCboOdpe(int $idprocesos)
     {
         $this->intIdProceso = $idprocesos;
-//        $this->intIdSolucion = $idSolucion;
         $query = "SELECT o.id, o.nombre_odpe FROM procesos p
                         INNER JOIN ubigeo_consultas uc on p.id = uc.id_proceso
                         INNER JOIN ubigeos u on uc.id_ubigeo = u.id
@@ -63,25 +62,26 @@ class Control_cedulaModel extends Mysql
     public function selectCboSolucion(int $idodpe)
     {
         $this->intIdOdpe = $idodpe;
-        $query = "SELECT s.id, s.solucion_tecnologica
-                    FROM odpe_soluciones os
-                             INNER JOIN soluciones s on os.id_solucion = s.id
-                    WHERE os.id_odpe = $this->intIdOdpe
+        $query = "SELECT DISTINCT s.id, s.solucion_tecnologica
+                    FROM ubigeos u -- id_odpe
+                    INNER JOIN ubigeo_soluciones us on u.id = us.id_ubigeo
+                    INNER JOIN soluciones s on us.id_solucion = s.id
+                    WHERE u.id_odpe = $this->intIdOdpe
                     ORDER BY s.solucion_tecnologica;";
-
         $request = $this->select_all($query);
         return $request;
     }
 
-    public function selectCboDepartamento(int $idprocesos, int $idSolucion, int $idOdpe, int $idEleccion)
+    public function selectCboDepartamento(int $idprocesos, int $idSolucion, int $idOdpe)
     {
         $this->intIdProceso = $idprocesos;
-        $this->intIdSolucion = $idSolucion;
         $this->intIdOdpe = $idOdpe;
-        $this->intIdEleccion = $idEleccion;
-        $query = "SELECT DISTINCT d.id, d.descripcion,'UN DEPARTAMENTO' AS selector 
-                    FROM ubigeos u INNER JOIN departamentos d on u.id_departamento = d.id
-                    WHERE u.id_odpe = $this->intIdOdpe;";
+        $this->intIdSolucion = $idSolucion;
+
+        $query = "SELECT DISTINCT d.id, d.descripcion
+                    FROM ubigeos u
+                         INNER JOIN departamentos d ON u.id_departamento = d.id
+                     WHERE u.id_odpe = $this->intIdOdpe;";
         $request = $this->select_all($query);
         return $request;
     }
@@ -100,18 +100,19 @@ class Control_cedulaModel extends Mysql
         return $request;
     }
 
-    public function selectCboDistrito(int $idprocesos, int $idSolucion, int $idOdpe, string $Departamento, string $Provincia, int $idEleccion)
+    public function selectCboDistrito(int $idprocesos, int $idSolucion, int $idOdpe, string $Departamento, string $Provincia)
     {
         $this->intIdProceso = $idprocesos;
         $this->intIdSolucion = $idSolucion;
         $this->intIdOdpe = $idOdpe;
         $this->strDepartamento = $Departamento;
         $this->strProvincia = $Provincia;
-        $this->intIdEleccion = $idEleccion;
-
         $query = "SELECT DISTINCT d.id, d.descripcion
-                    FROM ubigeos u INNER JOIN distritos d on u.id_distrito = d.id
-                    WHERE u.id_odpe = $this->intIdOdpe AND u.id_provincia = $this->strProvincia;";
+                    FROM ubigeos u
+                    INNER JOIN ubigeo_soluciones us on u.id = us.id_ubigeo
+                    INNER JOIN distritos d on u.id_distrito = d.id
+                    WHERE u.id_odpe = $this->intIdOdpe AND u.id_departamento = $this->strDepartamento 
+                      AND u.id_provincia = $this->strProvincia AND us.id_solucion = $this->intIdSolucion;";
         $request = $this->select_all($query);
         return $request;
     }
@@ -123,8 +124,8 @@ class Control_cedulaModel extends Mysql
         $this->intIdDepartamento = $iddepartamento;
         $this->intIdProvincia = $idprovincia;
         $this->intIdDistrito = $iddistrito;
-        $query="";
-        if($this->intIdProvincia == null){
+        $query = "";
+        if ($this->intIdProvincia == null) {
             $query = "SELECT DISTINCT c.id, c.descripcion
                     FROM ubigeo_consultas uc
                              INNER JOIN consultas c ON c.id = uc.id_consulta
@@ -133,7 +134,7 @@ class Control_cedulaModel extends Mysql
                       AND u.id_odpe = $this->intIdOdpe
                       AND u.id_departamento = $this->intIdDepartamento
                     ORDER BY c.id;";
-        }elseif ($this->intIdDistrito == null){
+        } elseif ($this->intIdDistrito == null) {
             $query = "SELECT DISTINCT c.id, c.descripcion
                     FROM ubigeo_consultas uc
                              INNER JOIN consultas c ON c.id = uc.id_consulta
@@ -143,7 +144,7 @@ class Control_cedulaModel extends Mysql
                       AND u.id_departamento = $this->intIdDepartamento
                       AND u.id_provincia = $this->intIdProvincia
                     ORDER BY c.id;";
-        }else{
+        } else {
             $query = "SELECT c.id, c.descripcion
                     FROM ubigeo_consultas uc
                              INNER JOIN consultas c ON c.id = uc.id_consulta
@@ -187,6 +188,23 @@ class Control_cedulaModel extends Mysql
     }
 
     /* FIN DE MODELOS COMBOS */
+    public function avanceDocumentos(int $idprocesos)
+    {
+        $this->intIdProceso = $idprocesos;
+        $query = "CALL sp_avance_general($this->intIdProceso);";
+        $request = $this->select_all($query);
+        return $request;
+    }
+
+    public function avanceOdpe(int $idprocesos, int $idOdpe)
+    {
+        $this->intIdProceso = $idprocesos;
+        $this->intIdOdpe = $idOdpe;
+        $query = "CALL sp_avance_general_odpe($this->intIdProceso, $this->intIdOdpe);";
+        $request = $this->select_all($query);
+        return $request;
+    }
+
 
     public function selectIdMesa(int $idprocesos, string $nroMesa)
     {
@@ -203,7 +221,7 @@ class Control_cedulaModel extends Mysql
         return $request;
     }
 
-    public function selectinpBarra(int $idprocesos, int $idSolucion, int $idOdpe, int $idDepartamento, int $idProvincia, int $idDistrito, string $idConsulta, int $idSobre,int $idDocumento, int $idEleccion)
+    public function selectinpBarra(int $idprocesos, int $idSolucion, int $idOdpe, int $idDepartamento, int $idProvincia, int $idDistrito, string $idConsulta, int $idSobre, int $idDocumento, int $idEleccion)
     {
         $this->intIdProceso = $idprocesos;
         $this->intIdSolucion = $idSolucion;
@@ -222,10 +240,10 @@ class Control_cedulaModel extends Mysql
     }
 
     public function insertRecepcionDocumentos(
-        int $idprocesos, int $idSolucion, int $idOdpe, int $idDepartamento, int $idProvincia, int $idDistrito,
-        int $idConsulta, int $idSobre, int $idSufragio,int $idDocumento, string $codMesa)
+        int $idproceso, int $idSolucion, int $idOdpe, int $idDepartamento, int $idProvincia, int $idDistrito,
+        int $idConsulta, int $idSobre, int $idSufragio, int $idDocumento, string $codMesa)
     {
-        $this->intIdProceso = $idprocesos;
+        $this->intIdProceso = $idproceso;
         $this->intIdSolucion = $idSolucion;
         $this->intIdOdpe = $idOdpe;
         $this->intIdDepartamento = $idDepartamento;
@@ -237,25 +255,33 @@ class Control_cedulaModel extends Mysql
         $this->intIdDocumento = $idDocumento;
         $this->strNroMesa = $codMesa;
 
-        /* Revisar el la mesa */
+        $query = "CALL sp_insert_recepcion_documentos($this->intIdProceso, $this->intIdSolucion, $this->intIdOdpe,
+        $this->intIdDepartamento, $this->intIdProvincia, $this->intIdDistrito, $this->intIdConsulta,
+        $this->intIdSobre, $this->intIdSufragio, $this->intIdDocumento, '$this->strNroMesa');";
+        $request = $this->select($query);
+                /*
+        // Revisar el la mesa
         $queryIdMesa = "SELECT id FROM mesas WHERE nro_mesa = SUBSTRING('{$this->strNroMesa}', 1, 6);";
         $requestIdMesa = (int)$this->select($queryIdMesa);
-
-        /* Revisar el ubigeo */
-        $queryIdUbigeo = "SELECT id FROM ubigeos WHERE id_departamento=$this->intIdDepartamento 
+        if ($requestIdMesa != 0) {
+            if ($this->intIdSobre = 3) {// si el sobre es plomo 3
+                // Revisar el ubigeo
+                $queryIdUbigeo = "SELECT id FROM ubigeos WHERE id_departamento=$this->intIdDepartamento 
                          AND id_provincia=$this->intIdProvincia AND id_distrito=$this->intIdDistrito;";
-        $requestIdUbigeo = (int)$this->select($queryIdUbigeo);
+                $requestIdUbigeo = (int)$this->select($queryIdUbigeo);
 
-//        if(empty($requestIdMesa)){
-            $query = "INSERT INTO recepcion_documentos (
+                $query = "INSERT INTO recepcion_documentos (
                                         id_proceso, id_solucion, id_odpe, id_ubigeo, id_consulta, id_sobre,
                                         id_sufragio, id_documento, id_mesa, created_at, updated_at) 
                                         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, NOW(), NOW())";
-            $arrData = array(
-                $this->intIdProceso ,$this->intIdSolucion,$this->intIdOdpe, $requestIdUbigeo, $this->intIdConsulta,
-                $this->intIdSobre, $this->intIdSufragio, $this->intIdDocumento, $requestIdMesa);
-            $requestInsert = $this->insert($query, $arrData);
-            return $requestInsert;
+                $arrData = array(
+                    $this->intIdProceso, $this->intIdSolucion, $this->intIdOdpe, $requestIdUbigeo, $this->intIdConsulta,
+                    $this->intIdSobre, $this->intIdSufragio, $this->intIdDocumento, $requestIdMesa);
+                $requestInsert = $this->insert($query, $arrData);
+            }
+        }*/
+
+        return $request;
     }
 
 
@@ -390,7 +416,6 @@ class Control_cedulaModel extends Mysql
         }
 
     }
-
 
     public function validarMesaDepart(int $idprocesos, string $Departamento, string $nroMesa)
     {
@@ -784,24 +809,6 @@ class Control_cedulaModel extends Mysql
         return $request;
 
     }
-
-    public function avanceDocumentos(int $idprocesos)
-    {
-        $this->intIdProceso = $idprocesos;
-        $query = "CALL sp_avance_general($this->intIdProceso);";
-        $request = $this->select_all($query);
-        return $request;
-    }
-
-    public function avanceOdpe(int $idprocesos, int $idOdpe)
-    {
-        $this->intIdProceso = $idprocesos;
-        $this->intIdOdpe = $idOdpe;
-        $query = "CALL sp_avance_general_odpe($this->intIdProceso, $this->intIdOdpe);";
-        $request = $this->select_all($query);
-        return $request;
-    }
-
 
     public function avanceAgrupacion(int $idMaterial, int $idprocesos, int $idEtapa, int $idFase, int $idOdpe, int $validacion)
     {

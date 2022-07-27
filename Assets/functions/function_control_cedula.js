@@ -1,6 +1,5 @@
 // JavaScript Document
 $(document).ready(function () {
-    cboOdpe();
     $('#cboodpeRecepcion').selectpicker();
     $('#cbosoltecRecepcion').selectpicker();
     $('#cboconsultaRecepcion').selectpicker();
@@ -10,6 +9,8 @@ $(document).ready(function () {
     $('#cbosobreRecepcion').selectpicker();
     $('#cbosufragioRecepcion').selectpicker();
     $('#cbodocumentoRecepcion').selectpicker();
+    cboOdpe();
+    cargaAvanceFase('Recepcion');
 });
 
 var eleccion = $('#cboProceso option:selected').attr('data');
@@ -57,7 +58,6 @@ function cboSolucionTecnologica(etapa) {
 
     var requestOdpe = new Object();
     requestOdpe["idOdpe"] = $("#cboodpe" + etapa).val();
-
     $.ajax({
         url: base_url + '/Control_cedula/getSelectSolucion',
         type: "POST",
@@ -72,7 +72,6 @@ function cboSolucionTecnologica(etapa) {
     });
     setTimeout(function () {
         // cargaAvanceOdpe(etapa);
-        //cargaAvanceAgrupacion(etapa);
         enabledAvance(etapa);
     }, 120);
 
@@ -341,7 +340,6 @@ function Validador(correo) {
 
 /*RESET DE COMBO E IMPUT*/
 function cargaCbo(etapa) {
-    console.log('cargaCbo');
     resetCbo(etapa);
     resetInpbarra(etapa);
     cargaAvanceFase(etapa);

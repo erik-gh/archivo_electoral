@@ -232,7 +232,7 @@
                                                 </span>
                                             </div>
                                         </div>
-                                        <div id="tbl_cedulaAvanceOdpeRecepcion" class="dataTables_wrapper form-inline" role="grid">SOLUCION : <span id="nomOdpeRecepcion"></span><br><br>
+                                        <div id="tbl_cedulaAvanceOdpeRecepcion" class="dataTables_wrapper form-inline" role="grid">ODPE : <span id="nomOdpeRecepcion"></span><br><br>
                                             <table id="tbl_cedulaRecepcionAvanceOdpe" class="display table table-bordered table-hover" cellspacing="0" width="100%">
                                                 <thead class="text-center font-table">
                                                 <tr class="text-primary">
