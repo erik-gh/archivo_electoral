@@ -252,17 +252,15 @@ class Control_cedula extends Controllers
 
             $requestOdpe = $this->model->avanceOdpe($intIdProceso, $intIdodpe);
             $data = '';
-
             foreach ($requestOdpe as $a) {
-
                 $data .= '<tr  class="text-center font-table">
-	                					<td>' . $a['CODIGO_SOLUCION'] . '</td>
+	                					<td>' . $a['solucion_tecnologica'] . '</td>
 	                					<td>' . $a['TOTAL'] . '</td>
-	                					<td>' . $a['TOTAL_PAQUETE'] . '</td>
-	                					<td>' . $a['PAQUETES_RECIBIDOS'] . '</td>
-	                					<td>' . $a['PAQUETES_FALTANTES'] . '</td>
-	                					<td>' . $a['PORCENTAJE_RECIBIDOS'] . ' %</td>
-	                					<td>' . $a['PORCENTAJE_FALTANTES'] . ' %</td>
+	                					<td>' . $a['CANT_MESAS'] . '</td>
+	                					<td>' . $a['RECIBIDOS'] . '</td>
+	                					<td>' . $a['FALTANTES'] . '</td>
+	                					<td>' . $a['PORC_RECIBIDOS'] . ' %</td>
+	                					<td>' . $a['PORC_FALTANTES'] . ' %</td>
 	                				</tr>';
             }
             $arrResponse = [

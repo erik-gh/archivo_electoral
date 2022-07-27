@@ -415,7 +415,6 @@ function resetInput(etapa) {
 
 /*CARGA AVANCE FASE*/
 function cargaAvanceFase(etapa) {
-    console.log('Entro en el Avance documento');
     var requestAvanceFase = new Object();
     requestAvanceFase["idProceso"] = $("#cboProceso").val();
     requestAvanceFase["nomfase"] = $('#cbofase' + etapa + ' option:selected').text();
@@ -438,7 +437,7 @@ function cargaAvanceFase(etapa) {
 
 /*CARGA AVANCE ODPE*/
 function cargaAvanceOdpe(etapa) {
-
+    console.log('cargavanceodpe');
     var requestAvanceOdpe = new Object();
     requestAvanceOdpe["idProceso"] = $("#cboProceso").val();
     requestAvanceOdpe["idOdpe"] = $("#cboodpe" + etapa).val();
